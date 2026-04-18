@@ -6,26 +6,80 @@
 
 @layer base {
   :root {
-    /* DARK FUTURISTIC SAAS — Neon blue/violet accents */
-    --background: 0 0% 4%;              /* #0A0A0A */
+    /* LIGHT THEME — Clean white with electric blue accents */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+
+    --card: 0 0% 99%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    --primary: 215 95% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 270 80% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 195 95% 50%;
+    --accent-foreground: 0 0% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 215 95% 50%;
+
+    --radius: 1rem;
+
+    --blue-1: 215 95% 50%;
+    --blue-2: 195 95% 50%;
+    --blue-3: 270 80% 60%;
+    --blue-4: 290 85% 65%;
+    --blue-5: 0 0% 96%;
+
+    --shadow-soft: 0 10px 30px -12px hsl(215 50% 30% / 0.15);
+    --shadow-strong: 0 30px 60px -25px hsl(215 50% 30% / 0.25);
+    --shadow-glow: 0 0 60px hsl(var(--primary) / 0.35);
+
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 215 95% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 215 95% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 7%;                    /* #111111 */
+    --card: 0 0% 7%;
     --card-foreground: 0 0% 98%;
 
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 215 95% 55%;             /* electric blue */
+    --primary: 215 95% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 270 90% 65%;           /* neon violet */
+    --secondary: 270 90% 65%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 11%;
     --muted-foreground: 0 0% 64%;
 
-    --accent: 195 100% 60%;             /* cyan */
+    --accent: 195 100% 60%;
     --accent-foreground: 0 0% 4%;
 
     --destructive: 0 84% 60%;
@@ -35,21 +89,15 @@
     --input: 0 0% 15%;
     --ring: 215 95% 55%;
 
-    --radius: 1rem;
-
-    /* Discrete brand palette (no gradients) */
-    --blue-1: 215 95% 55%;   /* electric blue */
-    --blue-2: 195 100% 60%;  /* cyan */
-    --blue-3: 270 90% 65%;   /* violet */
-    --blue-4: 290 90% 70%;   /* magenta */
-    --blue-5: 0 0% 11%;      /* surface */
+    --blue-1: 215 95% 55%;
+    --blue-2: 195 100% 60%;
+    --blue-3: 270 90% 65%;
+    --blue-4: 290 90% 70%;
+    --blue-5: 0 0% 11%;
 
     --shadow-soft: 0 10px 30px -12px hsl(0 0% 0% / 0.6);
     --shadow-strong: 0 30px 60px -25px hsl(0 0% 0% / 0.7);
     --shadow-glow: 0 0 60px hsl(var(--primary) / 0.45);
-
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 
     --sidebar-background: 0 0% 7%;
     --sidebar-foreground: 0 0% 98%;

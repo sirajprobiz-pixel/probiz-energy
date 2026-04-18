@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Building2, Calendar, CheckCircle2, Headphones, Sparkles, Zap } from "lucide-react";
 import { useLenis } from "@/hooks/useLenis";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 
 const BENEFITS = [
@@ -47,6 +48,7 @@ const BookDemo = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <ScrollProgress />
+      <ThemeToggle />
 
       {/* Top bar */}
       <div className="container pt-8">
