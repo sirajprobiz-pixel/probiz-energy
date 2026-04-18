@@ -1,6 +1,7 @@
 import { useLenis } from "@/hooks/useLenis";
 import { Loader } from "@/components/Loader";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { CustomCursor } from "@/components/CustomCursor";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { DashboardShowcase } from "@/components/DashboardShowcase";
@@ -35,6 +36,7 @@ const Index = () => {
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <Loader />
       <ScrollProgress />
+      <CustomCursor />
       <Header />
       <ThemeToggle />
       <main>
