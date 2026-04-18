@@ -1,6 +1,5 @@
 import { useLenis } from "@/hooks/useLenis";
 import { Loader } from "@/components/Loader";
-import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
@@ -9,6 +8,7 @@ import { Platform } from "@/components/Platform";
 import { Features } from "@/components/Features";
 import { HorizontalShowcase } from "@/components/HorizontalShowcase";
 import { Stats } from "@/components/Stats";
+import { Pricing } from "@/components/Pricing";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
@@ -28,9 +28,8 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground noise">
+    <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <Loader />
-      <CustomCursor />
       <ScrollProgress />
       <Header />
       <main>
@@ -40,6 +39,7 @@ const Index = () => {
         <Features />
         <HorizontalShowcase />
         <Stats />
+        <Pricing />
         <CTA />
       </main>
       <Footer />

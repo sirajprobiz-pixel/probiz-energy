@@ -3,35 +3,31 @@ import { useRef } from "react";
 import { AnimatedText } from "./AnimatedText";
 import smartBuilding from "@/assets/smart-building.jpg";
 
+const COLORS = ["bg-brand-1 text-white", "bg-brand-2 text-white", "bg-brand-3 text-blue-1", "bg-brand-4 text-blue-1"];
+
 export const Platform = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1.1, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
 
   return (
     <section id="platform" ref={ref} className="relative py-32">
       <div className="container">
         <div className="mx-auto mb-16 max-w-3xl text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-neon-purple" />
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-2" />
             Platform Overview
-          </motion.div>
+          </div>
           <AnimatedText
             as="h2"
             text="Smart energy management cloud platform."
             className="font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl"
           />
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.2 }}
             className="mt-6 text-lg text-muted-foreground text-balance"
           >
             Cut energy use, costs, and carbon footprints with enhanced data visibility,
@@ -41,11 +37,10 @@ export const Platform = () => {
         </div>
 
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          <motion.div style={{ y }} className="relative">
-            <div className="absolute -inset-6 bg-gradient-aurora opacity-30 blur-3xl" />
-            <div className="relative overflow-hidden rounded-3xl glass-strong p-2">
-              <motion.img
-                style={{ scale: imgScale }}
+          <motion.div style={{ y }} className="relative will-change-transform">
+            <div className="absolute -inset-6 rounded-[2rem] bg-brand-4/60 blur-3xl" />
+            <div className="relative overflow-hidden rounded-3xl bg-white p-2 ring-1 ring-border">
+              <img
                 src={smartBuilding}
                 alt="Smart connected building"
                 width={1280}
@@ -56,37 +51,23 @@ export const Platform = () => {
             </div>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {[
-              {
-                title: "Unified energy + electrical data",
-                body: "Integrate consumption, distribution, and power quality data across your portfolio.",
-              },
-              {
-                title: "Faults & utilisation insights",
-                body: "Detect faults early and optimise utilisation through continuous diagnostics.",
-              },
-              {
-                title: "Efficiency programs",
-                body: "Run targeted efficiency programs and measure outcomes in real time.",
-              },
-              {
-                title: "Maintenance & diagnostics",
-                body: "Periodic, data-driven maintenance keeps systems running at peak performance.",
-              },
+              { title: "Unified energy + electrical data", body: "Integrate consumption, distribution, and power quality data across your portfolio." },
+              { title: "Faults & utilisation insights",    body: "Detect faults early and optimise utilisation through continuous diagnostics." },
+              { title: "Efficiency programs",              body: "Run targeted efficiency programs and measure outcomes in real time." },
+              { title: "Maintenance & diagnostics",        body: "Periodic, data-driven maintenance keeps systems running at peak performance." },
             ].map((item, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: 40 }}
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative overflow-hidden rounded-2xl glass p-6 tilt-card"
-                data-cursor-hover
+                transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative overflow-hidden rounded-2xl bg-white p-6 ring-1 ring-border tilt-card"
               >
-                <div className="absolute inset-0 -translate-x-full bg-gradient-aurora opacity-0 transition-all duration-700 group-hover:translate-x-0 group-hover:opacity-10" />
                 <div className="relative flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-primary font-display text-sm font-bold">
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-display text-sm font-bold ${COLORS[i]}`}>
                     0{i + 1}
                   </div>
                   <div>

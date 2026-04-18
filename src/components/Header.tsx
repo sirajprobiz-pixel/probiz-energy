@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const NAV = [
-  { label: "Platform", href: "#platform" },
-  { label: "Features", href: "#features" },
-  { label: "Dashboard", href: "#dashboard" },
-  { label: "Solutions", href: "#solutions" },
-  { label: "Contact", href: "#contact" },
+  { label: "Platform", href: "/#platform" },
+  { label: "Features", href: "/#features" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Dashboard", href: "/#dashboard" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const Header = () => {
@@ -16,18 +17,16 @@ export const Header = () => {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <motion.header
-      initial={{ y: -40, opacity: 0 }}
+      initial={{ y: -30, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "py-3" : "py-6"
-      }`}
+      transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-6"}`}
     >
       <div className="container">
         <div
@@ -35,15 +34,15 @@ export const Header = () => {
             scrolled ? "glass-strong" : "bg-transparent"
           }`}
         >
-          <a href="#" className="group flex items-center gap-2.5">
+          <Link to="/" className="group flex items-center gap-2.5">
             <div className="relative h-8 w-8">
-              <div className="absolute inset-0 rounded-lg bg-gradient-primary blur-md opacity-60 group-hover:opacity-100 transition" />
-              <div className="relative flex h-full w-full items-center justify-center rounded-lg bg-gradient-primary font-display text-sm font-bold text-primary-foreground">
+              <div className="absolute inset-0 rounded-lg bg-brand-1 opacity-30 blur-md group-hover:opacity-60 transition" />
+              <div className="relative flex h-full w-full items-center justify-center rounded-lg bg-primary font-display text-sm font-bold text-primary-foreground">
                 P
               </div>
             </div>
             <span className="font-display text-lg font-bold tracking-tight">PROsmart</span>
-          </a>
+          </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
             {NAV.map((item) => (
@@ -53,26 +52,22 @@ export const Header = () => {
                 className="group relative rounded-full px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 <span className="relative z-10">{item.label}</span>
-                <span className="absolute inset-0 scale-90 rounded-full bg-white/5 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100" />
+                <span className="absolute inset-0 scale-90 rounded-full bg-brand-5 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100" />
               </a>
             ))}
           </nav>
 
           <div className="hidden md:block">
-            <a
-              href="#contact"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:shadow-[0_0_30px_hsl(var(--primary)/0.6)]"
+            <Link
+              to="/book-demo"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:shadow-[0_10px_30px_-10px_hsl(var(--primary)/0.6)]"
             >
               <span className="relative z-10">Book a Demo</span>
               <span className="relative z-10 transition-transform group-hover:translate-x-0.5">→</span>
-            </a>
+            </Link>
           </div>
 
-          <button
-            onClick={() => setOpen(!open)}
-            className="rounded-lg p-2 md:hidden"
-            aria-label="Menu"
-          >
+          <button onClick={() => setOpen(!open)} className="rounded-lg p-2 md:hidden" aria-label="Menu">
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
@@ -88,18 +83,18 @@ export const Header = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-lg px-4 py-3 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                className="block rounded-lg px-4 py-3 text-sm text-muted-foreground hover:bg-brand-5 hover:text-foreground"
               >
                 {item.label}
               </a>
             ))}
-            <a
-              href="#contact"
+            <Link
+              to="/book-demo"
               onClick={() => setOpen(false)}
-              className="mt-2 block rounded-full bg-gradient-primary px-4 py-3 text-center text-sm font-medium"
+              className="mt-2 block rounded-full bg-primary px-4 py-3 text-center text-sm font-medium text-primary-foreground"
             >
               Book a Demo
-            </a>
+            </Link>
           </motion.div>
         )}
       </div>
