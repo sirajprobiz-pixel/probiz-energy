@@ -16,32 +16,33 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 8%;
 
-    --primary: 215 95% 50%;
+    --primary: 217 91% 50%;            /* deep electric blue #1d4ed8-ish */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 270 80% 60%;
+    --secondary: 210 100% 60%;         /* azure blue */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 210 30% 96%;
+    --muted-foreground: 215 20% 35%;
 
-    --accent: 195 95% 50%;
+    --accent: 199 95% 50%;             /* sky / cyan-blue */
     --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 215 95% 50%;
+    --border: 215 25% 88%;
+    --input: 215 25% 88%;
+    --ring: 217 91% 50%;
 
     --radius: 1rem;
 
-    --blue-1: 215 95% 50%;
-    --blue-2: 195 95% 50%;
-    --blue-3: 270 80% 60%;
-    --blue-4: 290 85% 65%;
-    --blue-5: 0 0% 96%;
+    /* All-blue brand palette — NO purple/violet */
+    --blue-1: 217 91% 50%;   /* deep electric blue */
+    --blue-2: 199 95% 50%;   /* sky cyan-blue */
+    --blue-3: 210 100% 60%;  /* azure */
+    --blue-4: 220 95% 70%;   /* light periwinkle blue */
+    --blue-5: 215 35% 95%;   /* surface tint */
 
     --shadow-soft: 0 10px 30px -12px hsl(215 50% 30% / 0.15);
     --shadow-strong: 0 30px 60px -25px hsl(215 50% 30% / 0.25);
@@ -70,30 +71,30 @@
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 215 95% 55%;
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 270 90% 65%;
+    --secondary: 210 100% 65%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 11%;
-    --muted-foreground: 0 0% 64%;
+    --muted: 215 20% 14%;
+    --muted-foreground: 215 15% 70%;
 
-    --accent: 195 100% 60%;
+    --accent: 199 95% 60%;
     --accent-foreground: 0 0% 4%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 215 95% 55%;
+    --border: 215 20% 18%;
+    --input: 215 20% 18%;
+    --ring: 217 91% 60%;
 
-    --blue-1: 215 95% 55%;
-    --blue-2: 195 100% 60%;
-    --blue-3: 270 90% 65%;
-    --blue-4: 290 90% 70%;
-    --blue-5: 0 0% 11%;
+    --blue-1: 217 91% 60%;
+    --blue-2: 199 95% 60%;
+    --blue-3: 210 100% 65%;
+    --blue-4: 220 95% 75%;
+    --blue-5: 215 25% 12%;
 
     --shadow-soft: 0 10px 30px -12px hsl(0 0% 0% / 0.6);
     --shadow-strong: 0 30px 60px -25px hsl(0 0% 0% / 0.7);
