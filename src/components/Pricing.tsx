@@ -92,11 +92,11 @@ export const Pricing = () => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className={`relative overflow-hidden rounded-3xl p-8 ring-1 ring-border tilt-card ${
-                t.highlight ? `${t.color} ${t.text}` : "bg-white"
+                t.highlight ? `${t.color} ${t.text}` : "surface"
               }`}
             >
               {t.highlight && (
-                <div className="absolute right-4 top-4 rounded-full bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-1">
+                <div className="absolute right-4 top-4 rounded-full bg-background px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-1">
                   Most Popular
                 </div>
               )}
@@ -111,7 +111,7 @@ export const Pricing = () => {
                 to="/book-demo"
                 className={`mt-8 block w-full rounded-full px-5 py-3 text-center text-sm font-medium transition ${
                   t.highlight
-                    ? "bg-white text-blue-1 hover:bg-brand-5"
+                    ? "bg-background text-blue-1 hover:opacity-90"
                     : `${t.color} ${t.text} hover:opacity-90`
                 }`}
               >
@@ -127,12 +127,12 @@ export const Pricing = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
-          className="mt-16 overflow-hidden rounded-3xl bg-white ring-1 ring-border"
+          className="mt-16 overflow-hidden rounded-3xl surface"
         >
           <div className="overflow-x-auto">
             <table className="w-full min-w-[720px] text-left">
               <thead>
-                <tr className="bg-brand-5">
+                <tr className="bg-muted/50">
                   <th className="px-6 py-5 text-sm font-medium text-muted-foreground">Compare features</th>
                   {TIERS.map((t) => (
                     <th key={t.name} className="px-6 py-5 text-center">
@@ -145,7 +145,7 @@ export const Pricing = () => {
               </thead>
               <tbody>
                 {ROWS.map((row, idx) => (
-                  <tr key={row.label} className={idx % 2 === 0 ? "bg-white" : "bg-brand-5/40"}>
+                  <tr key={row.label} className={idx % 2 === 0 ? "" : "bg-muted/30"}>
                     <td className="px-6 py-4 text-sm font-medium">{row.label}</td>
                     {row.values.map((v, i) => (
                       <td key={i} className="px-6 py-4 text-center">
