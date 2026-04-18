@@ -7,7 +7,7 @@ const COLS = [
 ];
 
 export const Footer = () => (
-  <footer className="relative border-t border-border bg-brand-5 py-16">
+  <footer className="relative border-t border-border bg-card py-16">
     <div className="container">
       <div className="grid gap-12 lg:grid-cols-[1.5fr_2fr]">
         <div>
