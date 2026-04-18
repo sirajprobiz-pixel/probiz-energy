@@ -7,8 +7,14 @@ export const CustomCursor = () => {
   const sx = useSpring(x, { stiffness: 500, damping: 40, mass: 0.5 });
   const sy = useSpring(y, { stiffness: 500, damping: 40, mass: 0.5 });
   const [hover, setHover] = useState(false);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(max-width: 768px)").matches) return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    setEnabled(true);
+
     const move = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
@@ -25,18 +31,19 @@ export const CustomCursor = () => {
     };
   }, [x, y]);
 
-  if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) return null;
+  if (!enabled) return null;
 
   return (
     <>
       <motion.div
         style={{ translateX: sx, translateY: sy }}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] -ml-1 -mt-1 h-2 w-2 rounded-full bg-neon-cyan mix-blend-difference"
+        animate={{ scale: hover ? 0 : 1 }}
+        className="pointer-events-none fixed left-0 top-0 z-[9999] -ml-1 -mt-1 h-2 w-2 rounded-full bg-primary mix-blend-difference"
       />
       <motion.div
         style={{ translateX: sx, translateY: sy }}
-        animate={{ scale: hover ? 1.8 : 1, opacity: hover ? 0.6 : 0.3 }}
-        className="pointer-events-none fixed left-0 top-0 z-[9998] -ml-5 -mt-5 h-10 w-10 rounded-full border border-neon-blue/60 backdrop-blur-sm"
+        animate={{ scale: hover ? 1.8 : 1, opacity: hover ? 0.7 : 0.4 }}
+        className="pointer-events-none fixed left-0 top-0 z-[9998] -ml-5 -mt-5 h-10 w-10 rounded-full border-2 border-primary/70 backdrop-blur-sm"
       />
     </>
   );
