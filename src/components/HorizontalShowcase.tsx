@@ -18,7 +18,7 @@ export const HorizontalShowcase = () => {
 
   return (
     <section id="dashboard" ref={ref} className="relative h-[400vh]">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden bg-brand-5">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden bg-card/40">
         <div className="container absolute top-24 z-10">
           <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
@@ -33,7 +33,7 @@ export const HorizontalShowcase = () => {
           {PANELS.map((p, i) => (
             <div
               key={i}
-              className="relative h-[60vh] w-[80vw] shrink-0 overflow-hidden rounded-3xl bg-white p-2 shadow-xl ring-1 ring-border md:w-[55vw]"
+              className="relative h-[60vh] w-[80vw] shrink-0 overflow-hidden rounded-3xl surface p-2 shadow-xl md:w-[55vw]"
             >
               <img src={p.img} alt={p.title} loading="lazy" className="h-full w-full rounded-2xl object-cover" />
               <div className={`absolute inset-x-2 bottom-2 rounded-2xl ${p.color} p-8`}>
