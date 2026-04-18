@@ -1,16 +1,50 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useLenis } from "@/hooks/useLenis";
+import { Loader } from "@/components/Loader";
+import { CustomCursor } from "@/components/CustomCursor";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
+import { Marquee } from "@/components/Marquee";
+import { Platform } from "@/components/Platform";
+import { Features } from "@/components/Features";
+import { HorizontalShowcase } from "@/components/HorizontalShowcase";
+import { Stats } from "@/components/Stats";
+import { CTA } from "@/components/CTA";
+import { Footer } from "@/components/Footer";
+import { useEffect } from "react";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  useLenis();
+
+  useEffect(() => {
+    document.title = "PROsmart — Effortless Energy Monitoring & Automated Billing";
+    const meta = document.querySelector('meta[name="description"]') || (() => {
+      const m = document.createElement("meta");
+      m.setAttribute("name", "description");
+      document.head.appendChild(m);
+      return m;
+    })();
+    meta.setAttribute("content", "PROsmart is the next-gen platform for energy monitoring, management and automated tenant billing for smart buildings.");
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground noise">
+      <Loader />
+      <CustomCursor />
+      <ScrollProgress />
+      <Header />
+      <main>
+        <Hero />
+        <Marquee />
+        <Platform />
+        <Features />
+        <HorizontalShowcase />
+        <Stats />
+        <CTA />
+      </main>
+      <Footer />
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
