@@ -5,6 +5,7 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { DashboardShowcase } from "@/components/DashboardShowcase";
+import { BuildingMap } from "@/components/BuildingMap";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Marquee } from "@/components/Marquee";
 import { TrustStrip } from "@/components/TrustStrip";
@@ -42,6 +43,7 @@ const Index = () => {
       <main>
         <Hero />
         <DashboardShowcase />
+        <BuildingMap />
         <TrustStrip />
         <Platform />
         <HowItWorks />
