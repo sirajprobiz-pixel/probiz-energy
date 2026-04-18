@@ -88,7 +88,7 @@ export const Hero = () => {
             </Link>
             <a
               href="#platform"
-              className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-medium text-foreground ring-1 ring-border transition-all hover:bg-brand-5"
+              className="group inline-flex items-center gap-2 rounded-full glass px-7 py-3.5 font-medium text-foreground transition-all hover:bg-white/10"
             >
               Explore Platform
               <span className="transition-transform group-hover:translate-y-0.5">↓</span>
