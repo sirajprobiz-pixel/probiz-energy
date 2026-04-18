@@ -35,7 +35,7 @@ export const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: (i % 3) * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative overflow-hidden rounded-3xl bg-white p-7 ring-1 ring-border tilt-card"
+              className="group relative overflow-hidden rounded-3xl surface p-7 tilt-card"
             >
               <div className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl ${f.color} transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6`}>
                 <f.icon className="h-5 w-5" />

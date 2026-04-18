@@ -39,14 +39,14 @@ export const Platform = () => {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <motion.div style={{ y }} className="relative will-change-transform">
             <div className="absolute -inset-6 rounded-[2rem] bg-brand-4/60 blur-3xl" />
-            <div className="relative overflow-hidden rounded-3xl bg-white p-2 ring-1 ring-border">
+            <div className="relative overflow-hidden rounded-3xl surface p-2">
               <img
                 src={smartBuilding}
                 alt="Smart connected building"
                 width={1280}
                 height={1280}
                 loading="lazy"
-                className="aspect-square rounded-2xl object-cover"
+                className="aspect-square rounded-2xl object-cover opacity-90"
               />
             </div>
           </motion.div>
@@ -64,7 +64,7 @@ export const Platform = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative overflow-hidden rounded-2xl bg-white p-6 ring-1 ring-border tilt-card"
+                className="group relative overflow-hidden rounded-2xl surface p-6 tilt-card"
               >
                 <div className="relative flex items-start gap-4">
                   <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-display text-sm font-bold ${COLORS[i]}`}>

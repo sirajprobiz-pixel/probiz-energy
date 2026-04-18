@@ -71,11 +71,11 @@ export const HowItWorks = () => {
                 className="relative flex gap-6 md:gap-10"
               >
                 <div className="relative z-10 flex shrink-0 items-start">
-                  <div className={`flex h-14 w-14 items-center justify-center rounded-2xl shadow-[0_8px_24px_-8px_hsl(var(--blue-1)/0.4)] ${s.color}`}>
+                <div className={`flex h-14 w-14 items-center justify-center rounded-2xl shadow-[0_8px_24px_-8px_hsl(var(--primary)/0.6)] ${s.color}`}>
                     <s.icon className="h-6 w-6" />
                   </div>
                 </div>
-                <div className="flex-1 rounded-2xl bg-white p-6 ring-1 ring-border tilt-card md:p-8">
+                <div className="flex-1 rounded-2xl surface p-6 tilt-card md:p-8">
                   <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     Step 0{i + 1}
                   </div>

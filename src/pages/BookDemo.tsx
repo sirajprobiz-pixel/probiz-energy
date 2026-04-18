@@ -87,7 +87,7 @@ const BookDemo = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative overflow-hidden rounded-3xl bg-white p-7 ring-1 ring-border tilt-card"
+              className="group relative overflow-hidden rounded-3xl surface p-7 tilt-card"
             >
               <div className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl ${b.color}`}>
                 <b.icon className="h-5 w-5" />
@@ -108,11 +108,11 @@ const BookDemo = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="rounded-3xl bg-white p-8 ring-1 ring-border md:p-10"
+            className="rounded-3xl surface p-8 md:p-10"
           >
             {submitted ? (
               <div className="flex flex-col items-center py-16 text-center">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-brand-1 text-white">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground">
                   <CheckCircle2 className="h-8 w-8" />
                 </div>
                 <h3 className="font-display text-2xl font-bold">You're in!</h3>
@@ -134,7 +134,7 @@ const BookDemo = () => {
                       required
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="mt-2 w-full rounded-xl bg-brand-5 px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:bg-white focus:ring-brand-1"
+                      className="mt-2 w-full rounded-xl bg-muted px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:ring-primary"
                       placeholder="Aarav Sharma"
                     />
                   </div>
@@ -145,7 +145,7 @@ const BookDemo = () => {
                       required
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className="mt-2 w-full rounded-xl bg-brand-5 px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:bg-white focus:ring-brand-1"
+                      className="mt-2 w-full rounded-xl bg-muted px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:ring-primary"
                       placeholder="aarav@company.com"
                     />
                   </div>
@@ -158,7 +158,7 @@ const BookDemo = () => {
                       required
                       value={form.company}
                       onChange={(e) => setForm({ ...form, company: e.target.value })}
-                      className="mt-2 w-full rounded-xl bg-brand-5 px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:bg-white focus:ring-brand-1"
+                      className="mt-2 w-full rounded-xl bg-muted px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:ring-primary"
                       placeholder="Acme Realty"
                     />
                   </div>
@@ -167,7 +167,7 @@ const BookDemo = () => {
                     <select
                       value={form.buildings}
                       onChange={(e) => setForm({ ...form, buildings: e.target.value })}
-                      className="mt-2 w-full rounded-xl bg-brand-5 px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:bg-white focus:ring-brand-1"
+                      className="mt-2 w-full rounded-xl bg-muted px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:ring-primary"
                     >
                       <option>1-5</option>
                       <option>6-25</option>
@@ -183,7 +183,7 @@ const BookDemo = () => {
                     rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="mt-2 w-full rounded-xl bg-brand-5 px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:bg-white focus:ring-brand-1"
+                    className="mt-2 w-full rounded-xl bg-muted px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:ring-primary"
                     placeholder="Tell us about your portfolio and what matters most…"
                   />
                 </div>
@@ -207,21 +207,21 @@ const BookDemo = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="space-y-5"
           >
-            <div className="rounded-3xl bg-brand-1 p-8 text-white">
-              <div className="text-xs font-medium uppercase tracking-wider opacity-80">What's included</div>
+            <div className="rounded-3xl surface p-8">
+              <div className="text-xs font-medium uppercase tracking-wider text-blue-1">What's included</div>
               <ul className="mt-5 space-y-3">
                 {PERKS.map((p) => (
                   <li key={p} className="flex items-start gap-3 text-sm">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-2" />
                     {p}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="rounded-3xl bg-brand-4 p-8 text-blue-1">
+            <div className="rounded-3xl surface p-8">
               <div className="font-display text-2xl font-bold">Trusted by leading developers</div>
-              <p className="mt-3 text-sm opacity-90">
+              <p className="mt-3 text-sm text-muted-foreground">
                 Forward-thinking real estate developers and enterprises rely on PROsmart for accurate billing and data-driven savings.
               </p>
               <div className="mt-6 grid grid-cols-3 gap-3 text-center">
