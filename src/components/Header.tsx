@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 const NAV = [
   { label: "Platform", href: "/#platform" },
+  { label: "How it works", href: "/#how-it-works" },
   { label: "Features", href: "/#features" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "Dashboard", href: "/#dashboard" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -45,16 +45,21 @@ export const Header = () => {
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
-            {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="group relative rounded-full px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <span className="relative z-10">{item.label}</span>
-                <span className="absolute inset-0 scale-90 rounded-full bg-brand-5 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100" />
-              </a>
-            ))}
+            {NAV.map((item) => {
+              const isRoute = item.href.startsWith("/") && !item.href.startsWith("/#");
+              const cls = "group relative rounded-full px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground";
+              const inner = (
+                <>
+                  <span className="relative z-10">{item.label}</span>
+                  <span className="absolute inset-0 scale-90 rounded-full bg-brand-5 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100" />
+                </>
+              );
+              return isRoute ? (
+                <Link key={item.href} to={item.href} className={cls}>{inner}</Link>
+              ) : (
+                <a key={item.href} href={item.href} className={cls}>{inner}</a>
+              );
+            })}
           </nav>
 
           <div className="hidden md:block">
@@ -78,16 +83,15 @@ export const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             className="mt-2 rounded-2xl glass-strong p-4 md:hidden"
           >
-            {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="block rounded-lg px-4 py-3 text-sm text-muted-foreground hover:bg-brand-5 hover:text-foreground"
-              >
-                {item.label}
-              </a>
-            ))}
+            {NAV.map((item) => {
+              const isRoute = item.href.startsWith("/") && !item.href.startsWith("/#");
+              const cls = "block rounded-lg px-4 py-3 text-sm text-muted-foreground hover:bg-brand-5 hover:text-foreground";
+              return isRoute ? (
+                <Link key={item.href} to={item.href} onClick={() => setOpen(false)} className={cls}>{item.label}</Link>
+              ) : (
+                <a key={item.href} href={item.href} onClick={() => setOpen(false)} className={cls}>{item.label}</a>
+              );
+            })}
             <Link
               to="/book-demo"
               onClick={() => setOpen(false)}

@@ -8,7 +8,7 @@ import { Platform } from "@/components/Platform";
 import { Features } from "@/components/Features";
 import { HorizontalShowcase } from "@/components/HorizontalShowcase";
 import { Stats } from "@/components/Stats";
-import { Pricing } from "@/components/Pricing";
+import { HowItWorks } from "@/components/HowItWorks";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
@@ -36,10 +36,10 @@ const Index = () => {
         <Hero />
         <Marquee />
         <Platform />
+        <HowItWorks />
         <Features />
         <HorizontalShowcase />
         <Stats />
-        <Pricing />
         <CTA />
       </main>
       <Footer />
