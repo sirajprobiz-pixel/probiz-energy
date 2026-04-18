@@ -48,6 +48,7 @@ const BookDemo = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <ScrollProgress />
+      <ThemeToggle />
 
       {/* Top bar */}
       <div className="container pt-8">
