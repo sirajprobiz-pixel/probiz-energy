@@ -3,7 +3,7 @@ import { Loader } from "@/components/Loader";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { DashboardIntro } from "@/components/DashboardIntro";
+import { DashboardShowcase } from "@/components/DashboardShowcase";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Marquee } from "@/components/Marquee";
 import { TrustStrip } from "@/components/TrustStrip";
@@ -39,7 +39,7 @@ const Index = () => {
       <ThemeToggle />
       <main>
         <Hero />
-        <DashboardIntro />
+        <DashboardShowcase />
         <TrustStrip />
         <Platform />
         <HowItWorks />
