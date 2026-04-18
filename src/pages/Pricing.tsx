@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Pricing } from "@/components/Pricing";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const PricingPage = () => {
   useLenis();
@@ -21,6 +22,7 @@ const PricingPage = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <ScrollProgress />
+      <ThemeToggle />
       <Header />
       <main className="pt-24">
         <Pricing />
