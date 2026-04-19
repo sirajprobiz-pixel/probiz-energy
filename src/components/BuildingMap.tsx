@@ -1,62 +1,44 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ArrowRight,
   Building2,
   ChevronRight,
   MapPin,
-  Radio,
+  Maximize2,
+  Palette,
   RotateCcw,
-  Search,
   Sparkles,
-  Sun,
-  Wifi,
 } from "lucide-react";
-import indiaMap from "@/assets/india-map-3d.png";
+import building3D from "@/assets/building-3d.png";
 import { LiveKPIPanel } from "@/components/building-map/LiveKPIPanel";
 
-type Building = { name: string; floors: number; devices: number };
-type StateNode = { name: string; buildings: Building[]; x: number; y: number };
+type Building = { name: string; floors: number; devices: number; location: string };
+type StateNode = { name: string; buildings: Building[] };
 
 const STATES: StateNode[] = [
-  { name: "Delhi", x: 49, y: 27, buildings: [{ name: "Cyber Hub Tower", floors: 12, devices: 184 }] },
-  { name: "Haryana", x: 47, y: 30, buildings: [{ name: "Gurugram One", floors: 18, devices: 240 }] },
-  { name: "Gujarat", x: 33, y: 42, buildings: [{ name: "Ahmedabad Plaza", floors: 10, devices: 142 }] },
-  {
-    name: "Maharashtra",
-    x: 36,
-    y: 55,
-    buildings: [
-      { name: "BKC Trade Centre", floors: 24, devices: 312 },
-      { name: "Pune Tech Park", floors: 14, devices: 198 },
-    ],
-  },
-  { name: "West Bengal", x: 70, y: 50, buildings: [{ name: "Salt Lake Tower", floors: 16, devices: 220 }] },
-  {
-    name: "Karnataka",
-    x: 44,
-    y: 75,
-    buildings: [
-      { name: "Whitefield Hub", floors: 20, devices: 286 },
-      { name: "Electronic City 2", floors: 12, devices: 164 },
-    ],
-  },
-  {
-    name: "Tamil Nadu",
-    x: 51,
-    y: 80,
-    buildings: [
-      { name: "OMR Tech Tower", floors: 22, devices: 304 },
-      { name: "Chennai Central", floors: 10, devices: 132 },
-    ],
-  },
+  { name: "Delhi",       buildings: [{ name: "Cyber Hub Tower",    floors: 12, devices: 184, location: "DLF Cyber City, Gurugram" }] },
+  { name: "Haryana",     buildings: [{ name: "Gurugram One",       floors: 18, devices: 240, location: "Sector 74, Gurugram" }] },
+  { name: "Gujarat",     buildings: [{ name: "Ahmedabad Plaza",    floors: 10, devices: 142, location: "SG Highway, Ahmedabad" }] },
+  { name: "Maharashtra", buildings: [
+    { name: "BKC Trade Centre",  floors: 24, devices: 312, location: "Bandra Kurla Complex, Mumbai" },
+    { name: "Pune Tech Park",    floors: 14, devices: 198, location: "Hinjewadi Phase 2, Pune" },
+  ]},
+  { name: "West Bengal", buildings: [{ name: "Salt Lake Tower",    floors: 16, devices: 220, location: "Sector V, Kolkata" }] },
+  { name: "Karnataka",   buildings: [
+    { name: "Brigade Triumph",   floors: 18, devices: 286, location: "Hebbal, Bengaluru · Mixed Use" },
+    { name: "Electronic City 2", floors: 12, devices: 164, location: "Phase 2, Bengaluru" },
+  ]},
+  { name: "Tamil Nadu",  buildings: [
+    { name: "OMR Tech Tower",    floors: 22, devices: 304, location: "OMR, Chennai" },
+    { name: "Chennai Central",   floors: 10, devices: 132, location: "Anna Salai, Chennai" },
+  ]},
 ];
 
-const DEFAULT_STATE = "Maharashtra";
-const DEFAULT_FLOOR = 5;
+const DEFAULT_STATE = "Karnataka";
+const DEFAULT_FLOOR = 15;
 
-const getStateByName = (name: string) => STATES.find((state) => state.name === name) ?? STATES[0];
-const clampFloor = (floor: number, totalFloors: number) => Math.min(Math.max(floor, 1), totalFloors);
+const getStateByName = (name: string) => STATES.find((s) => s.name === name) ?? STATES[0];
+const clampFloor = (f: number, max: number) => Math.min(Math.max(f, 1), max);
 
 export const BuildingMap = () => {
   const defaultBuilding = getStateByName(DEFAULT_STATE).buildings[0];
@@ -67,37 +49,20 @@ export const BuildingMap = () => {
   });
   const [activeFloor, setActiveFloor] = useState(clampFloor(DEFAULT_FLOOR, defaultBuilding.floors));
 
-  const totalBuildings = STATES.reduce((sum, state) => sum + state.buildings.length, 0);
-  const totalDevices = STATES.reduce((sum, state) => sum + state.buildings.reduce((count, building) => count + building.devices, 0), 0);
+  const totalBuildings = STATES.reduce((a, s) => a + s.buildings.length, 0);
 
-  const selectBuilding = (stateName: string, building: Building, preferredFloor = 1) => {
+  const selectBuilding = (stateName: string, b: Building, floor = 1) => {
     setOpenState(stateName);
-    setActiveBuilding({ state: stateName, b: building });
-    setActiveFloor(clampFloor(preferredFloor, building.floors));
+    setActiveBuilding({ state: stateName, b });
+    setActiveFloor(clampFloor(floor, b.floors));
   };
 
-  const selectState = (stateName: string) => {
-    const state = getStateByName(stateName);
-    const currentBuilding = activeBuilding.state === stateName
-      ? state.buildings.find((building) => building.name === activeBuilding.b.name) ?? state.buildings[0]
-      : state.buildings[0];
-
-    setOpenState(stateName);
-    setActiveBuilding({ state: stateName, b: currentBuilding });
-    setActiveFloor((floor) => clampFloor(floor, currentBuilding.floors));
+  const toggleState = (name: string) => {
+    if (openState === name) { setOpenState(null); return; }
+    setOpenState(name);
   };
 
-  const toggleState = (stateName: string) => {
-    if (openState === stateName) {
-      setOpenState(null);
-      return;
-    }
-    selectState(stateName);
-  };
-
-  const resetView = () => {
-    selectBuilding(DEFAULT_STATE, getStateByName(DEFAULT_STATE).buildings[0], DEFAULT_FLOOR);
-  };
+  const resetView = () => selectBuilding(DEFAULT_STATE, getStateByName(DEFAULT_STATE).buildings[0], DEFAULT_FLOOR);
 
   return (
     <section id="map" className="relative py-24 md:py-32">
@@ -111,7 +76,7 @@ export const BuildingMap = () => {
             className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-blue-1" />
-            Interactive 3D Map
+            Interactive 3D Building View
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -120,7 +85,7 @@ export const BuildingMap = () => {
             transition={{ duration: 0.6 }}
             className="font-display text-4xl font-bold leading-tight tracking-tight md:text-5xl"
           >
-            Every building, every floor — on one live map.
+            Step inside every building, floor by floor.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -129,7 +94,7 @@ export const BuildingMap = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-5 text-base text-balance text-muted-foreground md:text-lg"
           >
-            Navigate your portfolio at a glance. Drill down from country → state → property → floor — all powered by real-time telemetry.
+            Click a floor on the 3D model to inspect live energy, HVAC, water and gas telemetry — across your entire portfolio.
           </motion.p>
         </div>
 
@@ -140,108 +105,138 @@ export const BuildingMap = () => {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="relative overflow-hidden rounded-[2rem] surface"
         >
-          <div className="grid xl:grid-cols-[minmax(0,1.12fr)_420px]">
-            <div className="relative min-h-[680px] overflow-hidden bg-muted/40">
-              <div className="absolute inset-0 bg-grid opacity-30" />
+          <div className="grid xl:grid-cols-[minmax(0,1.15fr)_440px]">
+            {/* 3D BUILDING CANVAS */}
+            <div className="relative min-h-[680px] overflow-hidden bg-[hsl(var(--blue-5))]">
+              <div className="absolute inset-0 bg-grid opacity-25" />
 
-              <div className="absolute left-4 top-4 z-20 flex flex-wrap gap-2">
-                <StatChip icon={Building2} label="Properties" value={totalBuildings} />
-                <StatChip icon={Wifi} label="Active" value={Math.floor(totalBuildings * 0.85)} />
-                <StatChip icon={Radio} label="Devices" value={totalDevices.toLocaleString()} />
-                <ToolBtn icon={Search} label="Search" />
-                <ToolBtn icon={Sparkles} label="Smart view" />
-                <ToolBtn icon={Sun} label="Day mode" />
-              </div>
-
-              <div className="absolute inset-x-6 top-24 bottom-24 flex items-center justify-center">
-                <div className="relative aspect-[860/940] w-full max-w-[640px]">
-                  <img
-                    src={indiaMap}
-                    alt="India 3D map of PROsmart properties"
-                    className="h-full w-full object-contain"
-                    loading="lazy"
-                  />
-
-                  <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
-                    {STATES.map((state) => {
-                      const isActive = activeBuilding.state === state.name;
-
-                      return (
-                        <g
-                          key={state.name}
-                          transform={`translate(${state.x}, ${state.y})`}
-                          className="cursor-pointer"
-                          onClick={() => selectState(state.name)}
-                        >
-                          {isActive && (
-                            <circle r="3.4" className="fill-primary/30">
-                              <animate attributeName="r" from="1.8" to="4.6" dur="1.6s" repeatCount="indefinite" />
-                              <animate attributeName="opacity" from="0.7" to="0" dur="1.6s" repeatCount="indefinite" />
-                            </circle>
-                          )}
-                          <circle
-                            r={isActive ? 1.65 : 1.2}
-                            className={isActive ? "fill-primary" : "fill-blue-1"}
-                            style={{ stroke: "hsl(var(--background))" }}
-                            strokeWidth="0.35"
-                          />
-                        </g>
-                      );
-                    })}
-                  </svg>
+              {/* Top chips */}
+              <div className="absolute left-4 top-4 z-20 flex flex-wrap items-center gap-2">
+                <div className="flex items-center gap-2 rounded-xl border border-border bg-card/85 px-3 py-2 backdrop-blur">
+                  <Building2 size={14} className="text-blue-1" />
+                  <span className="text-sm font-semibold text-foreground">Nordic</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-full border border-border bg-card/85 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-1" />
+                  Hover floors to inspect
                 </div>
               </div>
 
-              <div className="absolute inset-x-4 bottom-4 z-20 flex items-center gap-2 rounded-full border border-border bg-card/90 px-4 py-2.5 backdrop-blur">
-                <Sparkles size={14} className="text-blue-1" />
-                <input
-                  className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-                  placeholder={`Go to floor ${activeFloor} of ${activeBuilding.b.name}`}
-                />
-                <button
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground"
-                  aria-label="Navigate"
-                >
-                  <ArrowRight size={14} />
+              {/* Top-right tools */}
+              <div className="absolute right-4 top-4 z-20 flex items-center gap-2">
+                <button aria-label="Theme" className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/85 text-muted-foreground backdrop-blur transition-colors hover:text-foreground">
+                  <Palette size={16} />
                 </button>
+                <button aria-label="Fullscreen" className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/85 text-muted-foreground backdrop-blur transition-colors hover:text-foreground">
+                  <Maximize2 size={16} />
+                </button>
+              </div>
+
+              {/* Building image */}
+              <div className="absolute inset-x-6 top-20 bottom-24 flex items-center justify-center">
+                <motion.img
+                  key={activeBuilding.b.name}
+                  src={building3D}
+                  alt={`${activeBuilding.b.name} 3D model`}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="h-full w-auto max-w-full object-contain drop-shadow-[0_30px_60px_hsl(var(--primary)/0.25)]"
+                  loading="lazy"
+                />
+
+                {/* Floor selector overlay (left) */}
+                <div className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2">
+                  <div className="pointer-events-auto flex max-h-[420px] flex-col gap-1 overflow-y-auto rounded-2xl border border-border bg-card/85 p-2 backdrop-blur">
+                    {Array.from({ length: activeBuilding.b.floors }).map((_, i) => {
+                      const floor = activeBuilding.b.floors - i;
+                      const isActive = floor === activeFloor;
+                      return (
+                        <button
+                          key={floor}
+                          onClick={() => setActiveFloor(floor)}
+                          className={`min-w-[44px] rounded-md px-2 py-1 text-[11px] font-semibold transition-colors ${
+                            isActive
+                              ? "bg-primary text-primary-foreground"
+                              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          }`}
+                          aria-label={`Floor ${floor}`}
+                        >
+                          F{floor}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom info card */}
+              <div className="absolute inset-x-4 bottom-4 z-20 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-card/90 px-4 py-3 backdrop-blur">
+                <div className="flex items-center gap-2 text-sm">
+                  <Sparkles size={14} className="text-blue-1" />
+                  <span className="text-muted-foreground">Click a floor to inspect · Scroll to zoom</span>
+                </div>
+                <div className="text-sm font-semibold text-foreground">
+                  Floor <span className="text-blue-1">{activeFloor}</span> selected · {Math.max(2, Math.floor(activeBuilding.b.devices / activeBuilding.b.floors))} devices
+                </div>
               </div>
             </div>
 
+            {/* SIDEBAR */}
             <aside className="border-t border-border bg-card xl:border-l xl:border-t-0">
               <div className="flex h-full flex-col">
-                <div className="flex items-center gap-3 border-b border-border p-5">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-blue-1">
-                    <MapPin size={18} />
+                <div className="flex items-start justify-between gap-3 border-b border-border p-5">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-blue-1">
+                      <Building2 size={18} />
+                    </div>
+                    <div>
+                      <div className="font-display text-lg font-semibold text-foreground">{activeBuilding.b.name}</div>
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <MapPin size={11} />
+                        {activeBuilding.b.location}
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="font-display text-base font-semibold text-foreground">Properties</div>
-                    <div className="text-xs text-muted-foreground">{totalBuildings} buildings across India</div>
+                  <div className="flex items-center gap-1.5 rounded-full border border-border bg-muted/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-blue-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-1 animate-pulse" />
+                    Live
                   </div>
                 </div>
 
+                {/* Building meta */}
+                <div className="grid grid-cols-3 gap-2 border-b border-border p-4">
+                  <MetaCell label="Devices" value={activeBuilding.b.devices} />
+                  <MetaCell label="Floors" value={activeBuilding.b.floors} />
+                  <MetaCell label="Viewing" value={`F${activeFloor}`} highlight />
+                </div>
+
+                {/* Properties tree */}
                 <div className="flex-1 space-y-4 overflow-hidden p-4">
-                  <div className="rounded-[1.5rem] border border-border bg-muted/30 p-3">
-                    <div className="mb-3 px-2 text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">India</div>
+                  <div className="rounded-2xl border border-border bg-muted/30 p-3">
+                    <div className="mb-2 flex items-center justify-between px-2">
+                      <div className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">Portfolio · India</div>
+                      <span className="text-[10px] text-muted-foreground">{totalBuildings} buildings</span>
+                    </div>
 
-                    <div className="max-h-[300px] space-y-1 overflow-y-auto pr-1">
-                      {STATES.map((state) => {
-                        const isOpen = openState === state.name;
-
+                    <div className="max-h-[260px] space-y-1 overflow-y-auto pr-1">
+                      {STATES.map((s) => {
+                        const isOpen = openState === s.name;
                         return (
-                          <div key={state.name} className="rounded-xl">
+                          <div key={s.name} className="rounded-xl">
                             <button
-                              onClick={() => toggleState(state.name)}
+                              onClick={() => toggleState(s.name)}
                               className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left transition-colors ${
-                                activeBuilding.state === state.name ? "bg-primary/10" : "hover:bg-muted"
+                                activeBuilding.state === s.name ? "bg-primary/10" : "hover:bg-muted"
                               }`}
                             >
                               <span className="flex items-center gap-2 text-sm font-medium text-foreground">
                                 <ChevronRight size={14} className={`text-muted-foreground transition-transform ${isOpen ? "rotate-90" : ""}`} />
                                 <Building2 size={14} className="text-blue-1" />
-                                {state.name}
+                                {s.name}
                               </span>
                               <span className="rounded-full bg-card px-2 py-0.5 text-xs text-muted-foreground">
-                                {state.buildings.length}
+                                {s.buildings.length}
                               </span>
                             </button>
 
@@ -255,22 +250,21 @@ export const BuildingMap = () => {
                                   className="overflow-hidden pl-7"
                                 >
                                   <div className="space-y-1 pb-2 pt-1">
-                                    {state.buildings.map((building) => {
-                                      const isSelected = activeBuilding.b.name === building.name;
-
+                                    {s.buildings.map((b) => {
+                                      const isSelected = activeBuilding.b.name === b.name;
                                       return (
                                         <button
-                                          key={building.name}
-                                          onClick={() => selectBuilding(state.name, building, 1)}
+                                          key={b.name}
+                                          onClick={() => selectBuilding(s.name, b, 1)}
                                           className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition-colors ${
                                             isSelected
                                               ? "bg-primary text-primary-foreground"
                                               : "text-muted-foreground hover:bg-muted hover:text-foreground"
                                           }`}
                                         >
-                                          <span className="truncate">{building.name}</span>
+                                          <span className="truncate">{b.name}</span>
                                           <span className={`text-[11px] ${isSelected ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
-                                            {building.floors}F
+                                            {b.floors}F
                                           </span>
                                         </button>
                                       );
@@ -280,42 +274,6 @@ export const BuildingMap = () => {
                               )}
                             </AnimatePresence>
                           </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <div className="rounded-[1.5rem] border border-border bg-muted/30 p-4">
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <div>
-                        <div className="text-xs uppercase tracking-[0.24em] text-muted-foreground">{activeBuilding.state}</div>
-                        <div className="font-display text-xl font-semibold text-foreground">{activeBuilding.b.name}</div>
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        Floor <span className="font-semibold text-blue-1">{activeFloor}</span> of {activeBuilding.b.floors}
-                      </div>
-                    </div>
-
-                    <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-6">
-                      {Array.from({ length: activeBuilding.b.floors }).map((_, index) => {
-                        const floor = activeBuilding.b.floors - index;
-                        const isSelected = floor === activeFloor;
-
-                        return (
-                          <motion.button
-                            key={floor}
-                            onClick={() => setActiveFloor(floor)}
-                            whileHover={{ y: -2 }}
-                            transition={{ type: "spring", stiffness: 380, damping: 24 }}
-                            className={`relative h-11 rounded-xl border text-xs font-semibold transition-colors ${
-                              isSelected
-                                ? "border-primary bg-primary text-primary-foreground"
-                                : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                            }`}
-                            aria-label={`Floor ${floor}`}
-                          >
-                            {floor}
-                          </motion.button>
                         );
                       })}
                     </div>
@@ -342,23 +300,9 @@ export const BuildingMap = () => {
   );
 };
 
-const StatChip = ({ icon: Icon, label, value }: { icon: any; label: string; value: string | number }) => (
-  <div className="flex items-center gap-2 rounded-xl border border-border bg-card/85 px-3 py-2 backdrop-blur">
-    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-blue-1">
-      <Icon size={14} />
-    </div>
-    <div className="leading-tight">
-      <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">{label}</div>
-      <div className="text-sm font-semibold text-foreground">{value}</div>
-    </div>
+const MetaCell = ({ label, value, highlight = false }: { label: string; value: string | number; highlight?: boolean }) => (
+  <div className="rounded-xl border border-border bg-muted/40 p-3 text-center">
+    <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">{label}</div>
+    <div className={`font-display text-base font-semibold ${highlight ? "text-blue-1" : "text-foreground"}`}>{value}</div>
   </div>
-);
-
-const ToolBtn = ({ icon: Icon, label }: { icon: any; label: string }) => (
-  <button
-    aria-label={label}
-    className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/85 text-muted-foreground backdrop-blur transition-colors hover:text-foreground"
-  >
-    <Icon size={16} />
-  </button>
 );
