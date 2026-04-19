@@ -134,16 +134,60 @@ export const BuildingMap = () => {
 
               {/* Building image */}
               <div className="absolute inset-x-6 top-20 bottom-24 flex items-center justify-center">
-                <motion.img
-                  key={activeBuilding.b.name}
-                  src={building3D}
-                  alt={`${activeBuilding.b.name} 3D model`}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-full w-auto max-w-full object-contain drop-shadow-[0_30px_60px_hsl(var(--primary)/0.25)]"
-                  loading="lazy"
-                />
+                <div className="relative flex h-full items-center justify-center">
+                  <motion.img
+                    key={activeBuilding.b.name}
+                    src={building3D}
+                    alt={`${activeBuilding.b.name} 3D model`}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className="relative z-10 h-full w-auto max-w-full object-contain drop-shadow-[0_30px_60px_hsl(var(--primary)/0.25)]"
+                    loading="lazy"
+                  />
+
+                  {/* Selected floor highlight slice */}
+                  {(() => {
+                    // Visible floor band of the building image (excludes rooftop sign + green base)
+                    const TOP = 0.08;     // 8% from top
+                    const BOTTOM = 0.92;  // 92% from top
+                    const band = BOTTOM - TOP;
+                    const sliceH = band / activeBuilding.b.floors;
+                    // Floor 1 is at the bottom; floor N at the top
+                    const topPct = TOP + (activeBuilding.b.floors - activeFloor) * sliceH;
+                    return (
+                      <motion.div
+                        key={`slice-${activeBuilding.b.name}-${activeFloor}`}
+                        layout
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="pointer-events-none absolute left-1/2 z-20 -translate-x-1/2"
+                        style={{
+                          top: `${topPct * 100}%`,
+                          height: `${sliceH * 100}%`,
+                          width: "78%",
+                        }}
+                      >
+                        <div
+                          className="relative h-full w-full rounded-[3px]"
+                          style={{
+                            background:
+                              "linear-gradient(90deg, hsl(var(--primary) / 0) 0%, hsl(var(--primary) / 0.45) 50%, hsl(var(--primary) / 0) 100%)",
+                            boxShadow:
+                              "0 0 28px 6px hsl(var(--primary) / 0.55), inset 0 0 0 1px hsl(var(--primary) / 0.7)",
+                          }}
+                        >
+                          <span className="absolute inset-x-0 top-0 h-px bg-primary/90" />
+                          <span className="absolute inset-x-0 bottom-0 h-px bg-primary/90" />
+                          <span className="absolute -left-2 top-1/2 -translate-y-1/2 rounded-md bg-primary px-1.5 py-0.5 text-[10px] font-bold text-primary-foreground shadow-md">
+                            F{activeFloor}
+                          </span>
+                        </div>
+                      </motion.div>
+                    );
+                  })()}
+                </div>
 
                 {/* Floor selector overlay (left) */}
                 <div className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2">
