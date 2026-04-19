@@ -1,34 +1,28 @@
-import { motion } from "framer-motion";
-
 const LOGOS = [
   "PRESTIGE", "DLF", "BRIGADE", "GODREJ", "OBEROI", "SOBHA", "LODHA", "EMBASSY",
+  "HIRANANDANI", "RAHEJA", "MAHINDRA", "TATA REALTY",
 ];
 
 export const TrustStrip = () => {
+  const loop = [...LOGOS, ...LOGOS];
   return (
     <section className="relative border-y border-border py-16">
       <div className="container">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-10 text-center text-xs uppercase tracking-[0.25em] text-muted-foreground"
-        >
+        <p className="mb-10 text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
           Trusted by forward-thinking developers & enterprises
-        </motion.p>
-        <div className="grid grid-cols-2 items-center gap-x-10 gap-y-8 sm:grid-cols-4 lg:grid-cols-8">
-          {LOGOS.map((name, i) => (
-            <motion.div
-              key={name}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.05, duration: 0.5 }}
-              className="text-center font-display text-base font-semibold tracking-wider text-muted-foreground/70 transition-colors hover:text-foreground"
+        </p>
+      </div>
+      <div className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-background to-transparent" />
+        <div className="flex w-max animate-marquee gap-16 whitespace-nowrap">
+          {loop.map((name, i) => (
+            <div
+              key={`${name}-${i}`}
+              className="font-display text-2xl font-semibold tracking-wider text-muted-foreground/60 transition-colors hover:text-foreground"
             >
               {name}
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
