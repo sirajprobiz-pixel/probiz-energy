@@ -233,42 +233,45 @@ export const BuildingMap = () => {
             </aside>
           </div>
 
-          {/* Floor visualizer */}
+          {/* Floor visualizer + Live KPIs */}
           {activeBuilding && (
-            <div className="border-t border-border p-6">
-              <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
-                <div>
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground">{activeBuilding.state}</div>
-                  <div className="font-display text-xl font-semibold text-foreground">{activeBuilding.b.name}</div>
+            <div className="grid border-t border-border lg:grid-cols-[1fr_360px]">
+              <div className="p-6">
+                <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
+                  <div>
+                    <div className="text-xs uppercase tracking-wider text-muted-foreground">{activeBuilding.state}</div>
+                    <div className="font-display text-xl font-semibold text-foreground">{activeBuilding.b.name}</div>
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    Floor <span className="font-semibold text-blue-1">{activeFloor}</span> of {activeBuilding.b.floors} • {activeBuilding.b.devices} devices
+                  </div>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  Floor <span className="font-semibold text-blue-1">{activeFloor}</span> of {activeBuilding.b.floors} • {activeBuilding.b.devices} devices
+
+                <div className="flex items-end justify-center gap-1.5">
+                  {Array.from({ length: activeBuilding.b.floors }).map((_, i) => {
+                    const floor = activeBuilding.b.floors - i;
+                    const isActive = floor === activeFloor;
+                    return (
+                      <motion.button
+                        key={floor}
+                        onClick={() => setActiveFloor(floor)}
+                        whileHover={{ y: -3 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 24 }}
+                        className={`group relative h-10 w-9 rounded-md border text-[10px] font-semibold transition-colors ${
+                          isActive
+                            ? "border-primary bg-primary text-primary-foreground"
+                            : "border-border bg-muted text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                        }`}
+                        aria-label={`Floor ${floor}`}
+                      >
+                        {floor}
+                      </motion.button>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Floor stack — each floor button stacked like a building */}
-              <div className="flex items-end justify-center gap-1.5">
-                {Array.from({ length: activeBuilding.b.floors }).map((_, i) => {
-                  const floor = activeBuilding.b.floors - i;
-                  const isActive = floor === activeFloor;
-                  return (
-                    <motion.button
-                      key={floor}
-                      onClick={() => setActiveFloor(floor)}
-                      whileHover={{ y: -3 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 24 }}
-                      className={`group relative h-10 w-9 rounded-md border text-[10px] font-semibold transition-colors ${
-                        isActive
-                          ? "border-primary bg-primary text-primary-foreground"
-                          : "border-border bg-muted text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                      }`}
-                      aria-label={`Floor ${floor}`}
-                    >
-                      {floor}
-                    </motion.button>
-                  );
-                })}
-              </div>
+              <LiveKPIPanel floor={activeFloor} buildingName={activeBuilding.b.name} />
             </div>
           )}
         </motion.div>
