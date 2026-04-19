@@ -31,10 +31,10 @@ const CASES = [
 export const Impact = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const yBg = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const yBg = useTransform(scrollYProgress, [0, 1], [250, -250]);
 
   return (
-    <section id="impact" ref={ref} className="relative overflow-hidden py-32">
+    <section id="impact" ref={ref} className="relative overflow-hidden pt-16 pb-32">
       <motion.div style={{ y: yBg }} className="pointer-events-none absolute inset-0 will-change-transform">
         <div className="absolute -top-20 right-[10%] h-72 w-72 rounded-full bg-brand-3/20 blur-3xl" />
         <div className="absolute bottom-0 left-[5%] h-80 w-80 rounded-full bg-brand-1/15 blur-3xl" />
@@ -42,16 +42,34 @@ export const Impact = () => {
 
       <div className="container relative">
         <div className="mx-auto mb-16 max-w-3xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-2" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-2 animate-pulse" />
             Real-world impact
-          </div>
-          <h2 className="font-display text-4xl font-bold leading-tight md:text-6xl">
-            Buildings running smarter, <span className="text-blue-2">bills running themselves.</span>
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground text-balance">
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display text-4xl font-bold leading-tight md:text-6xl"
+          >
+            Buildings running smarter, <span className="text-blue-2 inline-block">bills running themselves.</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-6 text-lg text-muted-foreground text-balance"
+          >
             From single towers to nationwide portfolios — PROsmart turns metering data into measurable savings.
-          </p>
+          </motion.p>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-3">

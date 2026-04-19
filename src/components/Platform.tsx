@@ -8,7 +8,7 @@ const COLORS = ["bg-brand-1 text-white", "bg-brand-2 text-white", "bg-brand-3 te
 export const Platform = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const y = useTransform(scrollYProgress, [0, 1], [200, -200]);
 
   return (
     <section id="platform" ref={ref} className="relative py-32">
@@ -23,17 +23,12 @@ export const Platform = () => {
             text="Smart energy management cloud platform."
             className="font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl"
           />
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-6 text-lg text-muted-foreground text-balance"
-          >
-            Cut energy use, costs, and carbon footprints with enhanced data visibility,
-            actionable insights, automation, data-driven maintenance, and smart problem isolation.
-            PROsmart supports enterprises in achieving ISO 50001 compliance.
-          </motion.p>
+          <AnimatedText
+            as="p"
+            delay={0.2}
+            className="mt-6 text-lg text-muted-foreground text-balance mx-auto max-w-2xl"
+            text="Cut energy use, costs, and carbon footprints with enhanced data visibility, actionable insights, automation, data-driven maintenance, and smart problem isolation. PROsmart supports enterprises in achieving ISO 50001 compliance."
+          />
         </div>
 
         <div className="grid items-center gap-12 lg:grid-cols-2">

@@ -1,8 +1,7 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import meter from "@/assets/meter.jpg";
 import smartBuilding from "@/assets/smart-building.jpg";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
+import { AnimatedText } from "./AnimatedText";
 
 const PANELS = [
   { img: heroDashboard,  color: "bg-brand-1 text-white",  title: "Real-time dashboards", body: "Live consumption, demand and load curves at a glance." },
@@ -12,38 +11,34 @@ const PANELS = [
 ];
 
 export const HorizontalShowcase = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-65%"]);
-
   return (
-    <section id="dashboard" ref={ref} className="relative h-[400vh]">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden bg-card/40">
-        <div className="container absolute top-24 z-10">
-          <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
-            Dashboard Experience
-          </div>
-          <h2 className="mt-4 max-w-2xl font-display text-4xl font-bold leading-tight md:text-5xl">
-            See every kilowatt. <span className="text-blue-1">In motion.</span>
-          </h2>
+    <section id="showcase" className="relative py-24 bg-card/40">
+      <div className="container mb-12">
+        <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
+          <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
+          Dashboard Experience
         </div>
+        <AnimatedText
+          as="h2"
+          className="mt-4 max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl lg:text-5xl"
+          text="See every kilowatt. In motion."
+        />
+      </div>
 
-        <motion.div style={{ x }} className="flex gap-8 pl-[8vw] pt-32 will-change-transform">
-          {PANELS.map((p, i) => (
-            <div
-              key={i}
-              className="relative h-[60vh] w-[80vw] shrink-0 overflow-hidden rounded-3xl surface p-2 shadow-xl md:w-[55vw]"
-            >
-              <img src={p.img} alt={p.title} loading="lazy" className="h-full w-full rounded-2xl object-cover" />
-              <div className={`absolute inset-x-2 bottom-2 rounded-2xl ${p.color} p-8`}>
-                <div className="font-mono text-xs opacity-80">0{i + 1} / 0{PANELS.length}</div>
-                <h3 className="mt-2 font-display text-3xl font-bold">{p.title}</h3>
-                <p className="mt-2 max-w-md opacity-90">{p.body}</p>
-              </div>
+      <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto px-[5vw] pb-10 scrollbar-hide md:gap-8 md:px-[5vw] lg:px-[10vw]">
+        {PANELS.map((p, i) => (
+          <div
+            key={i}
+            className="relative h-[55vh] min-h-[400px] w-[85vw] shrink-0 snap-center overflow-hidden rounded-3xl surface p-2 shadow-xl md:w-[60vw] lg:w-[45vw]"
+          >
+            <img src={p.img} alt={p.title} loading="lazy" className="h-full w-full rounded-2xl object-cover" />
+            <div className={`absolute inset-x-2 bottom-2 rounded-2xl ${p.color} p-6 md:p-8 backdrop-blur-md`}>
+              <div className="font-mono text-xs opacity-80 mb-2 tracking-wider">0{i + 1} / 0{PANELS.length}</div>
+              <h3 className="font-display text-2xl font-bold md:text-3xl">{p.title}</h3>
+              <p className="mt-2 max-w-md text-sm opacity-90 md:text-base text-balance">{p.body}</p>
             </div>
-          ))}
-        </motion.div>
+          </div>
+        ))}
       </div>
     </section>
   );

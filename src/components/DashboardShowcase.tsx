@@ -5,6 +5,7 @@ import billing from "@/assets/dashboard-billing.jpg";
 import consumption from "@/assets/dashboard-consumption.jpg";
 import demand from "@/assets/dashboard-demand.jpg";
 import tod from "@/assets/dashboard-tod.jpg";
+import { AnimatedText } from "./AnimatedText";
 
 const TABS = [
   { id: "billing", label: "Billing Info", icon: Receipt, image: billing,
@@ -26,7 +27,7 @@ export const DashboardShowcase = () => {
   const tab = TABS.find((t) => t.id === active)!;
 
   return (
-    <section id="dashboard" className="relative py-32">
+    <section id="dashboard" className="relative pt-32 pb-16">
       <div className="container">
         <div className="mx-auto mb-14 max-w-3xl text-center">
           <motion.div
@@ -39,24 +40,18 @@ export const DashboardShowcase = () => {
             <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
             Inside the platform
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <AnimatedText
+            as="h2"
+            delay={0.1}
             className="font-display text-4xl font-bold leading-tight tracking-tight md:text-5xl"
-          >
-            Every screen built for energy teams.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            text="Every screen built for energy teams."
+          />
+          <AnimatedText
+            as="p"
+            delay={0.2}
             className="mt-5 text-base text-muted-foreground text-balance md:text-lg"
-          >
-            Switch between billing, consumption, demand and TOD views — every workflow your facility, finance and sustainability teams need.
-          </motion.p>
+            text="Switch between billing, consumption, demand and TOD views — every workflow your facility, finance and sustainability teams need."
+          />
         </div>
 
         {/* Tab strip */}

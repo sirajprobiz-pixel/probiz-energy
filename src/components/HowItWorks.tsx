@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Cpu, Cloud, BarChart3, Receipt } from "lucide-react";
+import { AnimatedText } from "./AnimatedText";
 
 const STEPS = [
   {
@@ -32,7 +33,7 @@ const STEPS = [
 export const HowItWorks = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const lineHeight = useTransform(scrollYProgress, [0.1, 0.85], ["0%", "100%"]);
+  const lineHeight = useTransform(scrollYProgress, [0.05, 0.95], ["0%", "100%"]);
 
   return (
     <section id="how-it-works" ref={ref} className="relative py-32">
@@ -42,13 +43,17 @@ export const HowItWorks = () => {
             <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
             How it works
           </div>
-          <h2 className="font-display text-4xl font-bold leading-tight md:text-6xl">
-            From meter to invoice, <span className="text-blue-1">fully automated.</span>
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground text-balance">
-            Four simple steps take you from raw electrical data to insight-driven decisions
-            and tenant-ready bills — without lifting a finger.
-          </p>
+          <AnimatedText
+            as="h2"
+            className="font-display text-4xl font-bold leading-tight md:text-6xl"
+            text="From meter to invoice, fully automated."
+          />
+          <AnimatedText
+            as="p"
+            delay={0.2}
+            className="mt-6 text-lg text-muted-foreground text-balance"
+            text="Four simple steps take you from raw electrical data to insight-driven decisions and tenant-ready bills — without lifting a finger."
+          />
         </div>
 
         <div className="relative mx-auto max-w-5xl">

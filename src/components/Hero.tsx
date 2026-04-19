@@ -18,11 +18,11 @@ export const Hero = () => {
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
 
-  const yBg = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -120]);
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const copyY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -80]);
-  const yDash = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -180]);
-  const scaleDash = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.05]);
+  const yBg = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -350]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -180]);
+  const yDash = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -350]);
+  const scaleDash = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.15]);
 
   return (
     <section ref={ref} className="relative min-h-screen overflow-hidden pt-32 pb-20">

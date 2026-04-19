@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import {
   Building2,
   ChevronRight,
   MapPin,
-  Maximize2,
-  Palette,
   RotateCcw,
   Sparkles,
 } from "lucide-react";
 import building3D from "@/assets/building-3d.png";
 import { LiveKPIPanel } from "@/components/building-map/LiveKPIPanel";
+import { useRef } from "react";
 
 type Building = { name: string; floors: number; devices: number; location: string };
 type StateNode = { name: string; buildings: Building[] };
@@ -35,10 +34,8 @@ const STATES: StateNode[] = [
 ];
 
 const DEFAULT_STATE = "Karnataka";
-const DEFAULT_FLOOR = 15;
 
 const getStateByName = (name: string) => STATES.find((s) => s.name === name) ?? STATES[0];
-const clampFloor = (f: number, max: number) => Math.min(Math.max(f, 1), max);
 
 export const BuildingMap = () => {
   const defaultBuilding = getStateByName(DEFAULT_STATE).buildings[0];
@@ -47,14 +44,19 @@ export const BuildingMap = () => {
     state: DEFAULT_STATE,
     b: defaultBuilding,
   });
-  const [activeFloor, setActiveFloor] = useState(clampFloor(DEFAULT_FLOOR, defaultBuilding.floors));
 
   const totalBuildings = STATES.reduce((a, s) => a + s.buildings.length, 0);
 
-  const selectBuilding = (stateName: string, b: Building, floor = 1) => {
+  // Parallax for 3D building
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const buildingY = useTransform(scrollYProgress, [0, 1], [150, -150]);
+  const buildingScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 1.15]);
+  const buildingRotate = useTransform(scrollYProgress, [0, 1], [-4, 4]);
+
+  const selectBuilding = (stateName: string, b: Building) => {
     setOpenState(stateName);
     setActiveBuilding({ state: stateName, b });
-    setActiveFloor(clampFloor(floor, b.floors));
   };
 
   const toggleState = (name: string) => {
@@ -62,10 +64,10 @@ export const BuildingMap = () => {
     setOpenState(name);
   };
 
-  const resetView = () => selectBuilding(DEFAULT_STATE, getStateByName(DEFAULT_STATE).buildings[0], DEFAULT_FLOOR);
+  const resetView = () => selectBuilding(DEFAULT_STATE, getStateByName(DEFAULT_STATE).buildings[0]);
 
   return (
-    <section id="map" className="relative py-24 md:py-32">
+    <section id="map" ref={sectionRef} className="relative py-24 md:py-32">
       <div className="container">
         <div className="mx-auto mb-14 max-w-3xl text-center">
           <motion.div
@@ -94,7 +96,7 @@ export const BuildingMap = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-5 text-base text-balance text-muted-foreground md:text-lg"
           >
-            Click a floor on the 3D model to inspect live energy, HVAC, water and gas telemetry — across your entire portfolio.
+            Explore live energy, HVAC, water and gas telemetry — across your entire portfolio with our interactive 3D building model.
           </motion.p>
         </div>
 
@@ -106,7 +108,7 @@ export const BuildingMap = () => {
           className="relative overflow-hidden rounded-[2rem] surface"
         >
           <div className="grid xl:grid-cols-[minmax(0,1.15fr)_440px]">
-            {/* 3D BUILDING CANVAS */}
+            {/* 3D BUILDING — Clean image with parallax */}
             <div className="relative min-h-[680px] overflow-hidden bg-[hsl(var(--blue-5))]">
               <div className="absolute inset-0 bg-grid opacity-25" />
 
@@ -114,114 +116,41 @@ export const BuildingMap = () => {
               <div className="absolute left-4 top-4 z-20 flex flex-wrap items-center gap-2">
                 <div className="flex items-center gap-2 rounded-xl border border-border bg-card/85 px-3 py-2 backdrop-blur">
                   <Building2 size={14} className="text-blue-1" />
-                  <span className="text-sm font-semibold text-foreground">Nordic</span>
+                  <span className="text-sm font-semibold text-foreground">{activeBuilding.b.name}</span>
                 </div>
                 <div className="flex items-center gap-2 rounded-full border border-border bg-card/85 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur">
-                  <span className="h-1.5 w-1.5 rounded-full bg-blue-1" />
-                  Hover floors to inspect
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-1 animate-pulse" />
+                  Live monitoring
                 </div>
               </div>
 
-              {/* Top-right tools */}
-              <div className="absolute right-4 top-4 z-20 flex items-center gap-2">
-                <button aria-label="Theme" className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/85 text-muted-foreground backdrop-blur transition-colors hover:text-foreground">
-                  <Palette size={16} />
-                </button>
-                <button aria-label="Fullscreen" className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/85 text-muted-foreground backdrop-blur transition-colors hover:text-foreground">
-                  <Maximize2 size={16} />
-                </button>
-              </div>
-
-              {/* Building image */}
-              <div className="absolute inset-x-6 top-20 bottom-24 flex items-center justify-center">
-                <div className="relative flex h-full items-center justify-center">
+              {/* Building image with parallax */}
+              <div className="absolute inset-x-6 top-16 bottom-16 flex items-center justify-center">
+                <motion.div
+                  style={{ y: buildingY, scale: buildingScale, rotateZ: buildingRotate }}
+                  className="relative flex h-full items-center justify-center will-change-transform"
+                >
                   <motion.img
                     key={activeBuilding.b.name}
                     src={building3D}
                     alt={`${activeBuilding.b.name} 3D model`}
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative z-10 h-full w-auto max-w-full object-contain drop-shadow-[0_30px_60px_hsl(var(--primary)/0.25)]"
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="relative z-10 h-full w-auto max-w-full object-contain drop-shadow-[0_30px_60px_hsl(var(--primary)/0.35)]"
                     loading="lazy"
                   />
-
-                  {/* Selected floor highlight slice */}
-                  {(() => {
-                    // Visible floor band of the building image (excludes rooftop sign + green base)
-                    const TOP = 0.08;     // 8% from top
-                    const BOTTOM = 0.92;  // 92% from top
-                    const band = BOTTOM - TOP;
-                    const sliceH = band / activeBuilding.b.floors;
-                    // Floor 1 is at the bottom; floor N at the top
-                    const topPct = TOP + (activeBuilding.b.floors - activeFloor) * sliceH;
-                    return (
-                      <motion.div
-                        key={`slice-${activeBuilding.b.name}-${activeFloor}`}
-                        layout
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                        className="pointer-events-none absolute left-1/2 z-20 -translate-x-1/2"
-                        style={{
-                          top: `${topPct * 100}%`,
-                          height: `${sliceH * 100}%`,
-                          width: "78%",
-                        }}
-                      >
-                        <div
-                          className="relative h-full w-full rounded-[3px]"
-                          style={{
-                            background:
-                              "linear-gradient(90deg, hsl(var(--primary) / 0) 0%, hsl(var(--primary) / 0.45) 50%, hsl(var(--primary) / 0) 100%)",
-                            boxShadow:
-                              "0 0 28px 6px hsl(var(--primary) / 0.55), inset 0 0 0 1px hsl(var(--primary) / 0.7)",
-                          }}
-                        >
-                          <span className="absolute inset-x-0 top-0 h-px bg-primary/90" />
-                          <span className="absolute inset-x-0 bottom-0 h-px bg-primary/90" />
-                          <span className="absolute -left-2 top-1/2 -translate-y-1/2 rounded-md bg-primary px-1.5 py-0.5 text-[10px] font-bold text-primary-foreground shadow-md">
-                            F{activeFloor}
-                          </span>
-                        </div>
-                      </motion.div>
-                    );
-                  })()}
-                </div>
-
-                {/* Floor selector overlay (left) */}
-                <div className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2">
-                  <div className="pointer-events-auto flex max-h-[420px] flex-col gap-1 overflow-y-auto rounded-2xl border border-border bg-card/85 p-2 backdrop-blur">
-                    {Array.from({ length: activeBuilding.b.floors }).map((_, i) => {
-                      const floor = activeBuilding.b.floors - i;
-                      const isActive = floor === activeFloor;
-                      return (
-                        <button
-                          key={floor}
-                          onClick={() => setActiveFloor(floor)}
-                          className={`min-w-[44px] rounded-md px-2 py-1 text-[11px] font-semibold transition-colors ${
-                            isActive
-                              ? "bg-primary text-primary-foreground"
-                              : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                          }`}
-                          aria-label={`Floor ${floor}`}
-                        >
-                          F{floor}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* Bottom info card */}
               <div className="absolute inset-x-4 bottom-4 z-20 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-card/90 px-4 py-3 backdrop-blur">
                 <div className="flex items-center gap-2 text-sm">
                   <Sparkles size={14} className="text-blue-1" />
-                  <span className="text-muted-foreground">Click a floor to inspect · Scroll to zoom</span>
+                  <span className="text-muted-foreground">Select a building to explore · Interactive 3D model</span>
                 </div>
                 <div className="text-sm font-semibold text-foreground">
-                  Floor <span className="text-blue-1">{activeFloor}</span> selected · {Math.max(2, Math.floor(activeBuilding.b.devices / activeBuilding.b.floors))} devices
+                  <span className="text-blue-1">{activeBuilding.b.floors}</span> floors · {activeBuilding.b.devices} devices
                 </div>
               </div>
             </div>
@@ -252,7 +181,7 @@ export const BuildingMap = () => {
                 <div className="grid grid-cols-3 gap-2 border-b border-border p-4">
                   <MetaCell label="Devices" value={activeBuilding.b.devices} />
                   <MetaCell label="Floors" value={activeBuilding.b.floors} />
-                  <MetaCell label="Viewing" value={`F${activeFloor}`} highlight />
+                  <MetaCell label="State" value={activeBuilding.state} highlight />
                 </div>
 
                 {/* Properties tree */}
@@ -299,7 +228,7 @@ export const BuildingMap = () => {
                                       return (
                                         <button
                                           key={b.name}
-                                          onClick={() => selectBuilding(s.name, b, 1)}
+                                          onClick={() => selectBuilding(s.name, b)}
                                           className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition-colors ${
                                             isSelected
                                               ? "bg-primary text-primary-foreground"
@@ -323,7 +252,7 @@ export const BuildingMap = () => {
                     </div>
                   </div>
 
-                  <LiveKPIPanel floor={activeFloor} buildingName={activeBuilding.b.name} />
+                  <LiveKPIPanel floor={1} buildingName={activeBuilding.b.name} />
                 </div>
 
                 <div className="border-t border-border p-4">
