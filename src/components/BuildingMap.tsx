@@ -297,3 +297,72 @@ const ToolBtn = ({ icon: Icon }: { icon: any }) => (
     <Icon size={16} />
   </button>
 );
+
+const LiveKPIPanel = ({ floor, buildingName }: { floor: number; buildingName: string }) => {
+  const seed = floor + buildingName.length;
+  const [tick, setTick] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), 1800);
+    return () => clearInterval(id);
+  }, []);
+  const jitter = (base: number, range: number) =>
+    Math.round((base + Math.sin(tick * 0.7 + seed) * range) * 10) / 10;
+
+  const kwh = jitter(420 + seed * 7, 18);
+  const kva = jitter(58 + seed * 0.4, 3);
+  const pf = jitter(0.94, 0.03);
+  const water = jitter(120 + seed * 2, 6);
+  const gas = jitter(34 + seed, 2);
+  const alerts = (seed % 3) + 1;
+
+  const kpis = [
+    { icon: Zap, label: "Energy (EB)", value: `${kwh} kWh`, sub: "live load", tone: "text-blue-1" },
+    { icon: Activity, label: "Demand", value: `${kva} kVA`, sub: `PF ${pf.toFixed(2)}`, tone: "text-blue-1" },
+    { icon: Gauge, label: "HVAC", value: `${jitter(22, 1).toFixed(1)}°C`, sub: `${jitter(68, 4)}% RH`, tone: "text-blue-1" },
+    { icon: Droplets, label: "Water", value: `${water} L/h`, sub: "domestic line", tone: "text-blue-1" },
+    { icon: Flame, label: "Gas", value: `${gas} m³/h`, sub: "kitchen feed", tone: "text-blue-1" },
+    { icon: AlertTriangle, label: "Alerts", value: `${alerts}`, sub: "active now", tone: "text-foreground" },
+  ];
+
+  return (
+    <div className="border-t border-border bg-muted/30 p-5 lg:border-l lg:border-t-0">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-1 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-1" />
+          </span>
+          <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Live · Floor {floor}</span>
+        </div>
+        <span className="text-[10px] text-muted-foreground">updated {new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}</span>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2">
+        {kpis.map((k) => (
+          <motion.div
+            key={k.label}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="rounded-xl border border-border bg-card p-3"
+          >
+            <div className="mb-1.5 flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground">
+              <k.icon size={11} className={k.tone} />
+              {k.label}
+            </div>
+            <motion.div
+              key={k.value}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+              className="font-display text-lg font-semibold text-foreground"
+            >
+              {k.value}
+            </motion.div>
+            <div className="text-[10px] text-muted-foreground">{k.sub}</div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
