@@ -91,22 +91,19 @@ export const BuildingMap = () => {
                 <ToolBtn icon={Sun} />
               </div>
 
-              {/* India outline */}
-              <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                  <pattern id="map-dots" x="0" y="0" width="3" height="3" patternUnits="userSpaceOnUse">
-                    <circle cx="1" cy="1" r="0.4" className="fill-foreground/10" />
-                  </pattern>
-                </defs>
-                <rect x="0" y="0" width="100" height="100" fill="url(#map-dots)" />
-                {/* Stylised India silhouette */}
-                <path
-                  d="M30,18 L48,14 L62,20 L72,32 L78,42 L74,52 L78,62 L72,72 L60,82 L54,92 L46,90 L42,80 L36,72 L28,64 L24,54 L26,42 L22,32 Z"
-                  className="fill-card stroke-border"
-                  strokeWidth="0.4"
+              {/* India 3D map background */}
+              <div className="absolute inset-0">
+                <img
+                  src={indiaMap}
+                  alt="India 3D map of PROsmart properties"
+                  className="h-full w-full object-cover object-center opacity-95"
+                  loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-background/20" />
+              </div>
 
-                {/* Pings */}
+              {/* Pings */}
+              <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid meet">
                 {STATES.map((s) => {
                   const isActive = openState === s.name;
                   return (
@@ -120,16 +117,17 @@ export const BuildingMap = () => {
                       }}
                     >
                       {isActive && (
-                        <circle r="3.2" className="fill-primary/30">
+                        <circle r="3.2" className="fill-primary/40">
                           <animate attributeName="r" from="1.5" to="4" dur="1.6s" repeatCount="indefinite" />
-                          <animate attributeName="opacity" from="0.6" to="0" dur="1.6s" repeatCount="indefinite" />
+                          <animate attributeName="opacity" from="0.7" to="0" dur="1.6s" repeatCount="indefinite" />
                         </circle>
                       )}
-                      <circle r={isActive ? 1.4 : 1.0} className={isActive ? "fill-primary" : "fill-blue-1"} />
+                      <circle r={isActive ? 1.6 : 1.1} className={isActive ? "fill-primary" : "fill-blue-1"} stroke="white" strokeWidth="0.3" />
                     </g>
                   );
                 })}
               </svg>
+
 
               {/* Bottom command bar */}
               <div className="absolute inset-x-4 bottom-4 z-20 flex items-center gap-2 rounded-full border border-border bg-card/80 px-4 py-2.5 backdrop-blur">
