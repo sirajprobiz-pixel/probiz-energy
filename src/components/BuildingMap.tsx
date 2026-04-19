@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Wifi, Radio, Search, Sparkles, Sun, ChevronRight, MapPin, RotateCcw, ArrowRight } from "lucide-react";
+import { Building2, Wifi, Radio, Search, Sparkles, Sun, ChevronRight, MapPin, RotateCcw, ArrowRight, Zap, Activity, AlertTriangle, Gauge, Droplets, Flame } from "lucide-react";
+import indiaMap from "@/assets/india-map-3d.png";
 
 type Building = { name: string; floors: number; devices: number };
 type StateNode = { name: string; buildings: Building[]; x: number; y: number };
@@ -90,22 +91,19 @@ export const BuildingMap = () => {
                 <ToolBtn icon={Sun} />
               </div>
 
-              {/* India outline */}
-              <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                  <pattern id="map-dots" x="0" y="0" width="3" height="3" patternUnits="userSpaceOnUse">
-                    <circle cx="1" cy="1" r="0.4" className="fill-foreground/10" />
-                  </pattern>
-                </defs>
-                <rect x="0" y="0" width="100" height="100" fill="url(#map-dots)" />
-                {/* Stylised India silhouette */}
-                <path
-                  d="M30,18 L48,14 L62,20 L72,32 L78,42 L74,52 L78,62 L72,72 L60,82 L54,92 L46,90 L42,80 L36,72 L28,64 L24,54 L26,42 L22,32 Z"
-                  className="fill-card stroke-border"
-                  strokeWidth="0.4"
+              {/* India 3D map background */}
+              <div className="absolute inset-0">
+                <img
+                  src={indiaMap}
+                  alt="India 3D map of PROsmart properties"
+                  className="h-full w-full object-cover object-center opacity-95"
+                  loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-background/20" />
+              </div>
 
-                {/* Pings */}
+              {/* Pings */}
+              <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid meet">
                 {STATES.map((s) => {
                   const isActive = openState === s.name;
                   return (
@@ -119,16 +117,17 @@ export const BuildingMap = () => {
                       }}
                     >
                       {isActive && (
-                        <circle r="3.2" className="fill-primary/30">
+                        <circle r="3.2" className="fill-primary/40">
                           <animate attributeName="r" from="1.5" to="4" dur="1.6s" repeatCount="indefinite" />
-                          <animate attributeName="opacity" from="0.6" to="0" dur="1.6s" repeatCount="indefinite" />
+                          <animate attributeName="opacity" from="0.7" to="0" dur="1.6s" repeatCount="indefinite" />
                         </circle>
                       )}
-                      <circle r={isActive ? 1.4 : 1.0} className={isActive ? "fill-primary" : "fill-blue-1"} />
+                      <circle r={isActive ? 1.6 : 1.1} className={isActive ? "fill-primary" : "fill-blue-1"} stroke="white" strokeWidth="0.3" />
                     </g>
                   );
                 })}
               </svg>
+
 
               {/* Bottom command bar */}
               <div className="absolute inset-x-4 bottom-4 z-20 flex items-center gap-2 rounded-full border border-border bg-card/80 px-4 py-2.5 backdrop-blur">
@@ -234,42 +233,45 @@ export const BuildingMap = () => {
             </aside>
           </div>
 
-          {/* Floor visualizer */}
+          {/* Floor visualizer + Live KPIs */}
           {activeBuilding && (
-            <div className="border-t border-border p-6">
-              <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
-                <div>
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground">{activeBuilding.state}</div>
-                  <div className="font-display text-xl font-semibold text-foreground">{activeBuilding.b.name}</div>
+            <div className="grid border-t border-border lg:grid-cols-[1fr_360px]">
+              <div className="p-6">
+                <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
+                  <div>
+                    <div className="text-xs uppercase tracking-wider text-muted-foreground">{activeBuilding.state}</div>
+                    <div className="font-display text-xl font-semibold text-foreground">{activeBuilding.b.name}</div>
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    Floor <span className="font-semibold text-blue-1">{activeFloor}</span> of {activeBuilding.b.floors} • {activeBuilding.b.devices} devices
+                  </div>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  Floor <span className="font-semibold text-blue-1">{activeFloor}</span> of {activeBuilding.b.floors} • {activeBuilding.b.devices} devices
+
+                <div className="flex items-end justify-center gap-1.5">
+                  {Array.from({ length: activeBuilding.b.floors }).map((_, i) => {
+                    const floor = activeBuilding.b.floors - i;
+                    const isActive = floor === activeFloor;
+                    return (
+                      <motion.button
+                        key={floor}
+                        onClick={() => setActiveFloor(floor)}
+                        whileHover={{ y: -3 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 24 }}
+                        className={`group relative h-10 w-9 rounded-md border text-[10px] font-semibold transition-colors ${
+                          isActive
+                            ? "border-primary bg-primary text-primary-foreground"
+                            : "border-border bg-muted text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                        }`}
+                        aria-label={`Floor ${floor}`}
+                      >
+                        {floor}
+                      </motion.button>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Floor stack — each floor button stacked like a building */}
-              <div className="flex items-end justify-center gap-1.5">
-                {Array.from({ length: activeBuilding.b.floors }).map((_, i) => {
-                  const floor = activeBuilding.b.floors - i;
-                  const isActive = floor === activeFloor;
-                  return (
-                    <motion.button
-                      key={floor}
-                      onClick={() => setActiveFloor(floor)}
-                      whileHover={{ y: -3 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 24 }}
-                      className={`group relative h-10 w-9 rounded-md border text-[10px] font-semibold transition-colors ${
-                        isActive
-                          ? "border-primary bg-primary text-primary-foreground"
-                          : "border-border bg-muted text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                      }`}
-                      aria-label={`Floor ${floor}`}
-                    >
-                      {floor}
-                    </motion.button>
-                  );
-                })}
-              </div>
+              <LiveKPIPanel floor={activeFloor} buildingName={activeBuilding.b.name} />
             </div>
           )}
         </motion.div>
@@ -295,3 +297,72 @@ const ToolBtn = ({ icon: Icon }: { icon: any }) => (
     <Icon size={16} />
   </button>
 );
+
+const LiveKPIPanel = ({ floor, buildingName }: { floor: number; buildingName: string }) => {
+  const seed = floor + buildingName.length;
+  const [tick, setTick] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), 1800);
+    return () => clearInterval(id);
+  }, []);
+  const jitter = (base: number, range: number) =>
+    Math.round((base + Math.sin(tick * 0.7 + seed) * range) * 10) / 10;
+
+  const kwh = jitter(420 + seed * 7, 18);
+  const kva = jitter(58 + seed * 0.4, 3);
+  const pf = jitter(0.94, 0.03);
+  const water = jitter(120 + seed * 2, 6);
+  const gas = jitter(34 + seed, 2);
+  const alerts = (seed % 3) + 1;
+
+  const kpis = [
+    { icon: Zap, label: "Energy (EB)", value: `${kwh} kWh`, sub: "live load", tone: "text-blue-1" },
+    { icon: Activity, label: "Demand", value: `${kva} kVA`, sub: `PF ${pf.toFixed(2)}`, tone: "text-blue-1" },
+    { icon: Gauge, label: "HVAC", value: `${jitter(22, 1).toFixed(1)}°C`, sub: `${jitter(68, 4)}% RH`, tone: "text-blue-1" },
+    { icon: Droplets, label: "Water", value: `${water} L/h`, sub: "domestic line", tone: "text-blue-1" },
+    { icon: Flame, label: "Gas", value: `${gas} m³/h`, sub: "kitchen feed", tone: "text-blue-1" },
+    { icon: AlertTriangle, label: "Alerts", value: `${alerts}`, sub: "active now", tone: "text-foreground" },
+  ];
+
+  return (
+    <div className="border-t border-border bg-muted/30 p-5 lg:border-l lg:border-t-0">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-1 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-1" />
+          </span>
+          <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Live · Floor {floor}</span>
+        </div>
+        <span className="text-[10px] text-muted-foreground">updated {new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}</span>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2">
+        {kpis.map((k) => (
+          <motion.div
+            key={k.label}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="rounded-xl border border-border bg-card p-3"
+          >
+            <div className="mb-1.5 flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground">
+              <k.icon size={11} className={k.tone} />
+              {k.label}
+            </div>
+            <motion.div
+              key={k.value}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+              className="font-display text-lg font-semibold text-foreground"
+            >
+              {k.value}
+            </motion.div>
+            <div className="text-[10px] text-muted-foreground">{k.sub}</div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
