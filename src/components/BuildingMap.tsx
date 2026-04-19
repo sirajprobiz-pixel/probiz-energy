@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Wifi, Radio, Search, Sparkles, Sun, ChevronRight, MapPin, RotateCcw, ArrowRight } from "lucide-react";
+import { Building2, Wifi, Radio, Search, Sparkles, Sun, ChevronRight, MapPin, RotateCcw, ArrowRight, Zap, Activity, AlertTriangle, Gauge, Droplets, Flame } from "lucide-react";
+import indiaMap from "@/assets/india-map-3d.png";
 
 type Building = { name: string; floors: number; devices: number };
 type StateNode = { name: string; buildings: Building[]; x: number; y: number };
