@@ -28,12 +28,12 @@ export const LiveKPIPanel = ({ floor, buildingName, className = "" }: LiveKPIPan
   const alerts = (seed % 3) + 1;
 
   const kpis = [
-    { icon: Zap, label: "Energy (EB)", value: `${kwh} kWh`, sub: "live load", tone: "text-blue-1" },
-    { icon: Activity, label: "Demand", value: `${kva} kVA`, sub: `PF ${pf.toFixed(2)}`, tone: "text-blue-1" },
-    { icon: Gauge, label: "HVAC", value: `${jitter(22, 1).toFixed(1)}°C`, sub: `${jitter(68, 4)}% RH`, tone: "text-blue-1" },
-    { icon: Droplets, label: "Water", value: `${water} L/h`, sub: "domestic line", tone: "text-blue-1" },
-    { icon: Flame, label: "Gas", value: `${gas} m³/h`, sub: "kitchen feed", tone: "text-blue-1" },
-    { icon: AlertTriangle, label: "Alerts", value: `${alerts}`, sub: "active now", tone: "text-foreground" },
+    { icon: Zap, label: "Energy (EB)", value: `${kwh} kWh`, sub: "live load", tone: "text-blue-1", pct: Math.min(100, (kwh / 700) * 100) },
+    { icon: Activity, label: "Demand", value: `${kva} kVA`, sub: `PF ${pf.toFixed(2)}`, tone: "text-blue-1", pct: Math.min(100, (kva / 100) * 100) },
+    { icon: Gauge, label: "HVAC", value: `${jitter(22, 1).toFixed(1)}°C`, sub: `${jitter(68, 4)}% RH`, tone: "text-blue-1", pct: jitter(68, 4) },
+    { icon: Droplets, label: "Water", value: `${water} L/h`, sub: "domestic line", tone: "text-blue-1", pct: Math.min(100, (water / 200) * 100) },
+    { icon: Flame, label: "Gas", value: `${gas} m³/h`, sub: "kitchen feed", tone: "text-blue-1", pct: Math.min(100, (gas / 60) * 100) },
+    { icon: AlertTriangle, label: "Alerts", value: `${alerts}`, sub: "active now", tone: "text-foreground", pct: Math.min(100, alerts * 25) },
   ];
 
   return (
@@ -76,7 +76,22 @@ export const LiveKPIPanel = ({ floor, buildingName, className = "" }: LiveKPIPan
             >
               {kpi.value}
             </motion.div>
-            <div className="text-[10px] text-muted-foreground">{kpi.sub}</div>
+            <div className="mb-1.5 text-[10px] text-muted-foreground">{kpi.sub}</div>
+
+            {/* Animated meter */}
+            <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${kpi.pct}%` }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="h-full rounded-full bg-blue-1"
+              />
+              <motion.div
+                animate={{ x: ["-100%", "200%"] }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+              />
+            </div>
           </motion.div>
         ))}
       </div>
