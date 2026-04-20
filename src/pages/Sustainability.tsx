@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { Download, Leaf, Recycle, ShieldCheck, Sprout, TreePine, Users } from "lucide-react";
 import { useLenis } from "@/hooks/useLenis";
 import { Header } from "@/components/Header";
@@ -8,7 +8,26 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { AnimatedText } from "@/components/AnimatedText";
-import { Counter } from "@/components/Stats";
+
+const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    const dur = 1600;
+    const t0 = performance.now();
+    let raf = 0;
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - t0) / dur);
+      setN(Math.floor(value * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, value]);
+  return <span ref={ref}>{n.toLocaleString()}{suffix}</span>;
+};
 
 const PILLARS = [
   { icon: TreePine, title: "Net Zero acceleration", body: "Real-time carbon accounting at meter level — every kWh tagged to a Scope 1/2/3 bucket." },
