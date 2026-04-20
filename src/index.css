@@ -43,6 +43,8 @@
     --blue-3: 210 100% 60%;  /* azure */
     --blue-4: 220 95% 70%;   /* light periwinkle blue */
     --blue-5: 215 35% 95%;   /* surface tint */
+    --green-1: 135 60% 70%;  /* light glass green */
+    --green-2: 145 55% 78%;  /* mint glass */
 
     --shadow-soft: 0 10px 30px -12px hsl(215 50% 30% / 0.15);
     --shadow-strong: 0 30px 60px -25px hsl(215 50% 30% / 0.25);
@@ -95,6 +97,8 @@
     --blue-3: 210 100% 65%;
     --blue-4: 220 95% 75%;
     --blue-5: 215 25% 12%;
+    --green-1: 135 55% 60%;
+    --green-2: 145 50% 68%;
 
     --shadow-soft: 0 10px 30px -12px hsl(0 0% 0% / 0.6);
     --shadow-strong: 0 30px 60px -25px hsl(0 0% 0% / 0.7);
@@ -196,11 +200,15 @@
   .text-blue-1 { color: hsl(var(--blue-1)); }
   .text-blue-2 { color: hsl(var(--blue-2)); }
   .text-blue-3 { color: hsl(var(--blue-3)); }
+  .text-green-1 { color: hsl(var(--green-1)); }
+  .text-green-2 { color: hsl(var(--green-2)); }
   .bg-blue-1 { background-color: hsl(var(--blue-1)); }
   .bg-blue-2 { background-color: hsl(var(--blue-2)); }
   .bg-blue-3 { background-color: hsl(var(--blue-3)); }
   .bg-blue-4 { background-color: hsl(var(--blue-4)); }
   .bg-blue-5 { background-color: hsl(var(--blue-5)); }
+  .bg-green-1 { background-color: hsl(var(--green-1)); }
+  .bg-green-2 { background-color: hsl(var(--green-2)); }
 }
 
 @keyframes marquee {

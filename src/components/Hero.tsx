@@ -48,8 +48,8 @@ export const Hero = () => {
               className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
             >
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-2 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-1" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-1 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-1" />
               </span>
               <span className="text-muted-foreground">Next-gen energy intelligence platform</span>
             </motion.div>
