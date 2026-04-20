@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const NAV = [
@@ -36,12 +36,12 @@ export const Header = () => {
         >
           <Link to="/" className="group flex items-center gap-2.5">
             <div className="relative h-8 w-8">
-              <div className="absolute inset-0 rounded-lg bg-brand-1 opacity-30 blur-md group-hover:opacity-60 transition" />
-              <div className="relative flex h-full w-full items-center justify-center rounded-lg bg-primary font-display text-sm font-bold text-primary-foreground">
-                P
+              <div className="absolute inset-0 rounded-lg bg-[hsl(var(--green-1)/0.5)] blur-md group-hover:opacity-80 transition" />
+              <div className="relative flex h-full w-full items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <Zap size={16} strokeWidth={2.5} />
               </div>
             </div>
-            <span className="font-display text-lg font-bold tracking-tight">PROsmart</span>
+            <span className="font-display text-lg font-bold tracking-tight">PROsmart Energy</span>
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">

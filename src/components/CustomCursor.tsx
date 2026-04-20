@@ -38,12 +38,12 @@ export const CustomCursor = () => {
       <motion.div
         style={{ translateX: sx, translateY: sy }}
         animate={{ scale: hover ? 0 : 1 }}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] -ml-1 -mt-1 h-2 w-2 rounded-full bg-primary mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] -ml-1.5 -mt-1.5 h-3 w-3 rounded-full bg-green-1 shadow-[0_0_18px_hsl(var(--green-1))]"
       />
       <motion.div
         style={{ translateX: sx, translateY: sy }}
-        animate={{ scale: hover ? 1.8 : 1, opacity: hover ? 0.7 : 0.4 }}
-        className="pointer-events-none fixed left-0 top-0 z-[9998] -ml-5 -mt-5 h-10 w-10 rounded-full border-2 border-primary/70 backdrop-blur-sm"
+        animate={{ scale: hover ? 1.8 : 1, opacity: hover ? 0.7 : 0.45 }}
+        className="pointer-events-none fixed left-0 top-0 z-[9998] -ml-5 -mt-5 h-10 w-10 rounded-full border-2 border-[hsl(var(--green-1)/0.7)] backdrop-blur-sm"
       />
     </>
   );
