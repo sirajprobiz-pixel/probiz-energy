@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 
 const NAV = [
   { label: "Platform", href: "/#platform" },
-  { label: "How it works", href: "/#how-it-works" },
-  { label: "Features", href: "/#features" },
+  { label: "About", href: "/about" },
+  { label: "Sustainability", href: "/sustainability" },
+  { label: "Blog", href: "/blog" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const Header = () => {

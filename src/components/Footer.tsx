@@ -1,9 +1,24 @@
 import { Link } from "react-router-dom";
 import { Zap } from "lucide-react";
 
-const COLS = [
-  { title: "Products", links: ["PROsmart Energy", "Probiz Energy AI"] },
-  { title: "Company",  links: ["About", "Sustainability", "Blogs", "Contact"] },
+const COLS: Array<{ title: string; links: Array<{ label: string; to: string }> }> = [
+  {
+    title: "Products",
+    links: [
+      { label: "PROsmart Energy", to: "/" },
+      { label: "Probiz Energy AI", to: "/" },
+      { label: "Pricing", to: "/pricing" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", to: "/about" },
+      { label: "Sustainability", to: "/sustainability" },
+      { label: "Blog", to: "/blog" },
+      { label: "Contact", to: "/contact" },
+    ],
+  },
 ];
 
 export const Footer = () => (
@@ -34,13 +49,13 @@ export const Footer = () => (
               <div className="font-display text-sm font-semibold">{c.title}</div>
               <ul className="mt-4 space-y-2">
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="group inline-block text-sm text-muted-foreground transition-colors hover:text-green-1">
+                  <li key={l.label}>
+                    <Link to={l.to} className="group inline-block text-sm text-muted-foreground transition-colors hover:text-green-1">
                       <span className="relative">
-                        {l}
+                        {l.label}
                         <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-green-1 transition-all duration-300 group-hover:w-full" />
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
