@@ -43,6 +43,8 @@
     --blue-3: 210 100% 60%;  /* azure */
     --blue-4: 220 95% 70%;   /* light periwinkle blue */
     --blue-5: 215 35% 95%;   /* surface tint */
+    --green-1: 135 60% 70%;  /* light glass green */
+    --green-2: 145 55% 78%;  /* mint glass */
 
     --shadow-soft: 0 10px 30px -12px hsl(215 50% 30% / 0.15);
     --shadow-strong: 0 30px 60px -25px hsl(215 50% 30% / 0.25);
