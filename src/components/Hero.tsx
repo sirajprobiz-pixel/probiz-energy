@@ -26,11 +26,11 @@ export const Hero = () => {
 
   return (
     <section ref={ref} className="relative min-h-screen overflow-hidden pt-32 pb-20">
-      {/* Soft solid color blobs (no gradients) */}
+      {/* Light-green glass blobs */}
       <motion.div style={{ y: yBg }} className="pointer-events-none absolute inset-0 will-change-transform">
-        <div className="absolute -top-32 left-[6%] h-72 w-72 rounded-full bg-brand-3/30 blur-3xl" />
-        <div className="absolute top-20 right-[6%] h-80 w-80 rounded-full bg-brand-1/30 blur-3xl" />
-        <div className="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-brand-2/25 blur-3xl" />
+        <div className="absolute -top-32 left-[6%] h-72 w-72 rounded-full bg-[hsl(135_60%_75%/0.45)] blur-3xl backdrop-blur-2xl" />
+        <div className="absolute top-20 right-[6%] h-80 w-80 rounded-full bg-[hsl(140_55%_78%/0.4)] blur-3xl backdrop-blur-2xl" />
+        <div className="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-[hsl(125_50%_72%/0.35)] blur-3xl backdrop-blur-2xl" />
       </motion.div>
       <div className="absolute inset-0 bg-grid" />
 
