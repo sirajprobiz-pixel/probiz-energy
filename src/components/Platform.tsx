@@ -9,27 +9,38 @@ export const Platform = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [200, -200]);
+  const headingY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.4, 1, 1, 0.4]);
 
   return (
     <section id="platform" ref={ref} className="relative py-32">
       <div className="container">
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-2" />
+        <motion.div
+          style={{ y: headingY, opacity: headingOpacity }}
+          className="mx-auto mb-20 max-w-5xl text-center will-change-transform"
+        >
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-green-1" />
             Platform Overview
           </div>
           <AnimatedText
             as="h2"
-            text="Smart energy management cloud platform."
-            className="font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl"
+            text="Smart energy"
+            className="font-display text-6xl font-bold leading-[0.95] tracking-tight md:text-8xl lg:text-9xl"
+          />
+          <AnimatedText
+            as="h2"
+            delay={0.1}
+            text="management cloud."
+            className="font-display text-6xl font-bold leading-[0.95] tracking-tight text-green-1 md:text-8xl lg:text-9xl"
           />
           <AnimatedText
             as="p"
-            delay={0.2}
-            className="mt-6 text-lg text-muted-foreground text-balance mx-auto max-w-2xl"
-            text="Cut energy use, costs, and carbon footprints with enhanced data visibility, actionable insights, automation, data-driven maintenance, and smart problem isolation. PROsmart supports enterprises in achieving ISO 50001 compliance."
+            delay={0.3}
+            className="mt-8 text-lg text-muted-foreground text-balance mx-auto max-w-2xl"
+            text="Cut energy use, costs, and carbon footprints with enhanced data visibility, actionable insights, automation, data-driven maintenance, and smart problem isolation. PROsmart Energy supports enterprises in achieving ISO 50001 compliance."
           />
-        </div>
+        </motion.div>
 
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <motion.div style={{ y }} className="relative will-change-transform">

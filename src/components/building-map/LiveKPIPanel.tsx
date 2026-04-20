@@ -8,6 +8,28 @@ type LiveKPIPanelProps = {
   className?: string;
 };
 
+const Ring = ({ pct }: { pct: number }) => {
+  const r = 28;
+  const c = 2 * Math.PI * r;
+  const clamped = Math.max(0, Math.min(100, pct));
+  return (
+    <svg width="72" height="72" viewBox="0 0 72 72" className="-rotate-90">
+      <circle cx="36" cy="36" r={r} className="fill-none stroke-muted" strokeWidth="6" />
+      <motion.circle
+        cx="36"
+        cy="36"
+        r={r}
+        className="fill-none stroke-blue-1"
+        strokeWidth="6"
+        strokeLinecap="round"
+        initial={{ strokeDasharray: c, strokeDashoffset: c }}
+        animate={{ strokeDashoffset: c - (c * clamped) / 100 }}
+        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </svg>
+  );
+};
+
 export const LiveKPIPanel = ({ floor, buildingName, className = "" }: LiveKPIPanelProps) => {
   const seed = floor + buildingName.length;
   const [tick, setTick] = useState(0);
@@ -26,14 +48,16 @@ export const LiveKPIPanel = ({ floor, buildingName, className = "" }: LiveKPIPan
   const water = jitter(120 + seed * 2, 6);
   const gas = jitter(34 + seed, 2);
   const alerts = (seed % 3) + 1;
+  const hvac = jitter(22, 1);
+  const rh = jitter(68, 4);
 
   const kpis = [
-    { icon: Zap, label: "Energy (EB)", value: `${kwh} kWh`, sub: "live load", tone: "text-blue-1", pct: Math.min(100, (kwh / 700) * 100) },
-    { icon: Activity, label: "Demand", value: `${kva} kVA`, sub: `PF ${pf.toFixed(2)}`, tone: "text-blue-1", pct: Math.min(100, (kva / 100) * 100) },
-    { icon: Gauge, label: "HVAC", value: `${jitter(22, 1).toFixed(1)}°C`, sub: `${jitter(68, 4)}% RH`, tone: "text-blue-1", pct: jitter(68, 4) },
-    { icon: Droplets, label: "Water", value: `${water} L/h`, sub: "domestic line", tone: "text-blue-1", pct: Math.min(100, (water / 200) * 100) },
-    { icon: Flame, label: "Gas", value: `${gas} m³/h`, sub: "kitchen feed", tone: "text-blue-1", pct: Math.min(100, (gas / 60) * 100) },
-    { icon: AlertTriangle, label: "Alerts", value: `${alerts}`, sub: "active now", tone: "text-foreground", pct: Math.min(100, alerts * 25) },
+    { icon: Zap, label: "Energy (EB)", value: `${kwh}`, unit: "kWh", sub: "live load", pct: Math.min(100, (kwh / 700) * 100) },
+    { icon: Activity, label: "Demand", value: `${kva}`, unit: "kVA", sub: `PF ${pf.toFixed(2)}`, pct: Math.min(100, (kva / 100) * 100) },
+    { icon: Gauge, label: "HVAC", value: `${hvac.toFixed(1)}°`, unit: "C", sub: `${rh}% RH`, pct: rh },
+    { icon: Droplets, label: "Water", value: `${water}`, unit: "L/h", sub: "domestic line", pct: Math.min(100, (water / 200) * 100) },
+    { icon: Flame, label: "Gas", value: `${gas}`, unit: "m³/h", sub: "kitchen feed", pct: Math.min(100, (gas / 60) * 100) },
+    { icon: AlertTriangle, label: "Alerts", value: `${alerts}`, unit: "live", sub: "active now", pct: Math.min(100, alerts * 25) },
   ];
 
   return (
@@ -41,8 +65,8 @@ export const LiveKPIPanel = ({ floor, buildingName, className = "" }: LiveKPIPan
       <div className="mb-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-1 opacity-75" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-1" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-1 opacity-75" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-1" />
           </span>
           <div>
             <div className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">Live floor KPIs</div>
@@ -61,36 +85,31 @@ export const LiveKPIPanel = ({ floor, buildingName, className = "" }: LiveKPIPan
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="rounded-xl border border-border bg-card p-3"
+            className="rounded-2xl border border-border bg-card p-3"
           >
-            <div className="mb-1.5 flex items-center gap-1.5 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-              <kpi.icon size={11} className={kpi.tone} />
+            <div className="mb-2 flex items-center gap-1.5 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              <kpi.icon size={11} className="text-blue-1" />
               {kpi.label}
             </div>
-            <motion.div
-              key={kpi.value}
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25 }}
-              className="font-display text-lg font-semibold text-foreground"
-            >
-              {kpi.value}
-            </motion.div>
-            <div className="mb-1.5 text-[10px] text-muted-foreground">{kpi.sub}</div>
-
-            {/* Animated meter */}
-            <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${kpi.pct}%` }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="h-full rounded-full bg-blue-1"
-              />
-              <motion.div
-                animate={{ x: ["-100%", "200%"] }}
-                transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-              />
+            <div className="flex items-center gap-3">
+              <div className="relative h-[72px] w-[72px] shrink-0">
+                <Ring pct={kpi.pct} />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.span
+                    key={kpi.value}
+                    initial={{ opacity: 0, scale: 0.92 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="font-display text-sm font-semibold text-foreground"
+                  >
+                    {kpi.value}
+                  </motion.span>
+                </div>
+              </div>
+              <div className="min-w-0">
+                <div className="text-[11px] font-medium text-foreground">{kpi.unit}</div>
+                <div className="text-[10px] text-muted-foreground">{kpi.sub}</div>
+              </div>
             </div>
           </motion.div>
         ))}
