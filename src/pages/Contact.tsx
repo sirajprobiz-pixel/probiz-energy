@@ -1,0 +1,211 @@
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Building2, Headphones, Mail, MapPin, MessageSquare, Phone, Send } from "lucide-react";
+import { useLenis } from "@/hooks/useLenis";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { CustomCursor } from "@/components/CustomCursor";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { AnimatedText } from "@/components/AnimatedText";
+import { toast } from "sonner";
+
+const OFFICES = [
+  { city: "Chennai", line1: "Probiz HQ, Guindy", line2: "Tamil Nadu, India" },
+  { city: "Dubai", line1: "Business Bay Tower", line2: "United Arab Emirates" },
+  { city: "Riyadh", line1: "King Fahd District", line2: "Kingdom of Saudi Arabia" },
+];
+
+const CHANNELS = [
+  { icon: MessageSquare, title: "Sales", body: "Talk to a solutions engineer", value: "sales@prosmart.energy" },
+  { icon: Headphones, title: "Support", body: "24/7 customer success", value: "support@prosmart.energy" },
+  { icon: Building2, title: "Partnerships", body: "Integrations & resellers", value: "partners@prosmart.energy" },
+];
+
+const Contact = () => {
+  useLenis();
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    document.title = "Contact — PROsmart Energy";
+    const meta = document.querySelector('meta[name="description"]') || (() => {
+      const m = document.createElement("meta");
+      m.setAttribute("name", "description");
+      document.head.appendChild(m);
+      return m;
+    })();
+    meta.setAttribute("content", "Get in touch with PROsmart Energy — sales, support, partnerships and global office locations.");
+  }, []);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const email = String(fd.get("email") || "");
+    const name = String(fd.get("name") || "").trim();
+    const message = String(fd.get("message") || "").trim();
+    if (!name) return toast.error("Please share your name");
+    if (!email.includes("@")) return toast.error("Please enter a valid email");
+    if (message.length < 10) return toast.error("Tell us a bit more (10+ characters)");
+
+    setSubmitting(true);
+    await new Promise((r) => setTimeout(r, 700));
+    setSubmitting(false);
+    toast.success("Thanks — we'll be in touch within one business day.");
+    form.reset();
+  };
+
+  return (
+    <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+      <ScrollProgress />
+      <CustomCursor />
+      <Header />
+      <ThemeToggle />
+
+      <main>
+        {/* Hero */}
+        <section className="relative overflow-hidden pt-40 pb-16">
+          <div className="pointer-events-none absolute -top-24 left-[8%] h-80 w-80 rounded-full bg-[hsl(var(--green-1)/0.4)] blur-3xl" />
+          <div className="pointer-events-none absolute top-20 right-[8%] h-80 w-80 rounded-full bg-[hsl(var(--green-2)/0.35)] blur-3xl" />
+          <div className="absolute inset-0 bg-grid" />
+
+          <div className="container relative">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-1 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-1" />
+              </span>
+              <span className="text-muted-foreground">Get in touch</span>
+            </motion.div>
+
+            <AnimatedText as="h1" text="Let&apos;s build" className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl" />
+            <AnimatedText as="h1" text="something smart." className="font-display text-5xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-6xl md:text-7xl lg:text-8xl" delay={0.15} />
+          </div>
+        </section>
+
+        {/* Form + info */}
+        <section className="pb-24">
+          <div className="container">
+            <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+              <motion.form
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                onSubmit={onSubmit}
+                className="surface rounded-[2rem] p-8 md:p-10"
+              >
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-medium text-muted-foreground">Full name</label>
+                    <input name="name" required className="rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-green-1" placeholder="Jane Doe" />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-medium text-muted-foreground">Company</label>
+                    <input name="company" className="rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-green-1" placeholder="Acme Realty" />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-medium text-muted-foreground">Work email</label>
+                    <input name="email" type="email" required className="rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-green-1" placeholder="you@company.com" />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-medium text-muted-foreground">Phone</label>
+                    <input name="phone" className="rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-green-1" placeholder="+91 ..." />
+                  </div>
+                  <div className="sm:col-span-2 flex flex-col gap-1.5">
+                    <label className="text-xs font-medium text-muted-foreground">How can we help?</label>
+                    <textarea name="message" rows={5} required className="rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-green-1" placeholder="Tell us about your portfolio, utilities and goals..." />
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-all hover:shadow-[0_10px_30px_-10px_hsl(var(--primary)/0.6)] disabled:opacity-60"
+                >
+                  {submitting ? "Sending..." : "Send message"} <Send size={14} />
+                </button>
+              </motion.form>
+
+              <div className="space-y-4">
+                {CHANNELS.map((c, i) => (
+                  <motion.div
+                    key={c.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    className="surface tilt-card flex items-start gap-4 rounded-2xl p-5"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[hsl(var(--green-1)/0.18)] text-green-1">
+                      <c.icon size={20} />
+                    </div>
+                    <div>
+                      <div className="font-display text-base font-semibold">{c.title}</div>
+                      <div className="text-xs text-muted-foreground">{c.body}</div>
+                      <a href={`mailto:${c.value}`} className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-green-1 hover:underline">
+                        <Mail size={12} /> {c.value}
+                      </a>
+                    </div>
+                  </motion.div>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="surface flex items-start gap-4 rounded-2xl p-5"
+                >
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[hsl(var(--green-1)/0.18)] text-green-1">
+                    <Phone size={20} />
+                  </div>
+                  <div>
+                    <div className="font-display text-base font-semibold">Call us</div>
+                    <div className="text-xs text-muted-foreground">Mon–Fri · 9am–7pm IST</div>
+                    <a href="tel:+914444000000" className="mt-1 block text-sm font-medium text-green-1 hover:underline">+91 44 4400 0000</a>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Offices */}
+        <section className="pb-32">
+          <div className="container">
+            <div className="mx-auto mb-10 max-w-2xl text-center">
+              <AnimatedText as="h2" text="Our offices." className="font-display text-4xl font-bold tracking-tight md:text-5xl" />
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {OFFICES.map((o, i) => (
+                <motion.div
+                  key={o.city}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="surface tilt-card rounded-3xl p-6"
+                >
+                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[hsl(var(--green-1)/0.18)] text-green-1">
+                    <MapPin size={20} />
+                  </div>
+                  <div className="font-display text-xl font-semibold">{o.city}</div>
+                  <div className="mt-1 text-sm text-muted-foreground">{o.line1}</div>
+                  <div className="text-sm text-muted-foreground">{o.line2}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Contact;
