@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import logo from "@/assets/logo.png";
 
 export const Loader = () => {
   const [done, setDone] = useState(false);
@@ -28,18 +29,20 @@ export const Loader = () => {
           transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-background"
         >
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="mb-10 flex items-center gap-3">
-            <div className="relative h-12 w-12">
-              <div className="absolute inset-0 rounded-full bg-brand-1 opacity-30 blur-xl" />
-              <div className="relative flex h-full w-full items-center justify-center rounded-full bg-primary font-display text-xl font-bold text-primary-foreground">
-                P
-              </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="mb-10 flex items-center gap-3"
+          >
+            <div className="relative h-14 w-14">
+              <div className="absolute inset-0 rounded-full bg-[hsl(var(--green-1)/0.45)] blur-xl animate-pulse" />
+              <img src={logo} alt="PROsmart Energy" className="relative h-14 w-14 object-contain" />
             </div>
-            <span className="font-display text-2xl font-bold tracking-tight">PROsmart</span>
+            <span className="font-display text-2xl font-bold tracking-tight">PROsmart Energy</span>
           </motion.div>
 
-          <div className="h-[2px] w-64 overflow-hidden rounded-full bg-brand-5">
-            <motion.div animate={{ width: `${progress}%` }} transition={{ ease: "easeOut" }} className="h-full bg-brand-1" />
+          <div className="h-[2px] w-64 overflow-hidden rounded-full bg-muted">
+            <motion.div animate={{ width: `${progress}%` }} transition={{ ease: "easeOut" }} className="h-full bg-green-1" />
           </div>
           <div className="mt-4 font-mono text-xs text-muted-foreground">
             {Math.floor(progress)}% — Initializing energy intelligence
