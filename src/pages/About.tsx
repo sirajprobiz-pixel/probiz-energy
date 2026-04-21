@@ -29,6 +29,7 @@ const TEAM = [
   { name: "Priya Nair", role: "Head of Product", initials: "PN" },
   { name: "Vikram Shah", role: "VP Engineering", initials: "VS" },
   { name: "Sara Mathew", role: "Head of Sustainability", initials: "SM" },
+  { name: "Rahul Menon", role: "Head of Customer Success", initials: "RM" },
 ];
 
 const About = () => {
