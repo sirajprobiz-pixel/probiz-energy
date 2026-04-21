@@ -57,9 +57,9 @@ export const Impact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-4xl font-bold leading-tight md:text-6xl"
+            className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl pb-2"
           >
-            Buildings running smarter, <span className="text-blue-2 inline-block">bills running themselves.</span>
+            Buildings running smarter, <span className="text-green-1 inline-block">bills running themselves.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
