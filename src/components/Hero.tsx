@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Zap, Fuel, Snowflake, Droplets, Flame, Map } from "lucide-react";
 import { AnimatedText } from "./AnimatedText";
-import dashboardImg from "@/assets/dashboard-consumption.jpg";
+import dashboardImg from "@/assets/hero-dashboard.png";
 
 const UTILITIES = [
   { icon: Zap, label: "Energy EB" },
