@@ -6,8 +6,7 @@ export const ThemeToggle = () => {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window === "undefined") return "dark";
     const stored = localStorage.getItem("prosmart-theme") as "light" | "dark" | null;
-    if (stored) return stored;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return stored ?? "dark";
   });
 
   useEffect(() => {
