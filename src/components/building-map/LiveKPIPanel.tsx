@@ -19,7 +19,7 @@ const Ring = ({ pct }: { pct: number }) => {
         cx="36"
         cy="36"
         r={r}
-        className="fill-none stroke-blue-1"
+        className="fill-none stroke-green-1"
         strokeWidth="6"
         strokeLinecap="round"
         initial={{ strokeDasharray: c, strokeDashoffset: c }}
@@ -69,7 +69,7 @@ export const LiveKPIPanel = ({ floor, buildingName, className = "" }: LiveKPIPan
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-1" />
           </span>
           <div>
-            <div className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">Live floor KPIs</div>
+            <div className="text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground">Live floor KPI's</div>
             <div className="text-sm text-foreground">{buildingName} · Floor {floor}</div>
           </div>
         </div>
@@ -88,8 +88,8 @@ export const LiveKPIPanel = ({ floor, buildingName, className = "" }: LiveKPIPan
             className="rounded-2xl border border-border bg-card p-3"
           >
             <div className="mb-2 flex items-center gap-1.5 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-              <kpi.icon size={11} className="text-blue-1" />
-              {kpi.label}
+              <kpi.icon size={11} className="text-green-1" />
+              <span className="truncate">{kpi.label}</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="relative h-[72px] w-[72px] shrink-0">
@@ -100,15 +100,15 @@ export const LiveKPIPanel = ({ floor, buildingName, className = "" }: LiveKPIPan
                     initial={{ opacity: 0, scale: 0.92 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="font-display text-sm font-semibold text-foreground"
+                    className="font-display text-sm font-semibold leading-none text-foreground"
                   >
                     {kpi.value}
                   </motion.span>
                 </div>
               </div>
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <div className="text-[11px] font-medium text-foreground">{kpi.unit}</div>
-                <div className="text-[10px] text-muted-foreground">{kpi.sub}</div>
+                <div className="text-[10px] leading-tight text-muted-foreground">{kpi.sub}</div>
               </div>
             </div>
           </motion.div>
