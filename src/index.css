@@ -16,16 +16,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 8%;
 
-    --primary: 217 91% 50%;            /* deep electric blue #1d4ed8-ish */
+    --primary: 145 65% 42%;            /* deep emerald */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 100% 60%;         /* azure blue */
+    --secondary: 150 60% 55%;          /* fresh leaf */
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 30% 96%;
     --muted-foreground: 215 20% 35%;
 
-    --accent: 199 95% 50%;             /* sky / cyan-blue */
+    --accent: 140 55% 65%;             /* mint accent */
     --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84% 60%;
@@ -33,18 +33,18 @@
 
     --border: 215 25% 88%;
     --input: 215 25% 88%;
-    --ring: 217 91% 50%;
+    --ring: 145 65% 42%;
 
     --radius: 1rem;
 
-    /* All-blue brand palette — NO purple/violet */
-    --blue-1: 217 91% 50%;   /* deep electric blue */
-    --blue-2: 199 95% 50%;   /* sky cyan-blue */
-    --blue-3: 210 100% 60%;  /* azure */
-    --blue-4: 220 95% 70%;   /* light periwinkle blue */
-    --blue-5: 215 35% 95%;   /* surface tint */
-    --green-1: 135 60% 70%;  /* light glass green */
-    --green-2: 145 55% 78%;  /* mint glass */
+    /* All-green brand palette */
+    --blue-1: 145 65% 42%;   /* deep emerald (mapped) */
+    --blue-2: 150 60% 55%;   /* fresh leaf */
+    --blue-3: 140 55% 65%;   /* mint */
+    --blue-4: 135 60% 78%;   /* light glass green */
+    --blue-5: 140 35% 95%;   /* surface tint */
+    --green-1: 145 65% 50%;  /* signature glass green */
+    --green-2: 150 55% 70%;  /* mint glass */
 
     --shadow-soft: 0 10px 30px -12px hsl(215 50% 30% / 0.15);
     --shadow-strong: 0 30px 60px -25px hsl(215 50% 30% / 0.25);
@@ -73,16 +73,16 @@
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 145 65% 55%;
+    --primary-foreground: 0 0% 8%;
 
-    --secondary: 210 100% 65%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 150 60% 62%;
+    --secondary-foreground: 0 0% 8%;
 
     --muted: 215 20% 14%;
     --muted-foreground: 215 15% 70%;
 
-    --accent: 199 95% 60%;
+    --accent: 140 55% 68%;
     --accent-foreground: 0 0% 4%;
 
     --destructive: 0 84% 60%;
@@ -90,15 +90,15 @@
 
     --border: 215 20% 18%;
     --input: 215 20% 18%;
-    --ring: 217 91% 60%;
+    --ring: 145 65% 55%;
 
-    --blue-1: 217 91% 60%;
-    --blue-2: 199 95% 60%;
-    --blue-3: 210 100% 65%;
-    --blue-4: 220 95% 75%;
-    --blue-5: 215 25% 12%;
-    --green-1: 135 55% 60%;
-    --green-2: 145 50% 68%;
+    --blue-1: 145 65% 55%;
+    --blue-2: 150 60% 62%;
+    --blue-3: 140 55% 68%;
+    --blue-4: 135 60% 78%;
+    --blue-5: 140 25% 12%;
+    --green-1: 145 65% 58%;
+    --green-2: 150 55% 70%;
 
     --shadow-soft: 0 10px 30px -12px hsl(0 0% 0% / 0.6);
     --shadow-strong: 0 30px 60px -25px hsl(0 0% 0% / 0.7);

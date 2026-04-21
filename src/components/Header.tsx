@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const NAV = [
   { label: "Platform", href: "/#platform" },
@@ -36,11 +37,9 @@ export const Header = () => {
           }`}
         >
           <Link to="/" className="group flex items-center gap-2.5">
-            <div className="relative h-8 w-8">
-              <div className="absolute inset-0 rounded-lg bg-[hsl(var(--green-1)/0.5)] blur-md group-hover:opacity-80 transition" />
-              <div className="relative flex h-full w-full items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Zap size={16} strokeWidth={2.5} />
-              </div>
+            <div className="relative h-9 w-9">
+              <div className="absolute inset-0 rounded-lg bg-[hsl(var(--green-1)/0.35)] blur-md group-hover:opacity-80 transition" />
+              <img src={logo} alt="PROsmart Energy" width={36} height={36} className="relative h-9 w-9 object-contain" />
             </div>
             <span className="font-display text-lg font-bold tracking-tight">PROsmart Energy</span>
           </Link>
