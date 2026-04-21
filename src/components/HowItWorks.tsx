@@ -45,7 +45,7 @@ export const HowItWorks = () => {
           </div>
           <AnimatedText
             as="h2"
-            className="font-display text-4xl font-bold leading-tight md:text-6xl"
+            className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl"
             text="From meter to invoice, fully automated."
           />
           <AnimatedText

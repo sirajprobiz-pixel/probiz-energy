@@ -85,7 +85,7 @@ export const BuildingMap = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-display text-4xl font-bold leading-tight tracking-tight md:text-5xl"
+            className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl pb-2"
           >
             Step inside every building, floor by floor.
           </motion.h2>

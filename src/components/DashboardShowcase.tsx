@@ -43,7 +43,7 @@ export const DashboardShowcase = () => {
           <AnimatedText
             as="h2"
             delay={0.1}
-            className="font-display text-4xl font-bold leading-tight tracking-tight md:text-5xl"
+            className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl"
             text="Every screen built for energy teams."
           />
           <AnimatedText
