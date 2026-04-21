@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Zap } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const COLS: Array<{ title: string; links: Array<{ label: string; to: string }> }> = [
   {
@@ -31,11 +31,9 @@ export const Footer = () => (
       <div className="grid gap-12 lg:grid-cols-[1.5fr_2fr]">
         <div>
           <Link to="/" className="flex items-center gap-2.5">
-            <div className="relative h-9 w-9">
-              <div className="absolute inset-0 rounded-lg bg-[hsl(var(--green-1)/0.5)] blur-md" />
-              <div className="relative flex h-full w-full items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Zap size={18} strokeWidth={2.5} />
-              </div>
+            <div className="relative h-10 w-10">
+              <div className="absolute inset-0 rounded-lg bg-[hsl(var(--green-1)/0.45)] blur-md" />
+              <img src={logo} alt="PROsmart Energy" className="relative h-10 w-10 object-contain" />
             </div>
             <span className="font-display text-xl font-bold">PROsmart Energy</span>
           </Link>
