@@ -144,17 +144,20 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative will-change-transform lg:col-span-7 lg:-mr-12 xl:-mr-24 lg:scale-110 xl:scale-115 origin-left"
+            className="relative w-full will-change-transform lg:col-span-7 lg:-mr-8 xl:-mr-16 lg:scale-105 xl:scale-110 origin-left"
           >
-            <div className="absolute -inset-10 rounded-[2.5rem] bg-brand-1/25 blur-3xl" />
-            <div className="relative overflow-hidden rounded-3xl glass-strong p-2 md:p-3">
+            <div className="absolute -inset-6 sm:-inset-8 rounded-[2.5rem] bg-brand-1/25 blur-3xl" />
+            <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl glass-strong p-1.5 sm:p-2 md:p-3">
               <img
                 src={dashboardImg}
                 alt="PROsmart consumption dashboard with EB, DG, HVAC, Water and Gas tracking"
                 width={1920}
                 height={1440}
                 loading="eager"
-                className="w-full rounded-2xl object-cover"
+                decoding="async"
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="block h-auto w-full rounded-xl sm:rounded-2xl object-contain"
               />
             </div>
 
