@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Zap, Fuel, Snowflake, Droplets, Flame, Map } from "lucide-react";
 import { AnimatedText } from "./AnimatedText";
+import { SplineScene } from "./SplineScene";
 import dashboardImg from "@/assets/hero-dashboard.png";
 
 const UTILITIES = [
@@ -26,13 +27,16 @@ export const Hero = () => {
 
   return (
     <section ref={ref} className="relative min-h-screen overflow-hidden pt-32 pb-20">
+      {/* 3D Spline scene — scroll-reactive backdrop */}
+      <SplineScene scrollProgress={scrollYProgress} className="hidden md:block" />
+
       {/* Light-green glass blobs */}
       <motion.div style={{ y: yBg }} className="pointer-events-none absolute inset-0 will-change-transform">
         <div className="absolute -top-32 left-[6%] h-72 w-72 rounded-full bg-[hsl(135_60%_75%/0.45)] blur-3xl backdrop-blur-2xl" />
         <div className="absolute top-20 right-[6%] h-80 w-80 rounded-full bg-[hsl(140_55%_78%/0.4)] blur-3xl backdrop-blur-2xl" />
         <div className="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-[hsl(125_50%_72%/0.35)] blur-3xl backdrop-blur-2xl" />
       </motion.div>
-      <div className="absolute inset-0 bg-grid" />
+      <div className="absolute inset-0 bg-grid opacity-60" />
 
       <div className="container relative z-10">
         <div className="grid items-center gap-12 lg:grid-cols-12">
