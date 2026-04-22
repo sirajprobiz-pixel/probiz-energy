@@ -5,20 +5,58 @@ import logo from "@/assets/logo.png";
 export const Loader = () => {
   const [done, setDone] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [fadeLogo, setFadeLogo] = useState(false);
 
   useEffect(() => {
-    const t = setInterval(() => {
-      setProgress((p) => {
-        const next = p + Math.random() * 22;
-        if (next >= 100) {
-          clearInterval(t);
-          setTimeout(() => setDone(true), 250);
-          return 100;
+    let raf = 0;
+    let target = 0;
+    let current = 0;
+    let finished = false;
+
+    const computeTarget = () => {
+      if (document.readyState === "complete") return 100;
+      if (document.readyState === "interactive") return 75;
+      return 35;
+    };
+
+    const onProgressEvent = () => {
+      target = Math.max(target, computeTarget());
+    };
+
+    document.addEventListener("readystatechange", onProgressEvent);
+    window.addEventListener("load", onProgressEvent);
+
+    // Drift target up so it always feels alive even before events fire
+    const drift = window.setInterval(() => {
+      target = Math.min(95, Math.max(target, current + 8 + Math.random() * 10));
+      onProgressEvent();
+      if (document.readyState === "complete") target = 100;
+    }, 220);
+
+    const tick = () => {
+      // Smoothly ease current toward target
+      current += (target - current) * 0.08;
+      if (target >= 100 && current > 99.4) {
+        current = 100;
+        setProgress(100);
+        if (!finished) {
+          finished = true;
+          setFadeLogo(true);
+          window.setTimeout(() => setDone(true), 650);
         }
-        return next;
-      });
-    }, 90);
-    return () => clearInterval(t);
+        return;
+      }
+      setProgress(current);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearInterval(drift);
+      document.removeEventListener("readystatechange", onProgressEvent);
+      window.removeEventListener("load", onProgressEvent);
+    };
   }, []);
 
   return (
@@ -31,7 +69,8 @@ export const Loader = () => {
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: fadeLogo ? 0 : 1, scale: fadeLogo ? 0.85 : 1 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="mb-10 flex items-center gap-3"
           >
             <div className="relative h-20 w-20">
@@ -42,7 +81,10 @@ export const Loader = () => {
                 src={logo}
                 alt="PROsmart Energy"
                 animate={{ rotate: [0, 360], scale: [1, 1.05, 1] }}
-                transition={{ rotate: { duration: 8, repeat: Infinity, ease: "linear" }, scale: { duration: 2, repeat: Infinity, ease: "easeInOut" } }}
+                transition={{
+                  rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                }}
                 className="relative h-20 w-20 object-contain drop-shadow-[0_0_18px_hsl(var(--green-1)/0.65)]"
               />
             </div>
@@ -50,7 +92,11 @@ export const Loader = () => {
           </motion.div>
 
           <div className="h-[2px] w-64 overflow-hidden rounded-full bg-muted">
-            <motion.div animate={{ width: `${progress}%` }} transition={{ ease: "easeOut" }} className="h-full bg-green-1" />
+            <motion.div
+              animate={{ width: `${progress}%` }}
+              transition={{ ease: "easeOut", duration: 0.2 }}
+              className="h-full bg-green-1"
+            />
           </div>
           <div className="mt-4 font-mono text-xs text-muted-foreground">
             {Math.floor(progress)}% — Initializing energy intelligence
