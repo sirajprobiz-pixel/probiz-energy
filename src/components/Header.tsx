@@ -38,14 +38,12 @@ export const Header = () => {
         >
           <Link to="/" className="group flex items-center gap-2.5">
             <div className="relative h-10 w-10">
-              <div className="absolute inset-0 rounded-xl bg-[hsl(var(--green-1)/0.45)] blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-[hsl(var(--green-1)/0.25)] to-transparent" />
               <img
                 src={logo}
                 alt="PROsmart Energy"
                 width={40}
                 height={40}
-                className="relative h-10 w-10 object-contain transition-transform duration-700 ease-out group-hover:rotate-[360deg] group-hover:scale-110 drop-shadow-[0_0_8px_hsl(var(--green-1)/0.5)]"
+                className="relative h-10 w-10 object-contain transition-transform duration-700 ease-out group-hover:rotate-[360deg] group-hover:scale-110"
               />
             </div>
             <span className="font-display text-lg font-bold tracking-tight">PROsmart Energy</span>

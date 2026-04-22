@@ -25,11 +25,11 @@ const VALUES = [
 ];
 
 const TEAM = [
-  { name: "Arun Kumar", role: "Founder & CEO", initials: "AK" },
-  { name: "Priya Nair", role: "Head of Product", initials: "PN" },
-  { name: "Vikram Shah", role: "VP Engineering", initials: "VS" },
-  { name: "Sara Mathew", role: "Head of Sustainability", initials: "SM" },
-  { name: "Rahul Menon", role: "Head of Customer Success", initials: "RM" },
+  { name: "Siraj", role: "CEO", initials: "S" },
+  { name: "Abdul Rahuman", role: "Product Marketer & Developer", initials: "AR" },
+  { name: "Rajendiran M", role: "Cloud DevOps Engineer", initials: "RM" },
+  { name: "Deepan", role: "Software Developer", initials: "D" },
+  { name: "Sanjay", role: "Application Developer", initials: "S" },
 ];
 
 const About = () => {

@@ -62,12 +62,10 @@ export const Footer = () => {
                 ref={tiltRef}
                 className="relative h-12 w-12 transition-transform duration-200 ease-out will-change-transform"
               >
-                <div className="absolute inset-0 rounded-xl bg-[hsl(var(--green-1)/0.5)] blur-xl animate-pulse" />
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[hsl(var(--green-2)/0.3)] to-transparent" />
                 <img
                   src={logo}
                   alt="PROsmart Energy"
-                  className="relative h-12 w-12 object-contain drop-shadow-[0_0_12px_hsl(var(--green-1)/0.55)] transition-transform duration-700 ease-out group-hover:rotate-[360deg]"
+                  className="relative h-12 w-12 object-contain transition-transform duration-700 ease-out group-hover:rotate-[360deg]"
                 />
               </div>
               <span className="font-display text-xl font-bold">PROsmart Energy</span>
