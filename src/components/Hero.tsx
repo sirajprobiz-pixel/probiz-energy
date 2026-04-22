@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Zap, Fuel, Snowflake, Droplets, Flame, Map } from "lucide-react";
 import { AnimatedText } from "./AnimatedText";
-import { SplineScene } from "./SplineScene";
 import dashboardImg from "@/assets/hero-dashboard.png";
 
 const UTILITIES = [
