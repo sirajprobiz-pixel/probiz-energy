@@ -26,9 +26,6 @@ export const Hero = () => {
 
   return (
     <section ref={ref} className="relative min-h-screen overflow-hidden pt-32 pb-20">
-      {/* 3D Spline scene — scroll-reactive backdrop */}
-      <SplineScene scrollProgress={scrollYProgress} className="hidden md:block" />
-
       {/* Light-green glass blobs */}
       <motion.div style={{ y: yBg }} className="pointer-events-none absolute inset-0 will-change-transform">
         <div className="absolute -top-32 left-[6%] h-72 w-72 rounded-full bg-[hsl(135_60%_75%/0.45)] blur-3xl backdrop-blur-2xl" />
