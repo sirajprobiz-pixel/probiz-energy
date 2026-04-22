@@ -11,9 +11,9 @@ import { AnimatedText } from "@/components/AnimatedText";
 import { toast } from "sonner";
 
 const OFFICES = [
+  { city: "Bengaluru", line1: "Probiz Tech Hub", line2: "Karnataka, India" },
   { city: "Chennai", line1: "Probiz HQ, Guindy", line2: "Tamil Nadu, India" },
-  { city: "Dubai", line1: "Business Bay Tower", line2: "United Arab Emirates" },
-  { city: "Riyadh", line1: "King Fahd District", line2: "Kingdom of Saudi Arabia" },
+  { city: "Trichy", line1: "Probiz Innovation Centre", line2: "Tamil Nadu, India" },
 ];
 
 const CHANNELS = [
