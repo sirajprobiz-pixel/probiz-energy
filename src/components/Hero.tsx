@@ -148,7 +148,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full will-change-transform lg:col-span-7 lg:-mr-8 xl:-mr-16 lg:scale-105 xl:scale-110 origin-left"
+            className="relative w-full max-w-full will-change-transform lg:col-span-7 lg:-mr-4 xl:-mr-12 lg:scale-[1.04] xl:scale-[1.08] origin-left"
           >
             <div className="absolute -inset-6 sm:-inset-8 rounded-[2.5rem] bg-brand-1/25 blur-3xl" />
             <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl glass-strong p-1.5 sm:p-2 md:p-3">
