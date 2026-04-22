@@ -34,9 +34,17 @@ export const Loader = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="mb-10 flex items-center gap-3"
           >
-            <div className="relative h-14 w-14">
-              <div className="absolute inset-0 rounded-full bg-[hsl(var(--green-1)/0.45)] blur-xl animate-pulse" />
-              <img src={logo} alt="PROsmart Energy" className="relative h-14 w-14 object-contain" />
+            <div className="relative h-20 w-20">
+              <div className="absolute inset-0 rounded-2xl bg-[hsl(var(--green-1)/0.55)] blur-2xl animate-pulse" />
+              <div className="absolute inset-[-6px] rounded-full border border-[hsl(var(--green-1)/0.3)] animate-[spin_6s_linear_infinite]" />
+              <div className="absolute inset-[-12px] rounded-full border border-dashed border-[hsl(var(--green-2)/0.25)] animate-[spin_12s_linear_infinite_reverse]" />
+              <motion.img
+                src={logo}
+                alt="PROsmart Energy"
+                animate={{ rotate: [0, 360], scale: [1, 1.05, 1] }}
+                transition={{ rotate: { duration: 8, repeat: Infinity, ease: "linear" }, scale: { duration: 2, repeat: Infinity, ease: "easeInOut" } }}
+                className="relative h-20 w-20 object-contain drop-shadow-[0_0_18px_hsl(var(--green-1)/0.65)]"
+              />
             </div>
             <span className="font-display text-2xl font-bold tracking-tight">PROsmart Energy</span>
           </motion.div>

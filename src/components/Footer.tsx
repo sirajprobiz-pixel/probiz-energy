@@ -30,10 +30,15 @@ export const Footer = () => (
     <div className="container relative">
       <div className="grid gap-12 lg:grid-cols-[1.5fr_2fr]">
         <div>
-          <Link to="/" className="flex items-center gap-2.5">
-            <div className="relative h-10 w-10">
-              <div className="absolute inset-0 rounded-lg bg-[hsl(var(--green-1)/0.45)] blur-md" />
-              <img src={logo} alt="PROsmart Energy" className="relative h-10 w-10 object-contain" />
+          <Link to="/" className="group flex items-center gap-2.5">
+            <div className="relative h-12 w-12">
+              <div className="absolute inset-0 rounded-xl bg-[hsl(var(--green-1)/0.5)] blur-xl animate-pulse" />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[hsl(var(--green-2)/0.3)] to-transparent" />
+              <img
+                src={logo}
+                alt="PROsmart Energy"
+                className="relative h-12 w-12 object-contain transition-transform duration-700 ease-out group-hover:rotate-[360deg] drop-shadow-[0_0_10px_hsl(var(--green-1)/0.5)]"
+              />
             </div>
             <span className="font-display text-xl font-bold">PROsmart Energy</span>
           </Link>
