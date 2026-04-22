@@ -39,7 +39,7 @@ export const Hero = () => {
           {/* LEFT — copy */}
           <motion.div
             style={{ opacity: copyOpacity, y: copyY }}
-            className="lg:col-span-6 will-change-transform"
+            className="lg:col-span-5 will-change-transform"
           >
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -144,15 +144,15 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative will-change-transform lg:col-span-6"
+            className="relative will-change-transform lg:col-span-7 lg:-mr-12 xl:-mr-24 lg:scale-110 xl:scale-115 origin-left"
           >
-            <div className="absolute -inset-8 rounded-[2.5rem] bg-brand-1/25 blur-3xl" />
+            <div className="absolute -inset-10 rounded-[2.5rem] bg-brand-1/25 blur-3xl" />
             <div className="relative overflow-hidden rounded-3xl glass-strong p-2 md:p-3">
               <img
                 src={dashboardImg}
                 alt="PROsmart consumption dashboard with EB, DG, HVAC, Water and Gas tracking"
-                width={1600}
-                height={1200}
+                width={1920}
+                height={1440}
                 loading="eager"
                 className="w-full rounded-2xl object-cover"
               />
