@@ -1,4 +1,4 @@
-import { Suspense, lazy, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import {
   Building2,
@@ -7,9 +7,8 @@ import {
   RotateCcw,
   Sparkles,
 } from "lucide-react";
+import building3D from "@/assets/building-3d.png";
 import { LiveKPIPanel } from "@/components/building-map/LiveKPIPanel";
-
-const Spline = lazy(() => import("@splinetool/react-spline"));
 
 type Building = { name: string; floors: number; devices: number; location: string };
 type StateNode = { name: string; buildings: Building[] };
