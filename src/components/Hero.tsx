@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Zap, Fuel, Snowflake, Droplets, Flame, Map } from "lucide-react";
 import { AnimatedText } from "./AnimatedText";
+import { SplineScene } from "./SplineScene";
 import dashboardImg from "@/assets/hero-dashboard.png";
 
 const UTILITIES = [
@@ -26,13 +27,16 @@ export const Hero = () => {
 
   return (
     <section ref={ref} className="relative min-h-screen overflow-hidden pt-32 pb-20">
+      {/* 3D Spline scene — scroll-reactive backdrop */}
+      <SplineScene scrollProgress={scrollYProgress} className="hidden md:block" />
+
       {/* Light-green glass blobs */}
       <motion.div style={{ y: yBg }} className="pointer-events-none absolute inset-0 will-change-transform">
         <div className="absolute -top-32 left-[6%] h-72 w-72 rounded-full bg-[hsl(135_60%_75%/0.45)] blur-3xl backdrop-blur-2xl" />
         <div className="absolute top-20 right-[6%] h-80 w-80 rounded-full bg-[hsl(140_55%_78%/0.4)] blur-3xl backdrop-blur-2xl" />
         <div className="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-[hsl(125_50%_72%/0.35)] blur-3xl backdrop-blur-2xl" />
       </motion.div>
-      <div className="absolute inset-0 bg-grid" />
+      <div className="absolute inset-0 bg-grid opacity-60" />
 
       <div className="container relative z-10">
         <div className="grid items-center gap-12 lg:grid-cols-12">
@@ -144,7 +148,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full will-change-transform lg:col-span-7 lg:-mr-8 xl:-mr-16 lg:scale-105 xl:scale-110 origin-left"
+            className="relative w-full max-w-full will-change-transform lg:col-span-7 lg:-mr-4 xl:-mr-12 lg:scale-[1.04] xl:scale-[1.08] origin-left"
           >
             <div className="absolute -inset-6 sm:-inset-8 rounded-[2.5rem] bg-brand-1/25 blur-3xl" />
             <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl glass-strong p-1.5 sm:p-2 md:p-3">
