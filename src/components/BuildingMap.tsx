@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, lazy, useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import {
   Building2,
@@ -7,9 +7,9 @@ import {
   RotateCcw,
   Sparkles,
 } from "lucide-react";
-import building3D from "@/assets/building-3d.png";
 import { LiveKPIPanel } from "@/components/building-map/LiveKPIPanel";
-import { useRef } from "react";
+
+const Spline = lazy(() => import("@splinetool/react-spline"));
 
 type Building = { name: string; floors: number; devices: number; location: string };
 type StateNode = { name: string; buildings: Building[] };
@@ -124,22 +124,15 @@ export const BuildingMap = () => {
                 </div>
               </div>
 
-              {/* Building image with parallax */}
-              <div className="absolute inset-x-6 top-16 bottom-16 flex items-center justify-center">
+              {/* 3D Spline building with parallax */}
+              <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
                   style={{ y: buildingY, scale: buildingScale, rotateZ: buildingRotate }}
-                  className="relative flex h-full items-center justify-center will-change-transform"
+                  className="relative h-full w-full will-change-transform"
                 >
-                  <motion.img
-                    key={activeBuilding.b.name}
-                    src={building3D}
-                    alt={`${activeBuilding.b.name} 3D model`}
-                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative z-10 h-full w-auto max-w-full object-contain drop-shadow-[0_30px_60px_hsl(var(--primary)/0.35)]"
-                    loading="lazy"
-                  />
+                  <Suspense fallback={<div className="h-full w-full animate-pulse bg-muted/20" />}>
+                    <Spline scene="https://prod.spline.design/Cwu93o0jAcr1n2YZ/scene.splinecode" />
+                  </Suspense>
                 </motion.div>
               </div>
 
