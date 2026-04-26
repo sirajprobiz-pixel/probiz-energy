@@ -67,33 +67,19 @@ const Blog = () => {
           <div className="absolute inset-0 bg-grid" />
 
           <div className="container relative">
-            <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
-              <div>
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
-                >
-                  <Tag size={12} className="text-green-1" />
-                  <span className="text-muted-foreground">Insights & stories</span>
-                </motion.div>
-
-                <AnimatedText as="h1" text="Field notes from" className="font-display text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl" />
-                <AnimatedText as="h1" text="smart buildings." className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-5xl md:text-6xl lg:text-7xl" delay={0.15} />
-              </div>
-
-              {/* Spline 3D — no frame, transparent, palette aligned */}
-              <div
-                aria-hidden="true"
-                className="spline-hero relative h-[320px] w-full sm:h-[420px] lg:h-[520px]"
+            <div className="max-w-4xl">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
               >
-                <Suspense fallback={null}>
-                  <Spline scene="https://prod.spline.design/948LbuIRDTy5OuEh/scene.splinecode" />
-                </Suspense>
-                {/* Bottom-right watermark cover (failsafe) */}
-                <div className="pointer-events-none absolute bottom-0 right-0 h-12 w-44 bg-background" />
-              </div>
+                <Tag size={12} className="text-green-1" />
+                <span className="text-muted-foreground">Insights & stories</span>
+              </motion.div>
+
+              <AnimatedText as="h1" text="Field notes from" className="font-display text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl" />
+              <AnimatedText as="h1" text="smart buildings." className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-5xl md:text-6xl lg:text-7xl" delay={0.15} />
             </div>
           </div>
         </section>
