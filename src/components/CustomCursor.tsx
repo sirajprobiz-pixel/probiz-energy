@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import cursorHand from "@/assets/cursor-hand.png";
 
 export const CustomCursor = () => {
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
-  const sx = useSpring(x, { stiffness: 500, damping: 40, mass: 0.5 });
-  const sy = useSpring(y, { stiffness: 500, damping: 40, mass: 0.5 });
+  const sx = useSpring(x, { stiffness: 600, damping: 45, mass: 0.4 });
+  const sy = useSpring(y, { stiffness: 600, damping: 45, mass: 0.4 });
   const [hover, setHover] = useState(false);
   const [enabled, setEnabled] = useState(false);
 
@@ -14,6 +15,13 @@ export const CustomCursor = () => {
     if (window.matchMedia("(max-width: 768px)").matches) return;
     if (window.matchMedia("(pointer: coarse)").matches) return;
     setEnabled(true);
+
+    // Hide native cursor while custom cursor is active
+    document.documentElement.style.cursor = "none";
+    const styleEl = document.createElement("style");
+    styleEl.setAttribute("data-custom-cursor", "true");
+    styleEl.textContent = `*, *::before, *::after { cursor: none !important; }`;
+    document.head.appendChild(styleEl);
 
     const move = (e: MouseEvent) => {
       x.set(e.clientX);
@@ -28,23 +36,23 @@ export const CustomCursor = () => {
     return () => {
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseover", over);
+      document.documentElement.style.cursor = "";
+      styleEl.remove();
     };
   }, [x, y]);
 
   if (!enabled) return null;
 
   return (
-    <>
-      <motion.div
-        style={{ translateX: sx, translateY: sy }}
-        animate={{ scale: hover ? 0 : 1 }}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] -ml-1.5 -mt-1.5 h-3 w-3 rounded-full bg-green-1 shadow-[0_0_18px_hsl(var(--green-1))]"
-      />
-      <motion.div
-        style={{ translateX: sx, translateY: sy }}
-        animate={{ scale: hover ? 1.8 : 1, opacity: hover ? 0.7 : 0.45 }}
-        className="pointer-events-none fixed left-0 top-0 z-[9998] -ml-5 -mt-5 h-10 w-10 rounded-full border-2 border-[hsl(var(--green-1)/0.7)] backdrop-blur-sm"
-      />
-    </>
+    <motion.img
+      src={cursorHand}
+      alt=""
+      aria-hidden="true"
+      draggable={false}
+      style={{ translateX: sx, translateY: sy }}
+      animate={{ scale: hover ? 1.15 : 1, rotate: hover ? -8 : 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="pointer-events-none fixed left-0 top-0 z-[9999] h-8 w-8 select-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)]"
+    />
   );
 };
