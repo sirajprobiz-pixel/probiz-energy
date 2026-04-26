@@ -220,3 +220,9 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
+
+/* Hide Spline "Built with Spline" watermark anchor inside Spline containers */
+.spline-hero a[href*="spline.design"],
+.spline-footer a[href*="spline.design"] {
+  display: none !important;
+}
