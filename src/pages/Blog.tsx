@@ -61,24 +61,38 @@ const Blog = () => {
 
       <main>
         {/* Hero */}
-        <section className="relative overflow-hidden pt-40 pb-16">
+        <section className="relative overflow-hidden pt-32 pb-12 sm:pt-40 sm:pb-16">
           <div className="pointer-events-none absolute -top-24 left-[8%] h-80 w-80 rounded-full bg-[hsl(var(--green-1)/0.4)] blur-3xl" />
           <div className="pointer-events-none absolute top-20 right-[8%] h-80 w-80 rounded-full bg-[hsl(var(--green-2)/0.35)] blur-3xl" />
           <div className="absolute inset-0 bg-grid" />
 
           <div className="container relative">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
-            >
-              <Tag size={12} className="text-green-1" />
-              <span className="text-muted-foreground">Insights & stories</span>
-            </motion.div>
+            <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
+                >
+                  <Tag size={12} className="text-green-1" />
+                  <span className="text-muted-foreground">Insights & stories</span>
+                </motion.div>
 
-            <AnimatedText as="h1" text="Field notes from" className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl" />
-            <AnimatedText as="h1" text="smart buildings." className="font-display text-5xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-6xl md:text-7xl lg:text-8xl" delay={0.15} />
+                <AnimatedText as="h1" text="Field notes from" className="font-display text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl" />
+                <AnimatedText as="h1" text="smart buildings." className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-5xl md:text-6xl lg:text-7xl" delay={0.15} />
+              </div>
+
+              {/* Spline 3D — cursor reactive */}
+              <div className="relative h-[320px] w-full overflow-hidden rounded-3xl sm:h-[420px] lg:h-[500px]">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[hsl(var(--green-1)/0.12)] via-transparent to-[hsl(var(--green-2)/0.12)]" />
+                <Suspense fallback={<div className="h-full w-full animate-pulse bg-[hsl(var(--green-1)/0.08)]" />}>
+                  <Spline scene="https://prod.spline.design/j2B6uEeD76GY2ShS/scene.splinecode" />
+                </Suspense>
+                {/* Mask the "Built with Spline" watermark */}
+                <div className="pointer-events-none absolute bottom-0 right-0 h-14 w-48 bg-background" />
+              </div>
+            </div>
           </div>
         </section>
 
