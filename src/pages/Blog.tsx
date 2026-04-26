@@ -1,7 +1,6 @@
-import { useEffect, useState, lazy, Suspense } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const Spline = lazy(() => import("@splinetool/react-spline"));
 import { ArrowRight, Calendar, Mail, Tag, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLenis } from "@/hooks/useLenis";
