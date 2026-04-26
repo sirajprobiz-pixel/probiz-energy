@@ -83,14 +83,18 @@ const Blog = () => {
                 <AnimatedText as="h1" text="smart buildings." className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-5xl md:text-6xl lg:text-7xl" delay={0.15} />
               </div>
 
-              {/* Spline 3D — cursor reactive */}
-              <div className="relative h-[320px] w-full overflow-hidden rounded-3xl sm:h-[420px] lg:h-[500px]">
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[hsl(var(--green-1)/0.12)] via-transparent to-[hsl(var(--green-2)/0.12)]" />
-                <Suspense fallback={<div className="h-full w-full animate-pulse bg-[hsl(var(--green-1)/0.08)]" />}>
+              {/* Spline 3D — cursor reactive, transparent background */}
+              <div
+                aria-hidden="true"
+                className="spline-hero relative h-[320px] w-full sm:h-[420px] lg:h-[500px]"
+                style={{
+                  filter:
+                    "hue-rotate(75deg) saturate(0.9) drop-shadow(0 20px 40px hsl(var(--green-1) / 0.25))",
+                }}
+              >
+                <Suspense fallback={null}>
                   <Spline scene="https://prod.spline.design/j2B6uEeD76GY2ShS/scene.splinecode" />
                 </Suspense>
-                {/* Mask the "Built with Spline" watermark */}
-                <div className="pointer-events-none absolute bottom-0 right-0 h-14 w-48 bg-background" />
               </div>
             </div>
           </div>
