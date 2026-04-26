@@ -221,8 +221,24 @@
   50% { transform: translateY(-10px); }
 }
 
-/* Hide Spline "Built with Spline" watermark anchor inside Spline containers */
+/* Spline containers — transparent canvas, no frame, no watermark */
+.spline-hero,
+.spline-footer {
+  background: transparent !important;
+}
+.spline-hero canvas,
+.spline-footer canvas {
+  background: transparent !important;
+  outline: none !important;
+}
 .spline-hero a[href*="spline.design"],
-.spline-footer a[href*="spline.design"] {
+.spline-footer a[href*="spline.design"],
+.spline-hero [class*="logo"],
+.spline-footer [class*="logo"],
+.spline-hero div[style*="position: absolute"][style*="bottom"],
+.spline-footer div[style*="position: absolute"][style*="bottom"] {
   display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
