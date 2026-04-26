@@ -83,17 +83,17 @@ const Blog = () => {
                 <AnimatedText as="h1" text="smart buildings." className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-5xl md:text-6xl lg:text-7xl" delay={0.15} />
               </div>
 
-              {/* Spline 3D — cursor reactive, transparent background */}
+              {/* Spline 3D — transparent, aligned with palette */}
               <div
                 aria-hidden="true"
-                className="spline-hero relative h-[320px] w-full sm:h-[420px] lg:h-[500px]"
+                className="spline-hero relative h-[320px] w-full bg-transparent sm:h-[420px] lg:h-[500px]"
                 style={{
                   filter:
                     "hue-rotate(75deg) saturate(0.9) drop-shadow(0 20px 40px hsl(var(--green-1) / 0.25))",
                 }}
               >
                 <Suspense fallback={null}>
-                  <Spline scene="https://prod.spline.design/j2B6uEeD76GY2ShS/scene.splinecode" />
+                  <Spline scene="https://prod.spline.design/948LbuIRDTy5OuEh/scene.splinecode" />
                 </Suspense>
               </div>
             </div>
