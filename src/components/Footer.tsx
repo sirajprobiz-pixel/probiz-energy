@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import { useRef, lazy, Suspense, type MouseEvent } from "react";
+import { useRef, type MouseEvent } from "react";
 import logo from "@/assets/logo.png";
-
-const Spline = lazy(() => import("@splinetool/react-spline"));
 
 const COLS: Array<{ title: string; links: Array<{ label: string; to: string }> }> = [
   {
@@ -46,14 +44,6 @@ export const Footer = () => {
 
   return (
     <footer className="relative overflow-hidden border-t border-border bg-card py-16">
-      {/* Spline 3D background */}
-      <div className="pointer-events-none absolute inset-0 z-0 opacity-60 mix-blend-screen dark:opacity-70">
-        <Suspense fallback={null}>
-          <Spline scene="https://prod.spline.design/fhTtu61k1CnSfvFS/scene.splinecode" />
-        </Suspense>
-      </div>
-      {/* Soft overlay so text stays readable */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-card/70 via-card/50 to-card/85" />
       {/* Light green glass accents */}
       <div className="pointer-events-none absolute -top-20 left-1/4 z-0 h-72 w-72 rounded-full bg-[hsl(var(--green-1)/0.35)] blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 right-1/4 z-0 h-64 w-64 rounded-full bg-[hsl(var(--green-2)/0.3)] blur-3xl" />
