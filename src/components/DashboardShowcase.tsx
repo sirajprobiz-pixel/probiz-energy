@@ -5,7 +5,7 @@ import billing from "@/assets/dashboard-billing.jpg";
 import consumption from "@/assets/dashboard-consumption.jpg";
 import demand from "@/assets/dashboard-demand.jpg";
 import tod from "@/assets/dashboard-tod.jpg";
-import smartMeter from "@/assets/smart-meter.jpg";
+import smartMeter from "@/assets/smartmeter.webp";
 import dashboardLive from "@/assets/dashboard-live.png";
 import dashboardBillingFull from "@/assets/dashboard-billing-full.png";
 import { AnimatedText } from "./AnimatedText";

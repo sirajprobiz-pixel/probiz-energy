@@ -1,15 +1,16 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import meter from "@/assets/meter.jpg";
-import smartBuilding from "@/assets/smart-building.jpg";
-import heroDashboard from "@/assets/hero-dashboard.jpg";
+import smartBuilding from "@/assets/connectedbuild.webp";
+import heroDashboard from "@/assets/dashboard-live.png";
+import dashboardBilling from "@/assets/dashboard-billing-full.png";
 import { AnimatedText } from "./AnimatedText";
 
 const PANELS = [
   { img: heroDashboard,  color: "bg-brand-1 text-white",  title: "Real-time dashboards", body: "Live consumption, demand and load curves at a glance." },
   { img: meter,          color: "bg-brand-2 text-white",  title: "Smart metering",       body: "BTU, electricity, gas and water — all in one stream." },
-  { img: smartBuilding,  color: "bg-brand-3 text-blue-1", title: "Connected buildings",  body: "BACnet & BMS integration for centralised control." },
-  { img: heroDashboard,  color: "bg-brand-4 text-blue-1", title: "Automated billing",    body: "Error-free invoices generated for every tenant, every cycle." },
+  { img: smartBuilding,  color: "bg-brand-3 text-black", title: "Connected buildings",  body: "BACnet & BMS integration for centralised control." },
+  { img: dashboardBilling,  color: "bg-brand-4 text-black", title: "Automated billing",    body: "Error-free invoices generated for every tenant, every cycle." },
 ];
 
 export const HorizontalShowcase = () => {

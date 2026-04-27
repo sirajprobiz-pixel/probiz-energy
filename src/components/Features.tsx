@@ -26,14 +26,14 @@ const FEATURES = [
     benefits: ["Unified invoice across utilities", "Vendor-agnostic meter support", "Configurable tariff engine", "Multi-currency & GST ready"],
   },
   {
-    icon: Cpu, color: "bg-brand-3 text-blue-1",
+    icon: Cpu, color: "bg-brand-3 text-white",
     title: "BACnet Support",
     body: "Seamless integration with Building Management Systems for centralised monitoring.",
     details: "Native BACnet/IP and BACnet MS/TP drivers connect PROsmart Energy directly to your BMS. Pull HVAC setpoints, AHU runtime and chiller telemetry alongside metering data — giving you a single pane of glass across building operations.",
     benefits: ["BACnet/IP & MS/TP drivers", "Bi-directional point exchange", "Schedule and setpoint sync", "Unified BMS + energy view"],
   },
   {
-    icon: Activity, color: "bg-brand-4 text-blue-1",
+    icon: Activity, color: "bg-brand-4 text-white",
     title: "Real-Time Monitoring",
     body: "Instant insights into energy usage so you can optimise and reduce costs.",
     details: "Live load curves at 1-minute resolution with anomaly detection powered by ML. Get push, email and SMS alerts the moment consumption deviates from your baseline — catch faulty equipment and runaway loads before the bill arrives.",

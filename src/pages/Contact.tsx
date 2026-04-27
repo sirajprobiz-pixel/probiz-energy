@@ -11,15 +11,17 @@ import { AnimatedText } from "@/components/AnimatedText";
 import { toast } from "sonner";
 
 const OFFICES = [
-  { city: "Bengaluru", line1: "Probiz Tech Hub", line2: "Karnataka, India" },
-  { city: "Chennai", line1: "Probiz HQ, Guindy", line2: "Tamil Nadu, India" },
-  { city: "Trichy", line1: "Probiz Innovation Centre", line2: "Tamil Nadu, India" },
+  { city: "Bengaluru", line1: "Karnataka, India" },
+  { city: "Chennai, Coimbatore, Trichy" , line1: "Tamil Nadu, India" },
+  { city: "Kochi", line1: "Kerala, India" },
+  { city: "Dubai", line1: "Dubai" },
+  { city: "Oman", line1: "Oman" },
 ];
 
 const CHANNELS = [
-  { icon: MessageSquare, title: "Sales", body: "Talk to a solutions engineer", value: "sales@prosmart.energy" },
-  { icon: Headphones, title: "Support", body: "24/7 customer success", value: "support@prosmart.energy" },
-  { icon: Building2, title: "Partnerships", body: "Integrations & resellers", value: "partners@prosmart.energy" },
+  { icon: MessageSquare, title: "Sales", body: "Talk to a solutions engineer", value: "info@probizautomation.com" },
+  { icon: Headphones, title: "Support", body: "24/7 customer success", value: "info@probizautomation.com" },
+  { icon: Building2, title: "Partnerships", body: "Integrations & resellers", value: "info@probizautomation.com" },
 ];
 
 const Contact = () => {
@@ -166,7 +168,7 @@ const Contact = () => {
                   <div>
                     <div className="font-display text-base font-semibold">Call us</div>
                     <div className="text-xs text-muted-foreground">Mon–Fri · 9am–7pm IST</div>
-                    <a href="tel:+914444000000" className="mt-1 block text-sm font-medium text-green-1 hover:underline">+91 44 4400 0000</a>
+                    <a href="tel:+919900029602" className="mt-1 block text-sm font-medium text-green-1 hover:underline">+91 99000 29602</a>
                   </div>
                 </motion.div>
               </div>
@@ -195,7 +197,6 @@ const Contact = () => {
                   </div>
                   <div className="font-display text-xl font-semibold">{o.city}</div>
                   <div className="mt-1 text-sm text-muted-foreground">{o.line1}</div>
-                  <div className="text-sm text-muted-foreground">{o.line2}</div>
                 </motion.div>
               ))}
             </div>

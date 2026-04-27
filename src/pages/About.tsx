@@ -10,7 +10,8 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { AnimatedText } from "@/components/AnimatedText";
 import { CTA } from "@/components/CTA";
 import sirajPhoto from "@/assets/team-siraj.png";
-import rajendiranPhoto from "@/assets/rajendiran.jpeg";
+import rajendiranPhoto from "@/assets/rajendira.jpeg";
+import deepanPhoto from "@/assets/deepanraj.jpeg";
 
 const TIMELINE = [
   { year: "2018", title: "Founded in Chennai", body: "Probiz Automation begins with a mission to bring smart energy intelligence to Indian buildings." },
@@ -30,7 +31,7 @@ const TEAM: Array<{ name: string; role: string; initials: string; photo?: string
   { name: "Siraj", role: "Director & CEO", initials: "S", photo: sirajPhoto },
   { name: "Abdul Rahuman", role: "Product Marketer & Developer", initials: "AR" },
   { name: "Rajendiran M", role: "Cloud DevOps Engineer", initials: "RM", photo: rajendiranPhoto },
-  { name: "Deepan", role: "Software Developer", initials: "D" },
+  { name: "Deepan", role: "Software Developer", initials: "D", photo: deepanPhoto },
   { name: "Sanjay", role: "Application Developer", initials: "S" },
 ];
 

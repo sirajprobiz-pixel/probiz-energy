@@ -8,13 +8,13 @@ const STEPS = [
     icon: Cpu,
     title: "Install smart meters",
     body: "Plug-and-play BTU, energy and multi-utility meters integrate with your existing electrical infrastructure in hours, not weeks.",
-    color: "bg-brand-4 text-blue-1",
+    color: "bg-brand-4 text-white",
   },
   {
     icon: Cloud,
     title: "Stream to the cloud",
     body: "Secure edge gateways push real-time consumption data to the PROsmart cloud over BACnet, Modbus or LoRaWAN.",
-    color: "bg-brand-3 text-blue-1",
+    color: "bg-brand-3 text-white",
   },
   {
     icon: BarChart3,

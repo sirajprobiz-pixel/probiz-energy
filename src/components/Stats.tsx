@@ -2,10 +2,10 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const STATS = [
-  { value: 30,    suffix: "%",  label: "Avg. energy cost reduction", color: "bg-brand-1 text-white" },
-  { value: 100,   suffix: "%",  label: "Automated tenant billing",   color: "bg-brand-2 text-white" },
-  { value: 24,    suffix: "/7", label: "Real-time monitoring",       color: "bg-brand-3 text-blue-1" },
-  { value: 50001, suffix: "",   label: "ISO compliance ready", prefix: "ISO ", color: "bg-brand-4 text-blue-1" },
+  { value: 30,    suffix: "%",  label: "Avg. energy cost reduction", color: "bg-brand-1 text-black" },
+  { value: 100,   suffix: "%",  label: "Automated tenant billing",   color: "bg-brand-2 text-black" },
+  { value: 24,    suffix: "/7", label: "Real-time monitoring",       color: "bg-brand-3 text-black" },
+  { value: 50001, suffix: "",   label: "ISO compliance ready", prefix: "ISO ", color: "bg-brand-4 text-black" },
 ];
 
 const Counter = ({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) => {
