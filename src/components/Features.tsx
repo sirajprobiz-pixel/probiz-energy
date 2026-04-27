@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Activity, Cpu, Gauge, Network, ShieldCheck, Zap } from "lucide-react";
 import { AnimatedText } from "./AnimatedText";
 import {
@@ -59,10 +59,27 @@ export const Features = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const active = openIdx !== null ? FEATURES[openIdx] : null;
 
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const headingY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.3, 1, 1, 0.3]);
+  const bgBlobY = useTransform(scrollYProgress, [0, 1], [200, -200]);
+  const gridY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+
   return (
-    <section id="features" className="relative py-32">
+    <section id="features" ref={ref} className="relative py-32 overflow-hidden">
+      {/* Parallax background blobs */}
+      <motion.div style={{ y: bgBlobY }} className="pointer-events-none absolute inset-0 will-change-transform">
+        <div className="absolute -top-24 left-[15%] h-80 w-80 rounded-full bg-[hsl(var(--green-1)/0.18)] blur-3xl" />
+        <div className="absolute bottom-10 right-[10%] h-72 w-72 rounded-full bg-[hsl(var(--green-2)/0.15)] blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 h-60 w-60 rounded-full bg-brand-1/10 blur-3xl" />
+      </motion.div>
+
       <div className="container relative">
-        <div className="mx-auto mb-16 max-w-4xl text-center">
+        <motion.div
+          style={{ y: headingY, opacity: headingOpacity }}
+          className="mx-auto mb-16 max-w-4xl text-center will-change-transform"
+        >
           <div className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
             Features & Benefits
@@ -72,9 +89,12 @@ export const Features = () => {
             text="Built for the future of utility management."
             className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl pb-2"
           />
-        </div>
+        </motion.div>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          style={{ y: gridY }}
+          className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 will-change-transform"
+        >
           {FEATURES.map((f, i) => (
             <motion.div
               key={i}
@@ -99,7 +119,7 @@ export const Features = () => {
               </button>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <Dialog open={openIdx !== null} onOpenChange={(o) => !o && setOpenIdx(null)}>

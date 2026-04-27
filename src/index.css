@@ -209,6 +209,10 @@
   .bg-blue-5 { background-color: hsl(var(--blue-5)); }
   .bg-green-1 { background-color: hsl(var(--green-1)); }
   .bg-green-2 { background-color: hsl(var(--green-2)); }
+
+  /* Hide horizontal scrollbar on snap-scroll panels */
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
 }
 
 @keyframes marquee {
@@ -221,24 +225,57 @@
   50% { transform: translateY(-10px); }
 }
 
-/* Spline containers — transparent canvas, no frame, no watermark */
-.spline-hero,
-.spline-footer {
-  background: transparent !important;
+/* GPU compositing: promote parallax containers to their own layer */
+.will-change-transform { will-change: transform; backface-visibility: hidden; }
+
+/* ── Footer animated mesh-gradient orbs (Spline 3D replacement) ── */
+.footer-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  will-change: transform;
 }
-.spline-hero canvas,
-.spline-footer canvas {
-  background: transparent !important;
-  outline: none !important;
+.dark .footer-orb { opacity: 0.7; }
+
+.footer-orb-1 {
+  width: 340px; height: 340px;
+  background: hsl(var(--green-1));
+  top: -60px; left: 15%;
+  animation: footerOrb1 10s ease-in-out infinite;
 }
-.spline-hero a[href*="spline.design"],
-.spline-footer a[href*="spline.design"],
-.spline-hero [class*="logo"],
-.spline-footer [class*="logo"],
-.spline-hero div[style*="position: absolute"][style*="bottom"],
-.spline-footer div[style*="position: absolute"][style*="bottom"] {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
+.footer-orb-2 {
+  width: 280px; height: 280px;
+  background: hsl(var(--green-2));
+  bottom: -40px; right: 18%;
+  animation: footerOrb2 12s ease-in-out infinite 1.5s;
 }
+.footer-orb-3 {
+  width: 200px; height: 200px;
+  background: hsl(var(--primary));
+  top: 40%; left: 55%;
+  animation: footerOrb3 14s ease-in-out infinite 3s;
+}
+
+@keyframes footerOrb1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, 15px) scale(1.08); }
+  66%      { transform: translate(-20px, -10px) scale(0.95); }
+}
+@keyframes footerOrb2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%      { transform: translate(-25px, -20px) scale(1.1); }
+  70%      { transform: translate(15px, 10px) scale(0.92); }
+}
+@keyframes footerOrb3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-35px, 20px) scale(1.12); }
+}
+
+/* Mobile-friendly orb sizing */
+@media (max-width: 640px) {
+  .footer-orb-1 { width: 200px; height: 200px; }
+  .footer-orb-2 { width: 160px; height: 160px; }
+  .footer-orb-3 { width: 120px; height: 120px; }
+}
+

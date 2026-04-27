@@ -1,3 +1,6 @@
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 const LOGOS = [
   "PRESTIGE", "DLF", "BRIGADE", "GODREJ", "OBEROI", "SOBHA", "LODHA", "EMBASSY",
   "HIRANANDANI", "RAHEJA", "MAHINDRA", "TATA REALTY",
@@ -5,12 +8,19 @@ const LOGOS = [
 
 export const TrustStrip = () => {
   const loop = [...LOGOS, ...LOGOS];
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const headingY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+
   return (
-    <section className="relative border-y border-border py-16">
+    <section ref={ref} className="relative border-y border-border py-16 overflow-hidden">
       <div className="container">
-        <p className="mb-10 text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
+        <motion.p
+          style={{ y: headingY }}
+          className="mb-10 text-center text-xs uppercase tracking-[0.25em] text-muted-foreground will-change-transform"
+        >
           Trusted by forward-thinking developers & enterprises
-        </p>
+        </motion.p>
       </div>
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-background to-transparent" />

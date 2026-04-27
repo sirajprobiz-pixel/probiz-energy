@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { useRef, lazy, Suspense, type MouseEvent } from "react";
+import { useRef, type MouseEvent } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import logo from "@/assets/logo.png";
-
-const Spline = lazy(() => import("@splinetool/react-spline"));
 
 const COLS: Array<{ title: string; links: Array<{ label: string; to: string }> }> = [
   {
@@ -24,8 +23,25 @@ const COLS: Array<{ title: string; links: Array<{ label: string; to: string }> }
   },
 ];
 
+/* Animated mesh-gradient dots for the footer background — lightweight Spline replacement */
+const FooterMesh = () => (
+  <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    {/* Animated gradient orbs */}
+    <div className="footer-orb footer-orb-1" />
+    <div className="footer-orb footer-orb-2" />
+    <div className="footer-orb footer-orb-3" />
+    {/* Subtle dot grid */}
+    <div className="absolute inset-0 bg-dots opacity-30" />
+    {/* Top fade so content is readable */}
+    <div className="absolute inset-0 bg-gradient-to-b from-card/80 via-card/50 to-card/90" />
+  </div>
+);
+
 export const Footer = () => {
   const tiltRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const bgBlobY = useTransform(scrollYProgress, [0, 1], [80, -60]);
 
   const handleMove = (e: MouseEvent<HTMLAnchorElement>) => {
     const el = tiltRef.current;
@@ -45,23 +61,14 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative overflow-hidden border-t border-border bg-card py-16">
-      {/* Spline 3D background */}
-      <div className="spline-footer pointer-events-none absolute inset-0 z-0 opacity-60 mix-blend-screen dark:opacity-70">
-        <Suspense fallback={null}>
-          <Spline scene="https://prod.spline.design/fhTtu61k1CnSfvFS/scene.splinecode" />
-        </Suspense>
-        {/* Mask to hide the "Built with Spline" watermark in the bottom-right */}
-        <div className="absolute bottom-0 right-0 h-16 w-56 bg-card" />
-      </div>
-      {/* Soft overlay so text stays readable */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-card/70 via-card/50 to-card/85" />
-      {/* Light green glass accents */}
-      <div className="pointer-events-none absolute -top-20 left-1/4 z-0 h-72 w-72 rounded-full bg-[hsl(var(--green-1)/0.35)] blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-1/4 z-0 h-64 w-64 rounded-full bg-[hsl(var(--green-2)/0.3)] blur-3xl" />
+    <footer ref={sectionRef} className="relative overflow-hidden border-t border-border bg-card py-12 sm:py-16">
+      {/* Animated mesh background — Spline replacement */}
+      <motion.div style={{ y: bgBlobY }} className="pointer-events-none absolute inset-0 will-change-transform">
+        <FooterMesh />
+      </motion.div>
 
       <div className="container relative z-10">
-        <div className="grid gap-12 lg:grid-cols-[1.5fr_2fr]">
+        <div className="grid gap-10 sm:gap-12 lg:grid-cols-[1.5fr_2fr]">
           <div>
             <Link
               to="/"
@@ -72,25 +79,25 @@ export const Footer = () => {
             >
               <div
                 ref={tiltRef}
-                className="relative h-12 w-12 transition-transform duration-200 ease-out will-change-transform"
+                className="relative h-10 w-10 transition-transform duration-200 ease-out will-change-transform sm:h-12 sm:w-12"
               >
                 <img
                   src={logo}
                   alt="PROsmart Energy"
-                  className="relative h-12 w-12 object-contain transition-transform duration-700 ease-out group-hover:rotate-[360deg]"
+                  className="relative h-10 w-10 object-contain transition-transform duration-700 ease-out group-hover:rotate-[360deg] sm:h-12 sm:w-12"
                 />
               </div>
-              <span className="font-display text-xl font-bold">PROsmart Energy</span>
+              <span className="font-display text-lg font-bold sm:text-xl">PROsmart Energy</span>
             </Link>
-            <p className="mt-4 max-w-sm text-sm text-muted-foreground">
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground sm:mt-4">
               Effortless energy monitoring and automated tenant billing for the buildings of tomorrow.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-6 sm:gap-8">
             {COLS.map((c) => (
               <div key={c.title}>
                 <div className="font-display text-sm font-semibold">{c.title}</div>
-                <ul className="mt-4 space-y-2">
+                <ul className="mt-3 space-y-2 sm:mt-4">
                   {c.links.map((l) => (
                     <li key={l.label}>
                       <Link to={l.to} className="group inline-block text-sm text-muted-foreground transition-colors hover:text-green-1">
@@ -106,7 +113,7 @@ export const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:mt-12 sm:flex-row sm:items-center sm:gap-4 sm:pt-8">
           <div>© 2026 Probiz Automation — All Rights Reserved.</div>
           <div>Powered by Probiz Technologies</div>
         </div>
