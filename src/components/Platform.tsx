@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { AnimatedText } from "./AnimatedText";
 import smartBuilding from "@/assets/smart-building.jpg";
 
-const COLORS = ["bg-brand-1 text-white", "bg-brand-2 text-white", "bg-brand-3 text-blue-1", "bg-brand-4 text-blue-1"];
+const COLORS = ["bg-brand-1 text-white", "bg-brand-2 text-white", "bg-brand-3 text-black", "bg-brand-4 text-black"];
 
 export const Platform = () => {
   const ref = useRef<HTMLDivElement>(null);

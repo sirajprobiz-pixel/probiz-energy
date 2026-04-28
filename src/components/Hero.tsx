@@ -28,9 +28,9 @@ export const Hero = () => {
     <section ref={ref} className="relative min-h-screen overflow-visible pt-36 pb-32">
       {/* Light-green glass blobs */}
       <motion.div style={{ y: yBg }} className="pointer-events-none absolute inset-0 will-change-transform flex justify-center">
-        <div className="absolute -top-32 left-1/4 h-[500px] w-[500px] rounded-full bg-[hsl(135_60%_75%/0.35)] blur-3xl backdrop-blur-2xl" />
-        <div className="absolute top-20 right-1/4 h-[600px] w-[600px] rounded-full bg-[hsl(140_55%_78%/0.3)] blur-3xl backdrop-blur-2xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[450px] w-[450px] rounded-full bg-[hsl(125_50%_72%/0.25)] blur-3xl backdrop-blur-2xl" />
+        <div className="absolute -top-32 left-1/4 h-[500px] w-[500px] rounded-full bg-[hsl(135_60%_75%/0.35)] blur-3xl backdrop-blur-0xl" />
+        <div className="absolute top-20 right-1/4 h-[600px] w-[600px] rounded-full bg-[hsl(140_55%_78%/0.3)] blur-3xl backdrop-blur-0xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[450px] w-[450px] rounded-full bg-[hsl(125_50%_72%/0.25)] blur-3xl backdrop-blur-1xl" />
       </motion.div>
       <div className="absolute inset-0 bg-grid opacity-60" />
 
@@ -163,9 +163,9 @@ export const Hero = () => {
             className="absolute -left-4 sm:-left-8 top-[15%] hidden md:block"
           >
             <div className="rounded-2xl glass p-4 sm:p-5 shadow-xl backdrop-blur-xl">
-              <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest font-semibold mb-1">Live Consumption</div>
-              <div className="font-display text-2xl sm:text-3xl font-bold text-blue-1">847 kWh</div>
-              <div className="mt-2 text-[10px] sm:text-xs font-medium text-green-1 bg-green-1/10 rounded-full px-2 py-1 inline-flex items-center gap-1">
+              <div className="text-black sm:text-xs text-black-foreground uppercase tracking-widest font-semibold mb-1">Live Consumption</div>
+              <div className="font-display text-2xl sm:text-3xl font-bold text-black">847 kWh</div>
+              <div className="mt-2 text-[10px] sm:text-xs font-medium text-black bg-green-1/10 rounded-full px-2 py-1 inline-flex items-center gap-1">
                 ↓ 18% this week
               </div>
             </div>
