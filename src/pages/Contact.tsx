@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Building2, Headphones, Mail, MapPin, MessageSquare, Phone, Send } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import { useLenis } from "@/hooks/useLenis";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -12,10 +13,11 @@ import { toast } from "sonner";
 
 const OFFICES = [
   { city: "Bengaluru", line1: "Karnataka, India" },
-  { city: "Chennai, Coimbatore, Trichy" , line1: "Tamil Nadu, India" },
+  { city: "Chennai, Coimbatore, Trichy", line1: "Tamil Nadu, India" },
   { city: "Kochi", line1: "Kerala, India" },
-  { city: "Dubai", line1: "Dubai" },
-  { city: "Oman", line1: "Oman" },
+  { city: "Dubai", line1: "UAE" },
+  { city: "Muscat", line1: "Oman" },
+  { city: "Espoo", line1: "Finland" },
 ];
 
 const CHANNELS = [
@@ -43,18 +45,52 @@ const Contact = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const fd = new FormData(form);
-    const email = String(fd.get("email") || "");
-    const name = String(fd.get("name") || "").trim();
+
+    const email   = String(fd.get("email")   || "");
+    const name    = String(fd.get("name")    || "").trim();
     const message = String(fd.get("message") || "").trim();
-    if (!name) return toast.error("Please share your name");
+    const company = String(fd.get("company") || "").trim();
+    const phone   = String(fd.get("phone")   || "").trim();
+
+    if (!name)                 return toast.error("Please share your name");
     if (!email.includes("@")) return toast.error("Please enter a valid email");
-    if (message.length < 10) return toast.error("Tell us a bit more (10+ characters)");
+    if (message.length < 10)  return toast.error("Tell us a bit more (10+ characters)");
 
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 700));
-    setSubmitting(false);
-    toast.success("Thanks — we'll be in touch within one business day.");
-    form.reset();
+
+    const templateParams = {
+      full_name:    name,
+      email:        email,
+      company_name: company,
+      phone:        phone,
+      message:      message,
+    };
+
+    try {
+      // Send admin notification email
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ADMIN,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      // Send auto-reply to user
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_USER,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      toast.success("Thanks — we'll be in touch within one business day.");
+      form.reset();
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
