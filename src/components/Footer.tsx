@@ -7,6 +7,7 @@ const COLS: Array<{ title: string; links: Array<{ label: string; to: string }> }
   {
     title: "Products",
     links: [
+      { label: "Our Products", to: "/products" },
       { label: "PROsmart Energy", to: "/" },
       { label: "Probiz Energy AI", to: "/" },
       { label: "Pricing", to: "/pricing" },

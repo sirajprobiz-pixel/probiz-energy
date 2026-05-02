@@ -12,6 +12,9 @@ import { CTA } from "@/components/CTA";
 import sirajPhoto from "@/assets/team-siraj.png";
 import rajendiranPhoto from "@/assets/rajendira.jpeg";
 import deepanPhoto from "@/assets/deepanraj.jpeg";
+import rahumanPhoto from "@/assets/rahuman.png";
+import sanjayPhoto from "@/assets/sanjay.jpeg";
+import subashPhoto from "@/assets/subash.png";
 
 const TIMELINE = [
   { year: "2018", title: "Founded in Chennai", body: "Probiz Automation begins with a mission to bring smart energy intelligence to Indian buildings." },
@@ -29,10 +32,11 @@ const VALUES = [
 
 const TEAM: Array<{ name: string; role: string; initials: string; photo?: string }> = [
   { name: "Siraj", role: "Director & CEO", initials: "S", photo: sirajPhoto },
-  { name: "Abdul Rahuman", role: "Product Marketer & Developer", initials: "AR" },
+  { name: "Abdul Rahuman", role: "Product Marketing Manager & Developer", initials: "AR", photo: rahumanPhoto },
   { name: "Rajendiran M", role: "Cloud DevOps Engineer", initials: "RM", photo: rajendiranPhoto },
   { name: "Deepan", role: "Software Developer", initials: "D", photo: deepanPhoto },
-  { name: "Sanjay", role: "Application Developer", initials: "S" },
+  { name: "Sanjay", role: "Application Developer", initials: "S", photo: sanjayPhoto },
+  { name: "Subash", role: "Project Manager", initials: "S", photo: subashPhoto },
 ];
 
 const About = () => {
@@ -162,7 +166,7 @@ const About = () => {
               </div>
               <AnimatedText as="h2" text="The people behind it." className="font-display text-4xl font-bold tracking-tight md:text-5xl" />
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {TEAM.map((m, i) => (
                 <motion.div
                   key={m.name}
@@ -170,19 +174,19 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="surface tilt-card overflow-hidden rounded-3xl p-6 text-center"
+                  className="surface tilt-card overflow-hidden rounded-3xl p-8 text-center"
                 >
                   {m.photo ? (
-                    <div className="mx-auto mb-4 h-24 w-24 overflow-hidden rounded-full ring-2 ring-[hsl(var(--green-1)/0.4)] ring-offset-2 ring-offset-background">
+                    <div className="mx-auto mb-5 h-32 w-32 overflow-hidden rounded-full ring-2 ring-[hsl(var(--green-1)/0.4)] ring-offset-2 ring-offset-background">
                       <img src={m.photo} alt={`${m.name} — ${m.role}`} className="h-full w-full object-cover object-top transition-transform duration-500 hover:scale-110" loading="lazy" />
                     </div>
                   ) : (
-                    <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-[hsl(var(--green-1)/0.18)] font-display text-2xl font-bold text-green-1">
+                    <div className="mx-auto mb-5 flex h-28 w-28 items-center justify-center rounded-full bg-[hsl(var(--green-1)/0.18)] font-display text-3xl font-bold text-green-1">
                       {m.initials}
                     </div>
                   )}
-                  <div className="font-display text-base font-semibold">{m.name}</div>
-                  <div className="text-xs text-muted-foreground">{m.role}</div>
+                  <div className="font-display text-lg font-semibold">{m.name}</div>
+                  <div className="mt-1 text-sm text-muted-foreground">{m.role}</div>
                 </motion.div>
               ))}
             </div>

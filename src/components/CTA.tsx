@@ -38,7 +38,7 @@ export const CTA = () => {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="font-display text-5xl font-bold leading-[1.02] md:text-7xl lg:text-8xl"
             >
-              Ready to power up your <span className="text-green-1">smart building?</span>
+              Ready to power up your <span className="text-green-1">building smarter?</span>
             </motion.h2>
             <p className="mx-auto mt-8 max-w-xl text-lg text-muted-foreground md:text-xl">
               See PROsmart Energy in action with a personalised demo tailored to your portfolio.

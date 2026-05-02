@@ -23,7 +23,7 @@ const STATES: StateNode[] = [
   ]},
   { name: "West Bengal", buildings: [{ name: "Salt Lake Tower",    floors: 16, devices: 220, location: "Sector V, Kolkata" }] },
   { name: "Karnataka",   buildings: [
-    { name: "Brigade Triumph",   floors: 18, devices: 286, location: "Hebbal, Bengaluru · Mixed Use" },
+    { name: "Bengaluru Tower",   floors: 18, devices: 286, location: "Hebbal, Bengaluru · Mixed Use" },
     { name: "Electronic City 2", floors: 12, devices: 164, location: "Phase 2, Bengaluru" },
   ]},
   { name: "Tamil Nadu",  buildings: [
