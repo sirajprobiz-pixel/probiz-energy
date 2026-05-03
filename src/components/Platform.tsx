@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { AnimatedText } from "./AnimatedText";
-import smartBuilding from "@/assets/smart-building.jpg";
+import smartBuilding from "@/assets/blog-featured-campus.png";
 
 const COLORS = ["bg-brand-1 text-white", "bg-brand-2 text-white", "bg-brand-3 text-black", "bg-brand-4 text-black"];
 

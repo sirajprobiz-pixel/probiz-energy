@@ -106,8 +106,7 @@ const Products = () => {
               <span className="text-muted-foreground">Our Product Suite</span>
             </motion.div>
 
-            <AnimatedText as="h1" text="Built for buildings," className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl" />
-            <AnimatedText as="h1" text="built for business." className="font-display text-5xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-6xl md:text-7xl lg:text-8xl" delay={0.15} />
+            <AnimatedText as="h1" text="Our Products" className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl" />
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -115,7 +114,7 @@ const Products = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="mt-8 max-w-2xl text-lg text-muted-foreground"
             >
-              Three powerful platforms, one unified ecosystem. From IoT connectivity and energy intelligence to retail automation — Probiz delivers the tools that modern enterprises need.
+              Probiz offers a unified ecosystem of powerful platforms, providing modern enterprises with essential tools for IoT connectivity, energy intelligence, eB2B and retail automation.
             </motion.p>
           </div>
         </section>
@@ -132,7 +131,7 @@ const Products = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className={`grid items-center gap-10 lg:gap-16 ${idx % 2 === 1 ? "lg:grid-cols-[1fr_1.2fr]" : "lg:grid-cols-[1.2fr_1fr]"}`}
+                className={`grid items-center gap-10 lg:gap-16 ${idx % 2 === 1 ? "lg:grid-cols-[1fr_1.6fr]" : "lg:grid-cols-[1fr_1.6fr]"}`}
               >
                 {/* Text side */}
                 <div className={idx % 2 === 1 ? "order-2 lg:order-1" : ""}>
