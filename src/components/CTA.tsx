@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
+import brandLogo from "@/assets/logo.png";
 
 export const CTA = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,10 +26,7 @@ export const CTA = () => {
 
           <div className="relative mx-auto max-w-4xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs text-muted-foreground">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-1 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-1" />
-              </span>
+              <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
               Get connected today
             </div>
             <motion.h2

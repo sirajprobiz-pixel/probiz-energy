@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import building3D from "@/assets/building-3d.png";
+import brandLogo from "@/assets/logo.png";
 import { LiveKPIPanel } from "@/components/building-map/LiveKPIPanel";
 
 type Building = { name: string; floors: number; devices: number; location: string };
@@ -76,7 +77,7 @@ export const BuildingMap = () => {
             transition={{ duration: 0.5 }}
             className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-1" />
+            <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
             Interactive 3D Building View
           </motion.div>
           <motion.h2

@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Cpu, Cloud, BarChart3, Receipt } from "lucide-react";
 import { AnimatedText } from "./AnimatedText";
+import brandLogo from "@/assets/logo.png";
 
 const STEPS = [
   {
@@ -40,7 +41,7 @@ export const HowItWorks = () => {
       <div className="container">
         <div className="mx-auto mb-20 max-w-3xl text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
+            <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
             How it works
           </div>
           <AnimatedText

@@ -8,6 +8,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { AnimatedText } from "@/components/AnimatedText";
+import brandLogo from "@/assets/logo.png";
 import { CTA } from "@/components/CTA";
 import productConnectImg from "@/assets/product-connect.png";
 import productEnergyImg from "@/assets/product-energy.png";
@@ -99,10 +100,7 @@ const Products = () => {
               transition={{ duration: 0.6 }}
               className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
             >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-1 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-1" />
-              </span>
+              <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
               <span className="text-muted-foreground">Our Product Suite</span>
             </motion.div>
 

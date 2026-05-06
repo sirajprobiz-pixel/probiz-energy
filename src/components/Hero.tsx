@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Zap, Fuel, Snowflake, Droplets, Flame, Map } from "lucide-react";
 import { AnimatedText } from "./AnimatedText";
 import dashboardImg from "@/assets/hero-dashboard.png";
+import brandLogo from "@/assets/logo.png";
 
 const UTILITIES = [
   { icon: Zap, label: "Energy EB" },
@@ -46,10 +47,7 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-1 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-1" />
-            </span>
+            <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
             <span className="text-muted-foreground">Next-gen energy intelligence platform</span>
           </motion.div>
 

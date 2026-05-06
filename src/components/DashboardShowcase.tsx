@@ -8,6 +8,7 @@ import tod from "@/assets/dashboard-tod.jpg";
 import smartMeter from "@/assets/smartmeter.webp";
 import dashboardLive from "@/assets/dashboard-live.png";
 import dashboardBillingFull from "@/assets/dashboard-billing-full.png";
+import brandLogo from "@/assets/logo.png";
 import { AnimatedText } from "./AnimatedText";
 
 const TABS = [
@@ -61,7 +62,7 @@ export const DashboardShowcase = () => {
             transition={{ duration: 0.5 }}
             className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
+            <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
             Inside the platform
           </motion.div>
           <AnimatedText
@@ -154,7 +155,7 @@ export const DashboardShowcase = () => {
             className="mx-auto mb-10 max-w-3xl text-center sm:mb-14"
           >
             <div className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-green-1 animate-pulse" />
+              <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
               Smart Metering Dashboard Experience
             </div>
             <AnimatedText

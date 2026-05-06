@@ -5,13 +5,18 @@ export const useLenis = () => {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // Respect users who prefer reduced motion
+    const reduce =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
     const lenis = new Lenis({
-      duration: 1.6,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1,
       smoothWheel: true,
-      wheelMultiplier: 0.85,
+      wheelMultiplier: 1,
       touchMultiplier: 1.5,
-      lerp: 0.07,
+      syncTouch: false,
     });
     lenisRef.current = lenis;
     let id = 0;

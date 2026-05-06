@@ -46,7 +46,7 @@ export const Header = () => {
                 className="relative h-10 w-10 object-contain transition-transform duration-700 ease-out group-hover:rotate-[360deg] group-hover:scale-110"
               />
             </div>
-            <span className="font-display text-lg font-bold tracking-tight">PROsmart Energy</span>
+            <span className="text-lg font-bold tracking-tight" style={{ fontFamily: "'Quicksand', sans-serif", color: '#317ade' }}>Prosmart Energy</span>
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">

@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { AnimatedText } from "./AnimatedText";
 import smartBuilding from "@/assets/blog-featured-campus.png";
+import brandLogo from "@/assets/logo.png";
 
 const COLORS = ["bg-brand-1 text-white", "bg-brand-2 text-white", "bg-brand-3 text-black", "bg-brand-4 text-black"];
 
@@ -20,7 +21,7 @@ export const Platform = () => {
           className="mx-auto mb-20 max-w-5xl text-center will-change-transform"
         >
           <div className="mb-5 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-green-1" />
+            <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
             Platform Overview
           </div>
           <AnimatedText

@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import brandLogo from "@/assets/logo.png";
 
 const CASES = [
   {
@@ -49,7 +50,7 @@ export const Impact = () => {
             transition={{ duration: 0.6 }}
             className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-2 animate-pulse" />
+            <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
             Real-world impact
           </motion.div>
           <motion.h2

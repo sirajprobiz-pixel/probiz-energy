@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Activity, Cpu, Gauge, Network, ShieldCheck, Zap } from "lucide-react";
 import { AnimatedText } from "./AnimatedText";
+import brandLogo from "@/assets/logo.png";
 import {
   Dialog,
   DialogContent,
@@ -81,7 +82,7 @@ export const Features = () => {
           className="mx-auto mb-16 max-w-4xl text-center will-change-transform"
         >
           <div className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
+            <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
             Features & Benefits
           </div>
           <AnimatedText

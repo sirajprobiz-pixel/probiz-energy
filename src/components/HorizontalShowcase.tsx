@@ -5,6 +5,7 @@ import smartBuilding from "@/assets/connectedbuild.webp";
 import heroDashboard from "@/assets/dashboard-live.png";
 import dashboardBilling from "@/assets/dashboard-billing-full.png";
 import { AnimatedText } from "./AnimatedText";
+import brandLogo from "@/assets/logo.png";
 
 const PANELS = [
   { img: heroDashboard,  color: "bg-brand-1 text-white",  title: "Real-time dashboards", body: "Live consumption, demand and load curves at a glance." },
@@ -33,7 +34,7 @@ export const HorizontalShowcase = () => {
         className="container mb-12 will-change-transform"
       >
         <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
-          <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
+          <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
           Dashboard Experience
         </div>
         <AnimatedText

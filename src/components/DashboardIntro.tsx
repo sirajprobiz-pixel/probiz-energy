@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Activity, Gauge, Zap, BarChart3 } from "lucide-react";
+import brandLogo from "@/assets/logo.png";
 
 const POINTS = [
   { icon: Activity, label: "Live telemetry", value: "30s refresh", color: "text-blue-1" },
@@ -20,7 +21,7 @@ export const DashboardIntro = () => {
             transition={{ duration: 0.6 }}
             className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
+            <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
             Dashboard Experience
           </motion.div>
           <motion.h2

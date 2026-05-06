@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import brandLogo from "@/assets/logo.png";
 
 const TIERS = [
   {
@@ -71,7 +72,7 @@ export const Pricing = () => {
       <div className="container">
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-1" />
+            <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
             Pricing
           </div>
           <h2 className="font-display text-4xl font-bold leading-tight md:text-6xl">
