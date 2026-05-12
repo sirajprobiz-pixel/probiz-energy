@@ -22,6 +22,14 @@ const COLS: Array<{ title: string; links: Array<{ label: string; to: string }> }
       { label: "Contact", to: "/contact" },
     ],
   },
+  {
+    title: "Legal & Support",
+    links: [
+      { label: "Support", to: "/support" },
+      { label: "Privacy Policy", to: "/privacy" },
+      { label: "Terms & Conditions", to: "/terms" },
+    ],
+  },
 ];
 
 /* Animated mesh-gradient dots for the footer background — lightweight Spline replacement */
@@ -94,7 +102,7 @@ export const Footer = () => {
               Effortless energy monitoring and automated tenant billing for the buildings of tomorrow.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8">
             {COLS.map((c) => (
               <div key={c.title}>
                 <div className="font-display text-sm font-semibold">{c.title}</div>

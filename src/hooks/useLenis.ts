@@ -5,31 +5,10 @@ export const useLenis = () => {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Respect users who prefer reduced motion
-    const reduce =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
-
-    const lenis = new Lenis({
-      lerp: 0.1,
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
-      syncTouch: false,
-    });
-    lenisRef.current = lenis;
-    let id = 0;
-    function raf(time: number) {
-      lenis.raf(time);
-      id = requestAnimationFrame(raf);
-    }
-    id = requestAnimationFrame(raf);
-    return () => {
-      cancelAnimationFrame(id);
-      lenis.destroy();
-      lenisRef.current = null;
-    };
+    // Native scroll performs better across all devices than JS-driven smooth
+    // scroll. We keep this hook so existing pages can call it without changes,
+    // but it is now a no-op. Smoothness is provided by CSS `scroll-behavior`.
+    return;
   }, []);
 
   return lenisRef;

@@ -6,9 +6,9 @@ import { useLenis } from "@/hooks/useLenis";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import brandLogo from "@/assets/logo.png";
+import mascot from "@/assets/mascot2.png";
 import { AnimatedText } from "@/components/AnimatedText";
 import { toast } from "sonner";
 
@@ -97,7 +97,6 @@ const Contact = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <ScrollProgress />
-      <CustomCursor />
       <Header />
       <ThemeToggle />
 
@@ -109,18 +108,86 @@ const Contact = () => {
           <div className="absolute inset-0 bg-grid" />
 
           <div className="container relative">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
-            >
-              <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
-              <span className="text-muted-foreground">Get in touch</span>
-            </motion.div>
+            <div className="grid items-center gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-8">
+              {/* Copy */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
+                >
+                  <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
+                  <span className="text-muted-foreground">Get in touch</span>
+                </motion.div>
 
-            <AnimatedText as="h1" text="Let&apos;s build" className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl" />
-            <AnimatedText as="h1" text="something smart." className="font-display text-5xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-6xl md:text-7xl lg:text-8xl" delay={0.15} />
+                <AnimatedText as="h1" text="Let&apos;s build" className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl" />
+                <AnimatedText as="h1" text="something smart." className="font-display text-5xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-6xl md:text-7xl lg:text-8xl" delay={0.15} />
+
+                <motion.p
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+                >
+                  Tell us about your portfolio and our team will reach out within 24 hours with a tailored plan.
+                </motion.p>
+              </div>
+
+              {/* Mascot illustration */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none"
+              >
+                {/* Soft glow rings */}
+                <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+                  <div className="h-[80%] w-[80%] rounded-full bg-[hsl(var(--green-1)/0.35)] blur-3xl" />
+                </div>
+                <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+                  <div className="h-[60%] w-[60%] rounded-full bg-[hsl(var(--blue-3)/0.25)] blur-2xl" />
+                </div>
+
+                {/* Animated rings around mascot */}
+                <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[110%] w-[110%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-green-1/30 [animation:spin_22s_linear_infinite]" />
+                <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[90%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-1/20 [animation:spin_18s_linear_infinite_reverse]" />
+
+                {/* Floating mascot */}
+                <motion.img
+                  src={mascot}
+                  alt="Prox mascot"
+                  animate={{ y: [0, -14, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative z-10 mx-auto h-auto w-full max-w-[420px] object-contain drop-shadow-[0_30px_40px_hsl(var(--green-1)/0.35)]"
+                />
+
+                {/* Speech bubble */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  className="absolute -top-2 left-2 z-20 rounded-2xl rounded-bl-sm border border-border bg-background/90 px-4 py-2.5 text-sm font-medium shadow-[0_18px_40px_-18px_hsl(0_0%_0%/0.45)] backdrop-blur sm:-top-4 sm:left-0"
+                >
+                  <span className="mr-1.5">👋</span>
+                  Hi! I&apos;m Prox.
+                </motion.div>
+
+                {/* Floating badge bottom-right */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                  className="absolute -bottom-2 right-0 z-20 hidden items-center gap-2 rounded-full border border-border bg-background/90 px-3.5 py-2 text-xs font-medium shadow-[0_18px_40px_-18px_hsl(0_0%_0%/0.45)] backdrop-blur sm:flex"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                  </span>
+                  We reply in &lt; 24h
+                </motion.div>
+              </motion.div>
+            </div>
           </div>
         </section>
 

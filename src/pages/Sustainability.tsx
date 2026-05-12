@@ -5,7 +5,6 @@ import { useLenis } from "@/hooks/useLenis";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { AnimatedText } from "@/components/AnimatedText";
 
@@ -59,7 +58,6 @@ const Sustainability = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <ScrollProgress />
-      <CustomCursor />
       <Header />
       <ThemeToggle />
 
