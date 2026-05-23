@@ -20,6 +20,7 @@ const COLS: Array<{ title: string; links: Array<{ label: string; to: string }> }
       { label: "Sustainability", to: "/sustainability" },
       { label: "Blog", to: "/blog" },
       { label: "Contact", to: "/contact" },
+      { label: "Meet PROX", to: "/prox" },
     ],
   },
   {

@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Cpu, Cloud, BarChart3, Receipt } from "lucide-react";
 import { AnimatedText } from "./AnimatedText";
 import brandLogo from "@/assets/logo.png";
+import proxWork from "@/assets/workprox.png";
 
 const STEPS = [
   {
@@ -57,16 +58,17 @@ export const HowItWorks = () => {
           />
         </div>
 
-        <div className="relative mx-auto max-w-5xl">
-          {/* Animated vertical timeline */}
-          <div className="absolute left-7 top-0 hidden h-full w-px bg-border md:block">
-            <motion.div
-              style={{ height: lineHeight }}
-              className="absolute left-0 top-0 w-px bg-brand-1 will-change-[height]"
-            />
-          </div>
+        <div className="relative grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+          <div className="relative mx-auto w-full max-w-5xl">
+            {/* Animated vertical timeline */}
+            <div className="absolute left-7 top-0 hidden h-full w-px bg-border md:block">
+              <motion.div
+                style={{ height: lineHeight }}
+                className="absolute left-0 top-0 w-px bg-brand-1 will-change-[height]"
+              />
+            </div>
 
-          <div className="space-y-8">
+            <div className="space-y-8">
             {STEPS.map((s, i) => (
               <motion.div
                 key={s.title}
@@ -90,7 +92,38 @@ export const HowItWorks = () => {
                 </div>
               </motion.div>
             ))}
+            </div>
           </div>
+
+          {/* PROX at work — sticky illustration */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative mx-auto hidden w-full max-w-sm lg:sticky lg:top-24 lg:mx-0 lg:block"
+          >
+            <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+              <div className="h-[80%] w-[80%] rounded-full bg-[hsl(var(--blue-3)/0.35)] blur-3xl" />
+            </div>
+            <motion.img
+              src={proxWork}
+              alt="PROX at work"
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="relative z-10 h-auto w-full object-contain drop-shadow-[0_30px_45px_hsl(var(--blue-3)/0.4)]"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="absolute -bottom-2 left-2 z-20 rounded-2xl rounded-bl-sm border border-border bg-background/90 px-4 py-2.5 text-sm font-medium shadow-[0_18px_40px_-18px_hsl(0_0%_0%/0.45)] backdrop-blur"
+            >
+              <span className="mr-1.5">⚡</span>
+              PROX on the build
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

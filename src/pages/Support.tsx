@@ -10,7 +10,7 @@ import brandLogo from "@/assets/logo.png";
 const CHANNELS = [
   { icon: MessageCircle, title: "Chat with Prox", body: "Our AI assistant answers product questions instantly, 24/7.", action: "Open chat" },
   { icon: Mail, title: "Email support", body: "Reach our team for any account, billing or technical issue.", action: "support@prosmart.energy", href: "mailto:support@prosmart.energy" },
-  { icon: Phone, title: "Phone support", body: "Enterprise customers can call us during business hours (IST).", action: "+91 44 4000 0000", href: "tel:+914440000000" },
+  { icon: Phone, title: "Phone support", body: "Enterprise customers can call us during business hours (IST).", action: "+91 99161 99499", href: "tel:+919916199499" },
   { icon: BookOpen, title: "Knowledge base", body: "Browse setup guides, API docs and troubleshooting articles.", action: "Visit docs", href: "#" },
 ];
 

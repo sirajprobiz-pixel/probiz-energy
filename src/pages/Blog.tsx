@@ -17,6 +17,7 @@ import blogIsoImg from "@/assets/blog-iso-compliance.png";
 import blogDgImg from "@/assets/blog-dg-billing.png";
 import blogTenantImg from "@/assets/blog-tenant-billing.png";
 import blogPeakImg from "@/assets/blog-peak-demand.png";
+import proxStories from "@/assets/storiesprox.png";
 
 const CATEGORIES = ["All", "Energy", "Automation", "Compliance", "Case studies"] as const;
 
@@ -106,19 +107,49 @@ const Blog = () => {
           <div className="absolute inset-0 bg-grid" />
 
           <div className="container relative">
-            <div className="max-w-4xl">
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
-              >
-                <Tag size={12} className="text-green-1" />
-                <span className="text-muted-foreground">Insights & stories</span>
-              </motion.div>
+            <div className="grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
+              <div className="max-w-4xl">
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
+                >
+                  <Tag size={12} className="text-green-1" />
+                  <span className="text-muted-foreground">Insights & stories</span>
+                </motion.div>
 
-              <AnimatedText as="h1" text="Field notes from" className="font-display text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl" />
-              <AnimatedText as="h1" text="smart buildings." className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-5xl md:text-6xl lg:text-7xl" delay={0.15} />
+                <AnimatedText as="h1" text="Field notes from" className="font-display text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl" />
+                <AnimatedText as="h1" text="smart buildings." className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-green-1 sm:text-5xl md:text-6xl lg:text-7xl" delay={0.15} />
+              </div>
+
+              {/* PROX storyteller */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="relative mx-auto hidden w-full max-w-xs lg:block"
+              >
+                <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+                  <div className="h-[80%] w-[80%] rounded-full bg-[hsl(var(--green-1)/0.35)] blur-3xl" />
+                </div>
+                <motion.img
+                  src={proxStories}
+                  alt="PROX storyteller"
+                  animate={{ y: [0, -12, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative z-10 mx-auto h-auto w-full object-contain drop-shadow-[0_25px_40px_hsl(var(--green-1)/0.4)]"
+                />
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  className="absolute -top-3 -left-2 z-20 rounded-2xl rounded-bl-sm border border-border bg-background/90 px-4 py-2.5 text-sm font-medium shadow-[0_18px_40px_-18px_hsl(0_0%_0%/0.45)] backdrop-blur"
+                >
+                  <span className="mr-1.5">📚</span>
+                  Story time!
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </section>
