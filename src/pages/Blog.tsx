@@ -73,6 +73,7 @@ const Blog = () => {
   // Lock body scroll, destroy Lenis & restore normal cursor when modal is open
   useEffect(() => {
     const cursorStyle = document.querySelector('style[data-custom-cursor]') as HTMLStyleElement | null;
+    const hasCustomCursor = !!cursorStyle;
     if (activePost) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.cursor = "";
@@ -81,13 +82,22 @@ const Blog = () => {
       lenisRef.current?.destroy();
     } else {
       document.body.style.overflow = "";
-      document.documentElement.style.cursor = "none";
-      if (cursorStyle) cursorStyle.disabled = false;
+      // Only hide native cursor if custom cursor is actually active
+      if (hasCustomCursor) {
+        document.documentElement.style.cursor = "none";
+        cursorStyle!.disabled = false;
+      }
     }
     return () => {
       document.body.style.overflow = "";
-      document.documentElement.style.cursor = "none";
-      if (cursorStyle) cursorStyle.disabled = false;
+      // Only hide native cursor on cleanup if custom cursor element still exists
+      const cursorStyleOnCleanup = document.querySelector('style[data-custom-cursor]') as HTMLStyleElement | null;
+      if (cursorStyleOnCleanup) {
+        document.documentElement.style.cursor = "none";
+        cursorStyleOnCleanup.disabled = false;
+      } else {
+        document.documentElement.style.cursor = "";
+      }
     };
   }, [activePost]);
 

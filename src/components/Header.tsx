@@ -8,7 +8,7 @@ const NAV = [
   { label: "Platform", href: "/#platform" },
   { label: "About", href: "/about" },
   { label: "Sustainability", href: "/sustainability" },
-  { label: "Blog", href: "/blog" },
+  { label: "Blog", href: "https://blogsbyprobiz.vercel.app/prosmart-energy/blogs" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
 ];
@@ -51,7 +51,8 @@ export const Header = () => {
 
           <nav className="hidden items-center gap-1 md:flex">
             {NAV.map((item) => {
-              const isRoute = item.href.startsWith("/") && !item.href.startsWith("/#");
+              const isExternal = item.href.startsWith("http");
+              const isRoute = !isExternal && item.href.startsWith("/") && !item.href.startsWith("/#");
               const cls = "group relative rounded-full px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground";
               const inner = (
                 <>
@@ -62,7 +63,7 @@ export const Header = () => {
               return isRoute ? (
                 <Link key={item.href} to={item.href} className={cls}>{inner}</Link>
               ) : (
-                <a key={item.href} href={item.href} className={cls}>{inner}</a>
+                <a key={item.href} href={item.href} className={cls} {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{inner}</a>
               );
             })}
           </nav>
@@ -89,12 +90,13 @@ export const Header = () => {
             className="mt-2 rounded-2xl glass-strong p-4 md:hidden"
           >
             {NAV.map((item) => {
-              const isRoute = item.href.startsWith("/") && !item.href.startsWith("/#");
+              const isExternal = item.href.startsWith("http");
+              const isRoute = !isExternal && item.href.startsWith("/") && !item.href.startsWith("/#");
               const cls = "block rounded-lg px-4 py-3 text-sm text-muted-foreground hover:bg-brand-5 hover:text-foreground";
               return isRoute ? (
                 <Link key={item.href} to={item.href} onClick={() => setOpen(false)} className={cls}>{item.label}</Link>
               ) : (
-                <a key={item.href} href={item.href} onClick={() => setOpen(false)} className={cls}>{item.label}</a>
+                <a key={item.href} href={item.href} onClick={() => setOpen(false)} className={cls} {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{item.label}</a>
               );
             })}
             <Link
