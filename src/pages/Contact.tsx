@@ -60,15 +60,24 @@ const Contact = () => {
     setSubmitting(true);
 
     const templateParams = {
+      // Common variable names used in EmailJS templates
       full_name:    name,
+      from_name:    name,
+      user_name:    name,
+      to_name:      "PROsmart Energy",
       email:        email,
+      from_email:   email,
+      user_email:   email,
+      reply_to:     email,
       company_name: company,
+      company:      company,
       phone:        phone,
+      phone_number: phone,
       message:      message,
     };
 
     try {
-      // Send admin notification email
+      // Send contact notification to admin
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ADMIN,
@@ -86,9 +95,10 @@ const Contact = () => {
 
       toast.success("Thanks — we'll be in touch within one business day.");
       form.reset();
-    } catch (err) {
+    } catch (err: any) {
       console.error("EmailJS error:", err);
-      toast.error("Something went wrong. Please try again.");
+      const errorMsg = err?.text || err?.message || "Unknown error";
+      toast.error(`Email failed: ${errorMsg}`);
     } finally {
       setSubmitting(false);
     }
