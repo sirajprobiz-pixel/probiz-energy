@@ -32,14 +32,14 @@ const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    document.title = "Contact — PROsmart Energy";
+    document.title = "Contact — Probiz Energy";
     const meta = document.querySelector('meta[name="description"]') || (() => {
       const m = document.createElement("meta");
       m.setAttribute("name", "description");
       document.head.appendChild(m);
       return m;
     })();
-    meta.setAttribute("content", "Get in touch with PROsmart Energy — sales, support, partnerships and global office locations.");
+    meta.setAttribute("content", "Get in touch with Probiz Energy — sales, support, partnerships and global office locations.");
   }, []);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,7 +64,7 @@ const Contact = () => {
       full_name:    name,
       from_name:    name,
       user_name:    name,
-      to_name:      "PROsmart Energy",
+      to_name:      "Probiz Energy",
       email:        email,
       from_email:   email,
       user_email:   email,

@@ -18,10 +18,10 @@ import subashPhoto from "@/assets/subash.png";
 
 const TIMELINE = [
   { year: "2018", title: "Founded in Chennai", body: "Probiz Automation begins with a mission to bring smart energy intelligence to Indian buildings." },
-  { year: "2020", title: "First 1M sq.ft", body: "PROsmart deployed across early enterprise campuses, automating tenant billing for 200+ tenants." },
+  { year: "2020", title: "First 1M sq.ft", body: "Probiz Energy deployed across early enterprise campuses, automating tenant billing for 200+ tenants." },
   { year: "2022", title: "ISO 50001 partner", body: "Launched compliance-ready analytics, helping clients achieve global energy management certification." },
   { year: "2024", title: "GCC expansion", body: "Operations expand into UAE & KSA, with multi-utility billing for mixed-use developments." },
-  { year: "2026", title: "Today", body: "PROsmart Energy unifies EB, DG, HVAC, water and gas across 40M+ sq.ft of real estate." },
+  { year: "2026", title: "Today", body: "Probiz Energy unifies EB, DG, HVAC, water and gas across 40M+ sq.ft of real estate." },
 ];
 
 const VALUES = [
@@ -43,14 +43,14 @@ const About = () => {
   useLenis();
 
   useEffect(() => {
-    document.title = "About — PROsmart Energy";
+    document.title = "About — Probiz Energy";
     const meta = document.querySelector('meta[name="description"]') || (() => {
       const m = document.createElement("meta");
       m.setAttribute("name", "description");
       document.head.appendChild(m);
       return m;
     })();
-    meta.setAttribute("content", "About PROsmart Energy — the team, story and mission behind the next-gen energy monitoring and automated billing platform.");
+    meta.setAttribute("content", "About Probiz Energy — the team, story and mission behind the next-gen energy monitoring and automated billing platform.");
   }, []);
 
   return (
@@ -74,7 +74,7 @@ const About = () => {
               className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium"
             >
               <img src={brandLogo} alt="" className="h-4 w-4 object-contain" />
-              <span className="text-muted-foreground">About PROsmart Energy</span>
+              <span className="text-muted-foreground">About Probiz Energy</span>
             </motion.div>
 
             <AnimatedText as="h1" text="Powering smarter," className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl" />

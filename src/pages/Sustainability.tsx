@@ -36,7 +36,7 @@ const PILLARS = [
 ];
 
 const COMMITMENTS = [
-  { year: "2026", title: "100% sub-meter coverage", body: "Across all PROsmart Energy customer portfolios." },
+  { year: "2026", title: "100% sub-meter coverage", body: "Across all Probiz Energy customer portfolios." },
   { year: "2027", title: "Carbon-neutral platform ops", body: "All cloud workloads matched with verified renewable energy." },
   { year: "2030", title: "1 GWh saved annually", body: "Aggregate measurable savings across our customer base." },
 ];
@@ -45,14 +45,14 @@ const Sustainability = () => {
   useLenis();
 
   useEffect(() => {
-    document.title = "Sustainability — PROsmart Energy";
+    document.title = "Sustainability — Probiz Energy";
     const meta = document.querySelector('meta[name="description"]') || (() => {
       const m = document.createElement("meta");
       m.setAttribute("name", "description");
       document.head.appendChild(m);
       return m;
     })();
-    meta.setAttribute("content", "PROsmart Energy sustainability — net-zero acceleration, circular energy, tenant equity and ISO-ready compliance for smart buildings.");
+    meta.setAttribute("content", "Probiz Energy sustainability — net-zero acceleration, circular energy, tenant equity and ISO-ready compliance for smart buildings.");
   }, []);
 
   return (

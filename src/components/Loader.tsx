@@ -78,7 +78,7 @@ export const Loader = () => {
               <div className="absolute inset-[-12px] rounded-full border border-dashed border-[hsl(var(--green-2)/0.25)] animate-[spin_12s_linear_infinite_reverse]" />
               <motion.img
                 src={logo}
-                alt="PROsmart Energy"
+                alt="Probiz Energy"
                 animate={{ rotate: [0, 360], scale: [1, 1.05, 1] }}
                 transition={{
                   rotate: { duration: 8, repeat: Infinity, ease: "linear" },
@@ -87,7 +87,7 @@ export const Loader = () => {
                 className="relative h-20 w-20 object-contain"
               />
             </div>
-            <span className="font-display text-2xl font-bold tracking-tight">PROsmart Energy</span>
+            <span className="font-display text-2xl font-bold tracking-tight">Probiz Energy</span>
           </motion.div>
 
           <div className="h-[2px] w-64 overflow-hidden rounded-full bg-muted">

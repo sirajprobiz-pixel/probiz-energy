@@ -9,7 +9,7 @@ import brandLogo from "@/assets/logo.png";
 
 const CHANNELS = [
   { icon: MessageCircle, title: "Chat with Prox", body: "Our AI assistant answers product questions instantly, 24/7.", action: "Open chat" },
-  { icon: Mail, title: "Email support", body: "Reach our team for any account, billing or technical issue.", action: "support@prosmart.energy", href: "mailto:support@prosmart.energy" },
+  { icon: Mail, title: "Email support", body: "Reach our team for any account, billing or technical issue.", action: "support@probiz.energy", href: "mailto:support@probiz.energy" },
   { icon: Phone, title: "Phone support", body: "Enterprise customers can call us during business hours (IST).", action: "+91 99161 99499", href: "tel:+919916199499" },
   { icon: BookOpen, title: "Knowledge base", body: "Browse setup guides, API docs and troubleshooting articles.", action: "Visit docs", href: "#" },
 ];
@@ -18,7 +18,7 @@ const FAQ = [
   { q: "How quickly do you respond to support requests?", a: "Standard plans receive a response within 24 business hours. Enterprise plans include 4-hour SLA response and a dedicated success engineer." },
   { q: "Do you offer onboarding for new buildings?", a: "Yes. Our team handles meter integration, BACnet/Modbus mapping and tenant onboarding. The full setup typically takes 2–4 weeks per building." },
   { q: "Can I export my data?", a: "Anytime. Use the export tools inside the dashboard for CSV / PDF, or call our REST API for live data streams." },
-  { q: "Is PROsmart compliant with data regulations?", a: "We are ISO 27001 aligned and GDPR compliant. All data is encrypted at rest and in transit and stored in regional data centres." },
+  { q: "Is Probiz Energy compliant with data regulations?", a: "We are ISO 27001 aligned and GDPR compliant. All data is encrypted at rest and in transit and stored in regional data centres." },
   { q: "How do I upgrade my plan?", a: "Open Settings → Billing → Change plan, or contact your account manager. Upgrades are pro-rated to your next renewal." },
 ];
 
@@ -27,7 +27,7 @@ const Support = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   useEffect(() => {
-    document.title = "Support — PROsmart";
+    document.title = "Support — Probiz Energy";
   }, []);
 
   return (
@@ -51,7 +51,7 @@ const Support = () => {
               We're here to <span className="text-primary">help.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              Get answers from Prox, our AI assistant, or connect with the PROsmart team. Whatever you need — a setup guide, a billing question, or an emergency call — we've got you covered.
+              Get answers from Prox, our AI assistant, or connect with the Probiz Energy team. Whatever you need — a setup guide, a billing question, or an emergency call — we've got you covered.
             </p>
           </div>
         </section>

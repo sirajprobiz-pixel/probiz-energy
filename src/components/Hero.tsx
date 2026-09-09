@@ -72,7 +72,7 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="mt-8 max-w-3xl text-sm text-muted-foreground text-balance sm:text-base md:text-lg lg:text-xl"
           >
-            PROsmart unifies <span className="font-semibold text-foreground">EB, DG, HVAC, Water and Gas</span> into one
+            Probiz Energy unifies <span className="font-semibold text-foreground">EB, DG, HVAC, Water and Gas</span> into one
             live platform — with automated tenant billing and an interactive <span className="font-semibold text-foreground">3D building map</span> for
             real-estate developers and enterprises.
           </motion.p>
@@ -143,7 +143,7 @@ export const Hero = () => {
           <div className="relative overflow-hidden rounded-2xl sm:rounded-[2rem] glass-strong p-2 sm:p-3 md:p-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)]">
             <img
               src={dashboardImg}
-              alt="PROsmart consumption dashboard"
+              alt="Probiz Energy consumption dashboard"
               width={1920}
               height={1440}
               loading="eager"

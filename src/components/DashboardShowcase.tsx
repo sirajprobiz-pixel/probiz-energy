@@ -114,7 +114,7 @@ export const DashboardShowcase = () => {
               <motion.img
                 key={tab.id}
                 src={tab.image}
-                alt={`PROsmart ${tab.label} dashboard`}
+                alt={`Probiz Energy ${tab.label} dashboard`}
                 width={1600}
                 height={1200}
                 loading="lazy"
@@ -168,7 +168,7 @@ export const DashboardShowcase = () => {
               as="p"
               delay={0.25}
               className="mt-4 text-sm text-muted-foreground text-balance sm:mt-5 sm:text-base md:text-lg"
-              text="From live energy ring charts to granular billing breakdowns — see exactly how PROsmart delivers visibility to your facility and finance teams."
+              text="From live energy ring charts to granular billing breakdowns — see exactly how Probiz Energy delivers visibility to your facility and finance teams."
             />
           </motion.div>
 
@@ -189,7 +189,7 @@ export const DashboardShowcase = () => {
                 <div className="p-2 sm:p-3">
                   <img
                     src={dashboardLive}
-                    alt="PROsmart Live Monitoring — HVAC, Energy EB, DG, Water and Gas ring charts"
+                    alt="Probiz Energy Live Monitoring — HVAC, Energy EB, DG, Water and Gas ring charts"
                     width={1024}
                     height={768}
                     loading="lazy"
@@ -224,7 +224,7 @@ export const DashboardShowcase = () => {
                 <div className="p-2 sm:p-3">
                   <img
                     src={dashboardBillingFull}
-                    alt="PROsmart Billing Dashboard — billing rates, tenant breakdown and total cost"
+                    alt="Probiz Energy Billing Dashboard — billing rates, tenant breakdown and total cost"
                     width={1024}
                     height={768}
                     loading="lazy"

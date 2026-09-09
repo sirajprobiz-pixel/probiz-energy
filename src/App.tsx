@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { CookieConsent } from "@/components/CookieConsent";
 import { ProxChatbot } from "@/components/ProxChatbot";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index.tsx";
@@ -45,7 +44,6 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <CookieConsent />
         <ProxChatbot />
       </BrowserRouter>
     </TooltipProvider>

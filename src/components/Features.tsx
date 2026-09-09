@@ -30,7 +30,7 @@ const FEATURES = [
     icon: Cpu, color: "bg-brand-3 text-white",
     title: "BACnet Support",
     body: "Seamless integration with Building Management Systems for centralised monitoring.",
-    details: "Native BACnet/IP and BACnet MS/TP drivers connect PROsmart Energy directly to your BMS. Pull HVAC setpoints, AHU runtime and chiller telemetry alongside metering data — giving you a single pane of glass across building operations.",
+    details: "Native BACnet/IP and BACnet MS/TP drivers connect Probiz Energy directly to your BMS. Pull HVAC setpoints, AHU runtime and chiller telemetry alongside metering data — giving you a single pane of glass across building operations.",
     benefits: ["BACnet/IP & MS/TP drivers", "Bi-directional point exchange", "Schedule and setpoint sync", "Unified BMS + energy view"],
   },
   {

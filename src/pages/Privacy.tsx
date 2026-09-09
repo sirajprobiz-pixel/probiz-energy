@@ -13,7 +13,7 @@ const SECTIONS = [
   },
   {
     title: "2. How We Use Your Information",
-    body: "Your information is used to deliver the PROsmart platform, respond to inquiries, send product updates, improve our services, prevent fraud, and meet legal obligations. We never sell personal data.",
+    body: "Your information is used to deliver the Probiz Energy platform, respond to inquiries, send product updates, improve our services, prevent fraud, and meet legal obligations. We never sell personal data.",
   },
   {
     title: "3. Data Storage & Security",
@@ -21,11 +21,11 @@ const SECTIONS = [
   },
   {
     title: "4. Cookies",
-    body: "We use essential cookies for authentication and analytics cookies (with your consent) to understand usage patterns. You can manage your preferences via the cookie banner at any time.",
+    body: "We use essential cookies for authentication and analytics cookies to understand usage patterns.",
   },
   {
     title: "5. Your Rights",
-    body: "You have the right to access, correct, export, or delete your personal data. Contact privacy@prosmart.energy to make a request — we respond within 30 days.",
+    body: "You have the right to access, correct, export, or delete your personal data. Contact privacy@probiz.energy to make a request — we respond within 30 days.",
   },
   {
     title: "6. Updates",
@@ -36,7 +36,7 @@ const SECTIONS = [
 const Privacy = () => {
   useLenis();
   useEffect(() => {
-    document.title = "Privacy Policy — PROsmart";
+    document.title = "Privacy Policy — Probiz Energy";
   }, []);
 
   return (
@@ -58,7 +58,7 @@ const Privacy = () => {
             Your data, handled with care.
           </h1>
           <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Last updated: May 2026. This policy describes how Probiz Automation collects, uses and protects information when you use the PROsmart platform and related services.
+            Last updated: May 2026. This policy describes how Probiz Automation collects, uses and protects information when you use the Probiz Energy platform and related services.
           </p>
           <div className="mt-12 space-y-8">
             {SECTIONS.map((s, i) => (
@@ -76,7 +76,7 @@ const Privacy = () => {
             ))}
           </div>
           <p className="mt-10 text-sm text-muted-foreground">
-            Questions? Email <a href="mailto:privacy@prosmart.energy" className="text-primary underline">privacy@prosmart.energy</a>.
+            Questions? Email <a href="mailto:privacy@probiz.energy" className="text-primary underline">privacy@probiz.energy</a>.
           </p>
         </section>
       </main>

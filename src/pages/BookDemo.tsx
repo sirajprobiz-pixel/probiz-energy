@@ -28,14 +28,14 @@ const BookDemo = () => {
   const [form, setForm] = useState({ name: "", email: "", company: "", buildings: "1-5", message: "" });
 
   useEffect(() => {
-    document.title = "Book a Demo — PROsmart";
+    document.title = "Book a Demo — Probiz Energy";
     const meta = document.querySelector('meta[name="description"]') || (() => {
       const m = document.createElement("meta");
       m.setAttribute("name", "description");
       document.head.appendChild(m);
       return m;
     })();
-    meta.setAttribute("content", "Book a personalised demo of PROsmart energy monitoring & automated billing.");
+    meta.setAttribute("content", "Book a personalised demo of Probiz Energy energy monitoring & automated billing.");
     window.scrollTo(0, 0);
   }, []);
 
@@ -70,7 +70,7 @@ const BookDemo = () => {
               <Calendar className="h-3 w-3 text-blue-1" /> Book your live demo
             </div>
             <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
-              See PROsmart <span className="text-blue-1">live</span> on your buildings.
+              See Probiz Energy <span className="text-blue-1">live</span> on your buildings.
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
               30 minutes. Zero pressure. Get a personalised walkthrough and a custom ROI report.
@@ -119,7 +119,7 @@ const BookDemo = () => {
                 </div>
                 <h3 className="font-display text-2xl font-bold">You're in!</h3>
                 <p className="mt-3 max-w-sm text-muted-foreground">
-                  Our team will reach out within 24 hours to schedule your personalised PROsmart demo.
+                  Our team will reach out within 24 hours to schedule your personalised Probiz Energy demo.
                 </p>
                 <Link to="/" className="mt-8 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:opacity-90">
                   Back to home
@@ -224,7 +224,7 @@ const BookDemo = () => {
             <div className="rounded-3xl surface p-8">
               <div className="font-display text-2xl font-bold">Trusted by leading developers</div>
               <p className="mt-3 text-sm text-muted-foreground">
-                Forward-thinking real estate developers and enterprises rely on PROsmart for accurate billing and data-driven savings.
+                Forward-thinking real estate developers and enterprises rely on Probiz Energy for accurate billing and data-driven savings.
               </p>
               <div className="mt-6 grid grid-cols-3 gap-3 text-center">
                 <div>

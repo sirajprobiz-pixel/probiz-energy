@@ -9,14 +9,14 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 const PricingPage = () => {
   useLenis();
   useEffect(() => {
-    document.title = "Pricing — PROsmart";
+    document.title = "Pricing — Probiz Energy";
     const meta = document.querySelector('meta[name="description"]') || (() => {
       const m = document.createElement("meta");
       m.setAttribute("name", "description");
       document.head.appendChild(m);
       return m;
     })();
-    meta.setAttribute("content", "PROsmart pricing in INR — Starter, Lite, Pro and Enterprise plans for energy monitoring & automated billing.");
+    meta.setAttribute("content", "Probiz Energy pricing in INR — Starter, Lite, Pro and Enterprise plans for energy monitoring & automated billing.");
   }, []);
 
   return (

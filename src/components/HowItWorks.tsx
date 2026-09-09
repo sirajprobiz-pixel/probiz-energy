@@ -15,7 +15,7 @@ const STEPS = [
   {
     icon: Cloud,
     title: "Stream to the cloud",
-    body: "Secure edge gateways push real-time consumption data to the PROsmart cloud over BACnet, Modbus or LoRaWAN.",
+    body: "Secure edge gateways push real-time consumption data to the Probiz Energy cloud over BACnet, Modbus or LoRaWAN.",
     color: "bg-brand-3 text-white",
   },
   {

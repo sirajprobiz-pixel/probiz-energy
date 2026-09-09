@@ -15,7 +15,7 @@ const CASES = [
     tag: "Commercial portfolio",
     metric: "100%",
     label: "Billing accuracy",
-    body: "PROsmart replaced manual meter walks across 14 office towers — eliminating disputes and reclaiming 60+ hours of facility-team work every month.",
+    body: "Probiz Energy replaced manual meter walks across 14 office towers — eliminating disputes and reclaiming 60+ hours of facility-team work every month.",
     accent: "text-blue-2",
     chip: "bg-brand-2/15 text-blue-2",
   },
@@ -23,7 +23,7 @@ const CASES = [
     tag: "Hospitality chain",
     metric: "ISO 50001",
     label: "Compliance achieved",
-    body: "A national hotel group hit ISO 50001 in 8 months using PROsmart's continuous diagnostics, audit-ready reports and AI anomaly alerts.",
+    body: "A national hotel group hit ISO 50001 in 8 months using Probiz Energy's continuous diagnostics, audit-ready reports and AI anomaly alerts.",
     accent: "text-blue-3",
     chip: "bg-brand-3/15 text-blue-3",
   },
@@ -69,7 +69,7 @@ export const Impact = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 text-lg text-muted-foreground text-balance"
           >
-            From single towers to nationwide portfolios — PROsmart turns metering data into measurable savings.
+            From single towers to nationwide portfolios — Probiz Energy turns metering data into measurable savings.
           </motion.p>
         </div>
 

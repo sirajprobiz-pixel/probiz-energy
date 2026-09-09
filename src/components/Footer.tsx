@@ -8,7 +8,7 @@ const COLS: Array<{ title: string; links: Array<{ label: string; to: string }> }
     title: "Products",
     links: [
       { label: "Our Products", to: "/products" },
-      { label: "PROsmart Energy", to: "/" },
+      { label: "Probiz Energy", to: "/" },
       { label: "Probiz Energy AI", to: "/" },
       { label: "Pricing", to: "/pricing" },
     ],
@@ -93,11 +93,11 @@ export const Footer = () => {
               >
                 <img
                   src={logo}
-                  alt="PROsmart Energy"
+                  alt="Probiz Energy"
                   className="relative h-10 w-10 object-contain transition-transform duration-700 ease-out group-hover:rotate-[360deg] sm:h-12 sm:w-12"
                 />
               </div>
-              <span className="text-lg font-bold sm:text-xl" style={{ fontFamily: "'Quicksand', sans-serif", color: '#317ade' }}>Prosmart Energy</span>
+              <span className="text-lg font-bold sm:text-xl" style={{ fontFamily: "'Quicksand', sans-serif", color: '#317ade' }}>Probiz Energy</span>
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground sm:mt-4">
               Effortless energy monitoring and automated tenant billing for the buildings of tomorrow.

@@ -22,14 +22,14 @@ const Index = () => {
   useLenis();
 
   useEffect(() => {
-    document.title = "PROsmart — Effortless Energy Monitoring & Automated Billing";
+    document.title = "Probiz Energy — Effortless Energy Monitoring & Automated Billing";
     const meta = document.querySelector('meta[name="description"]') || (() => {
       const m = document.createElement("meta");
       m.setAttribute("name", "description");
       document.head.appendChild(m);
       return m;
     })();
-    meta.setAttribute("content", "PROsmart is the next-gen platform for energy monitoring, management and automated tenant billing for smart buildings.");
+    meta.setAttribute("content", "Probiz Energy is the next-gen platform for energy monitoring, management and automated tenant billing for smart buildings.");
   }, []);
 
   return (

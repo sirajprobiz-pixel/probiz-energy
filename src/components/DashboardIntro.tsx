@@ -41,7 +41,7 @@ export const DashboardIntro = () => {
             className="mt-5 text-base text-muted-foreground text-balance md:text-lg"
           >
             From live consumption and power quality to automated tenant invoices —
-            PROsmart unifies the data your facility, finance, and sustainability teams need.
+            Probiz Energy unifies the data your facility, finance, and sustainability teams need.
           </motion.p>
         </div>
 

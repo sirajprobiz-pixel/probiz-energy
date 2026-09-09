@@ -39,7 +39,7 @@ export const CTA = () => {
               Ready to power up your <span className="text-green-1">building smarter?</span>
             </motion.h2>
             <p className="mx-auto mt-8 max-w-xl text-lg text-muted-foreground md:text-xl">
-              See PROsmart Energy in action with a personalised demo tailored to your portfolio.
+              See Probiz Energy in action with a personalised demo tailored to your portfolio.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link

@@ -45,7 +45,7 @@ const SKILLS = [
   {
     icon: MessageCircle,
     title: "Always-on assistant",
-    body: "24/7 chat across the website and the PROsmart platform. Ask in plain English — PROX understands your portfolio.",
+    body: "24/7 chat across the website and the Probiz Energy platform. Ask in plain English — PROX understands your portfolio.",
   },
   {
     icon: BookOpen,
@@ -66,15 +66,15 @@ const SKILLS = [
 
 const TIMELINE = [
   { tag: "Designed", title: "Brand-first character design", body: "Crafted by the design team at Probiz Technologies to reflect a friendly, intelligent and energy-aware companion." },
-  { tag: "Engineered", title: "Built on the PROsmart platform", body: "Powered by the same data fabric that runs PROsmart — meters, billing engine, BACnet/Modbus integrations and AI." },
-  { tag: "Maintained", title: "Continuously evolving", body: "PROX is shipped, monitored and improved by Probiz Technologies. New skills are released alongside every PROsmart product update." },
+  { tag: "Engineered", title: "Built on the Probiz Energy platform", body: "Powered by the same data fabric that runs Probiz Energy — meters, billing engine, BACnet/Modbus integrations and AI." },
+  { tag: "Maintained", title: "Continuously evolving", body: "PROX is shipped, monitored and improved by Probiz Technologies. New skills are released alongside every Probiz Energy product update." },
 ];
 
 const Prox = () => {
   useLenis();
 
   useEffect(() => {
-    document.title = "Meet PROX — PROsmart's energy companion";
+    document.title = "Meet PROX — Probiz Energy's companion";
     const meta =
       document.querySelector('meta[name="description"]') ||
       (() => {
@@ -85,7 +85,7 @@ const Prox = () => {
       })();
     meta.setAttribute(
       "content",
-      "PROX is the friendly AI mascot designed and developed by Probiz Technologies — guiding users across PROsmart Energy and the entire Probiz product suite.",
+      "PROX is the friendly AI mascot designed and developed by Probiz Technologies — guiding users across Probiz Energy and the entire Probiz product suite.",
     );
   }, []);
 
@@ -130,7 +130,7 @@ const Prox = () => {
                   transition={{ duration: 0.6, delay: 0.25 }}
                   className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
                 >
-                  PROX is the friendly AI companion of PROsmart Energy — designed and developed by{" "}
+                  PROX is the friendly AI companion of Probiz Energy — designed and developed by{" "}
                   <span className="font-semibold text-foreground">Probiz Technologies</span> to make smart-energy management feel effortless. From live insights to instant answers, PROX is built to take every Probiz product to the next level.
                 </motion.p>
 
@@ -196,7 +196,7 @@ const Prox = () => {
                   className="absolute -bottom-2 right-0 z-20 hidden items-center gap-2 rounded-full border border-border bg-background/90 px-3.5 py-2 text-xs font-medium shadow-[0_18px_40px_-18px_hsl(0_0%_0%/0.45)] backdrop-blur sm:flex"
                 >
                   <Sparkles size={12} className="text-primary" />
-                  Powered by PROsmart AI
+                  Powered by Probiz Energy AI
                 </motion.div>
               </motion.div>
             </div>
@@ -304,7 +304,7 @@ const Prox = () => {
                     Maintaining the next level of every Probiz product.
                   </h2>
                   <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                    Probiz Technologies designs, develops and maintains PROX as a unified companion across our entire product family — Probiz Connect, Probiz Energy, Probiz Retail and PROsmart. One mascot. One voice. Every Probiz experience, levelled up.
+                    Probiz Technologies designs, develops and maintains PROX as a unified companion across our entire product family — Probiz Connect, Probiz Energy and Probiz Retail. One mascot. One voice. Every Probiz experience, levelled up.
                   </p>
                   <div className="mt-7 flex flex-wrap gap-3">
                     <Link

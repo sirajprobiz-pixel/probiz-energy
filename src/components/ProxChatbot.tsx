@@ -8,12 +8,12 @@ type Msg = { role: "bot" | "user"; text: string };
 const STARTER: Msg[] = [
   {
     role: "bot",
-    text: "Hi, I'm Prox — your PROsmart assistant. Ask me about energy monitoring, automated billing, plans, or anything else!",
+    text: "Hi, I'm Prox — your Probiz Energy assistant. Ask me about energy monitoring, automated billing, plans, or anything else!",
   },
 ];
 
 const SUGGESTIONS = [
-  "What does PROsmart do?",
+  "What does Probiz Energy do?",
   "How is billing automated?",
   "Pricing plans",
   "Book a demo",
@@ -27,11 +27,11 @@ const getReply = (input: string): string => {
   if (/demo|book/.test(q))
     return "You can book a personalised demo from the 'Book a Demo' button in the header — our team responds within 24 hours.";
   if (/billing|invoice|tenant/.test(q))
-    return "PROsmart fully automates tenant billing — meters → tax engine → branded invoices. Zero manual entry, every cycle.";
+    return "Probiz Energy fully automates tenant billing — meters → tax engine → branded invoices. Zero manual entry, every cycle.";
   if (/energy|monitor|consumption/.test(q))
     return "We unify EB, DG, HVAC, water and gas into a single live dashboard with 30-second refresh and per-circuit AI disaggregation.";
   if (/contact|support|help/.test(q))
-    return "Head to the Support page or email support@prosmart.energy. Enterprise customers get 4-hour SLA response.";
+    return "Head to the Support page or email support@probiz.energy. Enterprise customers get 4-hour SLA response.";
   if (/hi|hello|hey/.test(q))
     return "Hello! I'm Prox. How can I help you today?";
   return "Great question! Our team can give you a precise answer — try the Support page or book a demo, and I'll be standing by.";
@@ -206,7 +206,7 @@ export const ProxChatbot = () => {
                   <Sparkles size={14} className="text-primary" />
                 </div>
                 <div className="text-xs text-muted-foreground">
-                  PROsmart AI assistant · Online
+                  Probiz Energy AI assistant · Online
                 </div>
               </div>
               <button

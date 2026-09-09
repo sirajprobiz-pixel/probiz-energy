@@ -40,13 +40,13 @@ export const Header = () => {
             <div className="relative h-10 w-10">
               <img
                 src={logo}
-                alt="PROsmart Energy"
+                alt="Probiz Energy"
                 width={40}
                 height={40}
                 className="relative h-10 w-10 object-contain transition-transform duration-700 ease-out group-hover:rotate-[360deg] group-hover:scale-110"
               />
             </div>
-            <span className="text-lg font-bold tracking-tight" style={{ fontFamily: "'Quicksand', sans-serif", color: '#317ade' }}>Prosmart Energy</span>
+            <span className="text-lg font-bold tracking-tight" style={{ fontFamily: "'Quicksand', sans-serif", color: '#317ade' }}>Probiz Energy</span>
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
@@ -70,7 +70,7 @@ export const Header = () => {
 
           <div className="hidden md:block">
             <Link
-              to="/book-demo"
+              to="/contact"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:shadow-[0_10px_30px_-10px_hsl(var(--primary)/0.6)]"
             >
               <span className="relative z-10">Book a Demo</span>
@@ -100,7 +100,7 @@ export const Header = () => {
               );
             })}
             <Link
-              to="/book-demo"
+              to="/contact" ///book-demo
               onClick={() => setOpen(false)}
               className="mt-2 block rounded-full bg-primary px-4 py-3 text-center text-sm font-medium text-primary-foreground"
             >

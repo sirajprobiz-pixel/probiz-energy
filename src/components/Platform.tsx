@@ -39,7 +39,7 @@ export const Platform = () => {
             as="p"
             delay={0.3}
             className="mt-8 text-lg text-muted-foreground text-balance mx-auto max-w-2xl"
-            text="Cut energy use, costs, and carbon footprints with enhanced data visibility, actionable insights, automation, data-driven maintenance, and smart problem isolation. PROsmart Energy supports enterprises in achieving ISO 50001 compliance."
+            text="Cut energy use, costs, and carbon footprints with enhanced data visibility, actionable insights, automation, data-driven maintenance, and smart problem isolation. Probiz Energy supports enterprises in achieving ISO 50001 compliance."
           />
         </motion.div>
 

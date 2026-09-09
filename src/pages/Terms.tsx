@@ -7,11 +7,11 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import brandLogo from "@/assets/logo.png";
 
 const SECTIONS = [
-  { title: "1. Acceptance of Terms", body: "By accessing or using PROsmart, you agree to be bound by these Terms. If you do not agree, you may not use the platform." },
-  { title: "2. Service Description", body: "PROsmart is a SaaS platform for energy monitoring, automated tenant billing, and building intelligence operated by Probiz Automation." },
+  { title: "1. Acceptance of Terms", body: "By accessing or using Probiz Energy, you agree to be bound by these Terms. If you do not agree, you may not use the platform." },
+  { title: "2. Service Description", body: "Probiz Energy is a SaaS platform for energy monitoring, automated tenant billing, and building intelligence operated by Probiz Automation." },
   { title: "3. Accounts & Access", body: "You are responsible for maintaining the confidentiality of your credentials. Notify us immediately of any unauthorized access. We may suspend accounts that violate these terms." },
   { title: "4. Subscription & Billing", body: "Plans are billed monthly or annually in INR or local currency. Fees are non-refundable except as required by law. We may revise pricing with 30 days' notice." },
-  { title: "5. Acceptable Use", body: "You agree not to reverse engineer, resell, or interfere with the service. You must comply with all applicable laws when using PROsmart." },
+  { title: "5. Acceptable Use", body: "You agree not to reverse engineer, resell, or interfere with the service. You must comply with all applicable laws when using Probiz Energy." },
   { title: "6. Intellectual Property", body: "All software, branding and content is owned by Probiz Automation. You retain ownership of data you upload; you grant us a license to host and process it to deliver the service." },
   { title: "7. Service Availability", body: "We target 99.9% uptime but do not guarantee uninterrupted service. Scheduled maintenance is announced in advance whenever possible." },
   { title: "8. Limitation of Liability", body: "To the maximum extent permitted by law, Probiz Automation is not liable for indirect, incidental or consequential damages. Total liability is limited to fees paid in the prior 12 months." },
@@ -22,7 +22,7 @@ const SECTIONS = [
 const Terms = () => {
   useLenis();
   useEffect(() => {
-    document.title = "Terms & Conditions — PROsmart";
+    document.title = "Terms & Conditions — Probiz Energy";
   }, []);
 
   return (
@@ -44,7 +44,7 @@ const Terms = () => {
             The fine print, kept simple.
           </h1>
           <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Last updated: May 2026. These Terms govern your use of the PROsmart platform and services provided by Probiz Automation.
+            Last updated: May 2026. These Terms govern your use of the Probiz Energy platform and services provided by Probiz Automation.
           </p>
           <div className="mt-12 space-y-6">
             {SECTIONS.map((s, i) => (
@@ -62,7 +62,7 @@ const Terms = () => {
             ))}
           </div>
           <p className="mt-10 text-sm text-muted-foreground">
-            Questions? Email <a href="mailto:legal@prosmart.energy" className="text-primary underline">legal@prosmart.energy</a>.
+            Questions? Email <a href="mailto:legal@probiz.energy" className="text-primary underline">legal@probiz.energy</a>.
           </p>
         </section>
       </main>
